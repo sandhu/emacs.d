@@ -13,6 +13,9 @@
 ;; Setup the package management
 (require 'init-packages)
 
+;; Install the essential packages
+(require 'init-essential)
+
 ;; Load the configuration
 (let ((custom-file (expand-file-name "emacs-custom.el" user-emacs-directory))
       (defuns-dir (expand-file-name "defuns" user-emacs-directory))

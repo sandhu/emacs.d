@@ -97,7 +97,6 @@
             (lambda ()
               (nrepl-turn-on-eldoc-mode)
               (subword-mode)
-              (diminish 'nrepl-interaction-mode " η")
               (require 'nrepl-ritz)))
 
   (define-key nrepl-mode-map (kbd "M-RET") 'nrepl-doc)
@@ -146,7 +145,6 @@
 ;; Midje mode
 ;;
 (require-package 'midje-mode)
-(require 'diminish)
 
 (after 'clojure-autoloads
   (add-hook 'clojure-mode-hook
