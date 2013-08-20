@@ -1,17 +1,7 @@
-(require-package 'dired-details)
-(require-package 'dash)
+(require-package 'dired-details+)
+(require 'dired-details+)
 
-(after 'dired-details-autoloads
-  (require 'dired-details) (dired-details-install)
-
-  (require 'dash)
-  ;; Reload dired after making changes
-  (--each '(dired-do-rename
-            dired-create-directory
-            wdired-abort-changes)
-    (eval `(defadvice ,it (after revert-buffer activate)
-             (revert-buffer))))
-
+(after 'dired-details+-autoloads
   ;; C-a is nicer in dired if it moves back to start of files
   (defun dired-back-to-start-of-files ()
     (interactive)
