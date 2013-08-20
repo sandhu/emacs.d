@@ -100,4 +100,8 @@
 (after 'expand-region-autoloads
   (global-set-key (kbd "C-=") 'er/expand-region))
 
+;; Find File in Project
+(after 'find-file-in-project-autoloads
+  (global-set-key (kbd "C-x p") 'find-file-in-project))
+
 (provide 'init-keybindings)

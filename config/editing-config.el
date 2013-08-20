@@ -9,6 +9,8 @@
       mouse-yank-at-point t)
 (delete-selection-mode)
 
+(require-package 'ace-jump-mode)
+
 ;; Annoying arrows mode
 ;; (require-package 'annoying-arrows-mode)
 ;; (after 'annoying-arrows-mode-autoloads
