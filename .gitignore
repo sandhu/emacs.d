@@ -1,3 +1,6 @@
+#emacs byte compiled files
+*.elc
+
 # emacs temp files
 *~
 .#*
