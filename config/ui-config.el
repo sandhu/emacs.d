@@ -11,6 +11,10 @@
       (add-hook 'after-init-hook 'load-frameg)
       (add-hook 'kill-emacs-hook 'save-frameg)))
 
+;; visual window switcher
+(require-package 'switch-window)
+(require 'switch-window)
+
 ;; rotate windows
 (defun rotate-windows ()
   "Rotate your windows"
