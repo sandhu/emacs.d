@@ -37,28 +37,29 @@
 (global-set-key (kbd "C-M-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-M-r") 'isearch-backward-regexp)
 
-;; ace jump mode
+;; Ace jump mode
 (after 'ace-jump-mode-autoloads
   (global-set-key (kbd "C-o") 'ace-jump-mode))
 
-;; transpose stuff with M-t
+;; Transpose stuff with M-t
 (global-unset-key (kbd "M-t")) ;; which used to be transpose-words
 (global-set-key (kbd "M-t l") 'transpose-lines)
 (global-set-key (kbd "M-t w") 'transpose-words)
 (global-set-key (kbd "M-t s") 'transpose-sexps)
 (global-set-key (kbd "M-t p") 'transpose-params)
 
-;; killing text
+;; Killing text
 (global-set-key (kbd "C-S-k") 'kill-and-retry-line)
 (global-set-key (kbd "C-w") 'kill-region-or-backward-word)
 (global-set-key (kbd "M-k") 'kill-to-beginning-of-line)
 (global-set-key (kbd "M-j") (lambda ()
                               (interactive)
                               (join-line -1)))
+
 ;; prog mode bindings
 (global-set-key (kbd "M-/") 'comment-or-uncomment-region)
 
-;; removing spaces
+;; Removing spaces
 (global-set-key (kbd "C-c j") 'just-one-space)
 
 
