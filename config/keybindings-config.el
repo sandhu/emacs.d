@@ -104,4 +104,11 @@
 (after 'find-file-in-project-autoloads
   (global-set-key (kbd "C-x p") 'find-file-in-project))
 
+;; Git
+(after 'magit
+  (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
+  (define-key magit-status-mode-map (kbd "C-x C-k") 'magit-kill-file-on-line)
+  (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace))
+
+
 (provide 'init-keybindings)
