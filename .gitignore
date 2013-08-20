@@ -1,0 +1,13 @@
+# emacs temp files
+*~
+.#*
+
+# the package repository
+elpa/
+
+# session information
+.mc-lists.el
+.smex-items
+nrepl-history
+auto-save-list/
+emacs.frameg
