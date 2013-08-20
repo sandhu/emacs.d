@@ -9,6 +9,7 @@
   (defun lisp-mode-setup ()
     (auto-indent-mode)
     (whitespace-mode)
+    (subword-mode)
     (lisp-paren-setup))
 
   (add-hook 'lisp-mode-hook 'lisp-mode-setup)

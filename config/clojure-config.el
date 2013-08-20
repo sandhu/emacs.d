@@ -5,29 +5,38 @@
 (require-package 'clojure-test-mode)
 (require-package 'clojure-cheatsheet)
 
-(after 'clojure-mode
-  '(font-lock-add-keywords
-    'clojure-mode `(("(\\(fn\\)[\[[:space:]]"
-                     (0 (progn (compose-region (match-beginning 1)
-                                               (match-end 1) "λ")
-                               nil)))
-                    ("\\(#\\)("
-                     (0 (progn (compose-region (match-beginning 1)
-                                               (match-end 1) "λ") ; "ƒ"
-                               nil)))
-                    ("(\\(partial\\)[[:space:]]"
-                     (0 (progn (compose-region (match-beginning 1)
-                                               (match-end 1) "Ƥ")
-                               nil)))
-                    ("(\\(comp\\)[[:space:]]"
-                     (0 (progn (compose-region (match-beginning 1)
-                                               (match-end 1) "ο")
-                               nil)))))
+(after 'clojure-mode-autoloads
+  (add-hook 'clojure-mode-hook
+            (lambda ()
+              (lisp-mode-setup)
+              (setq buffer-save-without-query t)))
+
+  (font-lock-add-keywords
+   'clojure-mode `(("(\\(fn\\)[\[[:space:]]"
+                    (0 (progn (compose-region (match-beginning 1)
+                                              (match-end 1) "λ")
+                              nil)))
+                   ("\\(#\\)("
+                    (0 (progn (compose-region (match-beginning 1)
+                                              (match-end 1) "λ") ; "ƒ"
+                              nil)))
+                   ("(\\(partial\\)[[:space:]]"
+                    (0 (progn (compose-region (match-beginning 1)
+                                              (match-end 1) "Ƥ")
+                              nil)))
+                   ("(\\(comp\\)[[:space:]]"
+                    (0 (progn (compose-region (match-beginning 1)
+                                              (match-end 1) "ο")
+                              nil)))))
 
   (setq auto-mode-alist (append '(("\\.cljs$" . clojure-mode)
                                   ("\\.edn$" . clojure-mode)
                                   ("\\.dtm$" . clojure-mode))
                                 auto-mode-alist))
+  (after 'find-file-in-project
+    (add-to-list 'ffip-patterns "*.clj")
+    (add-to-list 'ffip-patterns "*.edn")
+    (add-to-list 'ffip-patterns "*.dtm"))
 
   (defun core-logic-config ()
     "Update the indentation rules for core.logic"
@@ -37,8 +46,13 @@
 
   (add-hook 'clojure-mode-hook
             (lambda ()
-              (setq buffer-save-without-query t)
               (core-logic-config)))
+
+  (defun live-transpose-words-with-hyphens (arg)
+    "Treat hyphens as a word character when transposing words"
+    (interactive "*p")
+    (with-syntax-table clojure-mode-with-hyphens-as-word-sep-syntax-table
+      (transpose-words arg)))
 
   (defun char-at-point ()
     (interactive)
@@ -68,8 +82,7 @@
                (insert "\"" (clj-keyword-name (delete-and-extract-sexp)) "\""))
               (t (progn
                    (backward-char)
-                   (toggle-keyword-string)))))))
-  (global-set-key (kbd "C-:") 'toggle-clj-keyword-string))
+                   (toggle-keyword-string))))))))
 
 ;;
 ;; nrepl
@@ -78,17 +91,17 @@
 (require-package 'nrepl-ritz)
 (require-package 'nrepl-decompile)
 
-(after 'nrepl
-
+(after 'nrepl-autoloads
+  (add-hook 'clojure-mode-hook 'nrepl-interaction-mode)
   (setq nrepl-hide-special-buffers t)
   (setq nrepl-popup-stacktraces nil) ; will use nrepl-ritz for exceptions
-  (setq nrepl-history-file (concat user-emacs-directory "nrepl-history"))
+  (setq nrepl-popup-stacktraces-in-repl nil)
+  (setq nrepl-history-file (expand-file-name "nrepl-history" user-emacs-directory))
 
   (add-to-list 'same-window-buffer-names "*nrepl*")
   (add-hook 'nrepl-mode-hook
             (lambda ()
-              (paredit-mode +1)
-              (show-paren-mode)
+              (lisp-mode-setup)
               (subword-mode)
               (setq mode-name "η")))
   (add-hook 'nrepl-connected-hook 'nrepl-enable-on-existing-clojure-buffers)
@@ -97,49 +110,35 @@
             (lambda ()
               (nrepl-turn-on-eldoc-mode)
               (subword-mode)
-              (require 'nrepl-ritz)))
-
-  (define-key nrepl-mode-map (kbd "M-RET") 'nrepl-doc)
-  (define-key nrepl-interaction-mode-map (kbd "M-RET") 'nrepl-doc)
+              ;;(require 'nrepl-ritz)
+              ))
 
   ;; specify the print length to be 100 to stop infinite sequences killing things.
   (defun live-nrepl-set-print-length ()
     (nrepl-send-string-sync "(set! *print-length* 100)" "clojure.core"))
-  (add-hook 'nrepl-connected-hook 'live-nrepl-set-print-length)
-
-  ;;(define-key nrepl-mode-map (kbd "C-c i") 'nrepl-inspect)
-
-  ;; Ritz middleware
-  ;;(define-key nrepl-interaction-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
-  ;;(define-key nrepl-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
-  ;;(define-key nrepl-interaction-mode-map (kbd "C-c C-a") 'nrepl-apropos)
-  ;;(define-key nrepl-mode-map (kbd "C-c C-a") 'nrepl-apropos)
-
-  )
+  (add-hook 'nrepl-connected-hook 'live-nrepl-set-print-length))
 
 ;;
 ;; Autocompletion for nrepl
 ;;
+(require-package 'auto-complete)
 (require-package 'ac-nrepl)
 
 (after 'ac-nrepl-autoloads
-  (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-  (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
 
-  (after 'auto-complete-autoloads
-    '(add-to-list 'ac-modes 'nrepl-mode))
+  (after 'auto-complete
+    (add-to-list 'ac-modes 'clojure-mode)
+    (add-to-list 'ac-modes 'nrepl-mode))
 
-  ;; ;; autocomplete via TAB
-  ;; (defun set-auto-complete-as-completion-at-point-function ()
-  ;;   (setq completion-at-point-functions '(auto-complete)))
-  ;; (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+  (after 'nrepl-autoloads
+    (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+    (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
 
-  ;; (add-hook 'nrepl-mode-hook 'set-auto-complete-as-completion-at-point-function)
-  ;; (add-hook 'nrepl-interaction-mode-hook 'set-auto-complete-as-completion-at-point-function)
-
-  (after 'nrepl
-    (define-key nrepl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
-    (define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)))
+    (defun set-auto-complete-as-completion-at-point-function ()
+      (setq completion-at-point-functions '(auto-complete)))
+    (add-hook 'nrepl-mode-hook 'set-auto-complete-as-completion-at-point-function)
+    (add-hook 'nrepl-interaction-mode-hook 'set-auto-complete-as-completion-at-point-function)
+    (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)))
 
 ;;
 ;; Midje mode
@@ -182,3 +181,5 @@
             (lambda ()
               (flymake-mode-on)
               (flymake-cursor-mode))))
+
+(provide 'clojure-config)

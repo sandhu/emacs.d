@@ -4,6 +4,7 @@
 # emacs temp files
 *~
 .#*
+ac-comphist.dat
 
 # the package repository
 elpa/

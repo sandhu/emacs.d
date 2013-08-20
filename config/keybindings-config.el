@@ -56,6 +56,9 @@
                               (interactive)
                               (join-line -1)))
 
+;; prog mode bindings
+(global-set-key (kbd "M-/") 'comment-or-uncomment-region)
+
 ;; Removing spaces
 (global-set-key (kbd "C-c j") 'just-one-space)
 
@@ -133,5 +136,22 @@
   (define-key magit-status-mode-map (kbd "C-x C-k") 'magit-kill-file-on-line)
   (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace))
 
+;; auto-complete
+(after 'auto-complete
+  (define-key ac-completing-map (kbd "C-M-n") 'ac-next)
+  (define-key ac-completing-map (kbd "C-M-p") 'ac-previous)
+  (define-key ac-completing-map "\t" 'ac-complete)
+  (define-key ac-completing-map (kbd "M-RET") 'ac-help)
+  (define-key ac-completing-map "\r" 'nil))
+
+;; clojure
+(after 'clojure
+  (define-key clojure-mode-map (kbd "M-t") 'live-transpose-words-with-hyphens)
+  (define-key clojure-mode-map (kbd "C-:") 'toggle-clj-keyword-string))
+
+(after 'ac-nrepl
+  (after 'nrepl
+    (define-key nrepl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
+    (define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)))
 
 (provide 'init-keybindings)

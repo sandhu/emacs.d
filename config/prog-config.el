@@ -11,9 +11,8 @@
           (lambda ()
             (add-watchwords)
             (flyspell-prog-mode)
-            (rainbow-delimiters-mode)
-            (global-set-key (kbd "M-/") 'comment-or-uncomment-region)))
+            (rainbow-delimiters-mode)))
 
 (add-hook 'before-save-hook 'cleanup-buffer)
 
-(provide 'init-prog)
+(provide 'prog-config)
