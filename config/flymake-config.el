@@ -1,3 +1,5 @@
+(require-package 'flymake-cursor)
+
 ;; Clean up the mode line
 (after 'flymake
   '(progn
