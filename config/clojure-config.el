@@ -155,14 +155,12 @@
 ;; Kibit Mode
 ;;
 (require-package 'kibit-mode)
-(after 'kibit-mode
+
+(after 'kibit-mode-autoloads
   (add-hook 'clojure-mode-hook
             (lambda ()
               (kibit-mode)
-              (flymake-mode)))
-
-  ;; kibit mode overrides C-c C-n, which is needed for evaluating namespace forms
-  (define-key kibit-mode-keymap (kbd "C-c C-n") nil)
+              (flymake-mode-on)))
 
   ;; Teach compile the syntax of the kibit output
   (require 'compile)
@@ -175,11 +173,9 @@
   (defun kibit ()
     "Run kibit on the current project. Display the results in a hyperlinked *compilation* buffer."
     (interactive)
-    (compile "lein kibit"))
-
-  (add-hook 'clojure-mode-hook
-            (lambda ()
-              (flymake-mode-on)
-              (flymake-cursor-mode))))
+    (compile "lein kibit")))
+(after 'kibit-mode
+  ;; kibit mode overrides C-c C-n, which is needed for evaluating namespace forms
+  (define-key kibit-mode-keymap (kbd "C-c C-n") nil))
 
 (provide 'clojure-config)
