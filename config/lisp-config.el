@@ -1,7 +1,7 @@
 (require-package 'auto-indent-mode)
+(require-package 'hl-sexp)
 
 (after 'lisp-mode
-
   (defun lisp-paren-setup ()
     (paredit-mode +1)
     (show-paren-mode))
