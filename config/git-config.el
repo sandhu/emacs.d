@@ -1,40 +1,18 @@
-;; Use the homebrew version of the git packages
-(add-to-list 'load-path "/usr/local/share/git-core/contrib/emacs")
-(require 'git)
-
-(setq git--state-mark-modeline nil)
-
-(require-package 'git-blame)
-
-(require-package 'git-commit-mode)
-(after 'git-commit-mode-autoloads
-  (add-hook 'git-commit-mode-hook (lambda ()
-                                    (auto-fill-mode)
-                                    (turn-on-flyspell)
-                                    (toggle-save-place 0)
-                                    (set-fill-column 72))))
-
 (require-package 'magit)
-(after 'magit-autoloads
-  ;; Subtler highlight
-  ;; (set-face-background 'magit-item-highlight "#121212")
-  ;; (set-face-foreground 'diff-context "#666666")
-  ;; (set-face-foreground 'diff-added "#00cc33")
-  ;; (set-face-foreground 'diff-removed "#ff0000")
+(require-package 'git-blame)
+(require-package 'git-commit-mode)
+(require-package 'git-rebase-mode)
+(require-package 'gitignore-mode)
+(require-package 'gitconfig-mode)
 
-  ;; Load git configurations
-  ;;(add-hook 'magit-mode-hook 'magit-load-config-extensions)
+(setq-default magit-save-some-buffers nil
+              magit-process-popup-time 10
+              magit-diff-refine-hunk t
+              magit-completing-read-function 'magit-ido-completing-read)
 
-  ;; C-x C-k to kill file on line
-
-  (defun magit-kill-file-on-line ()
-    "Show file on current magit line and prompt for deletion."
-    (interactive)
-    (magit-visit-item)
-    (delete-current-buffer-file)
-    (magit-refresh))
-
-  ;; full screen magit-status
+(after 'magit
+  ;; Don't let magit-status mess up window configurations
+  ;; http://whattheemacsd.com/setup-magit.el-01.html
   (defadvice magit-status (around magit-fullscreen activate)
     (window-configuration-to-register :magit-fullscreen)
     ad-do-it
@@ -44,25 +22,21 @@
     "Restores the previous window configuration and kills the magit buffer"
     (interactive)
     (kill-buffer)
-    (jump-to-register :magit-fullscreen))
+    (when (get-register :magit-fullscreen)
+      (ignore-errors
+        (jump-to-register :magit-fullscreen)))))
 
-  ;; Ignore whitespace in diffs
-  (defun magit-toggle-whitespace ()
-    (interactive)
-    (if (member "-w" magit-diff-options)
-        (magit-dont-ignore-whitespace)
-      (magit-ignore-whitespace)))
+;; When we start working on git-backed files, use git-wip if available
+(after 'vc-git
+  (global-magit-wip-save-mode)
+  (diminish 'magit-wip-save-mode))
 
-  (defun magit-ignore-whitespace ()
-    (interactive)
-    (add-to-list 'magit-diff-options "-w")
-    (magit-refresh))
+;; Use the fringe version of git-gutter
+(require-package 'git-gutter-fringe)
+(after 'git-gutter-fringe-autoloads
+  (require 'git-gutter-fringe)
+  (global-git-gutter-mode))
 
-  (defun magit-dont-ignore-whitespace ()
-    (interactive)
-    (setq magit-diff-options (remove "-w" magit-diff-options))
-    (magit-refresh)))
+(require-package 'git-messenger)
 
-;; git gutter in the fringe
-;;(require-package 'git-gutter-fringe)
-;;(git-gutter)
+(provide 'git-config)

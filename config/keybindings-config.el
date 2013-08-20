@@ -122,6 +122,12 @@
   (global-set-key (kbd "C-x p") 'find-file-in-project))
 
 ;; Git
+(after 'git
+  (global-set-key (kbd "C-x v f") 'vc-git-grep))
+
+(after 'git-messenger-autoloads
+  (global-set-key (kbd "C-x v p") #'git-messenger:popup-message))
+
 (after 'magit
   (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
   (define-key magit-status-mode-map (kbd "C-x C-k") 'magit-kill-file-on-line)

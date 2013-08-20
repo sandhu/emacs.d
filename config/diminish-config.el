@@ -23,8 +23,10 @@
   (after 'clojure-test-mode (diminish 'clojure-test-mode ""))
   (after 'nrepl-interaction-mode (diminish 'nrepl-interaction-mode " η"))
   (after 'midje-mode (diminish 'midje-mode " Ɱ"))
-;;  (add-hook 'hs-minor-mode-hook (diminish 'hs-minor-mode ""))
-  (after 'kibit-mode (diminish 'kibit-mode " κ")))
+  ;;  (add-hook 'hs-minor-mode-hook (diminish 'hs-minor-mode ""))
+  (after 'kibit-mode (diminish 'kibit-mode " κ"))
+
+  (after 'git-gutter-fringe (diminish 'git-gutter-mode "")))
 
 ;;(after 'diminish
 ;;(diminish 'undo-tree-mode)
@@ -33,4 +35,4 @@
 ;;            (lambda () (setq mode-name "⅄"))))
 
 
-(provide 'init-diminish)
+(provide 'diminish-config)
