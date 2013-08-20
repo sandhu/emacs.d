@@ -6,6 +6,9 @@
   (after 'whitespace (diminish 'whitespace-mode ""))
   (after 'flyspell (diminish 'flyspell-mode " ~"))
 
+  (add-hook 'org-mode-hook (lambda () (setq mode-name "Θ")))
+  (after 'org (diminish 'org-indent-mode " »"))
+
   (after 'paredit (diminish 'paredit-mode " ()"))
   (after 'auto-complete (diminish 'auto-complete-mode  " α"))
 
