@@ -20,7 +20,8 @@
 ;; Load the configuration
 (let ((custom-file (expand-file-name "emacs-custom.el" user-emacs-directory))
       (defuns-dir (expand-file-name "defuns" user-emacs-directory))
-      (config-dir (expand-file-name "config" user-emacs-directory)))
+      (config-dir (expand-file-name "config" user-emacs-directory))
+      (user-config-dir (expand-file-name user-login-name user-emacs-directory)))
   (progn
     (when (file-exists-p custom-file) (load custom-file))
     (when (file-exists-p defuns-dir)
@@ -28,7 +29,10 @@
       (mapc 'load (directory-files defuns-dir nil "^[^#].*el$")))
     (when (file-exists-p config-dir)
       (add-to-list 'load-path config-dir)
-      (mapc 'load (directory-files config-dir nil "^[^#].*el$")))))
+      (mapc 'load (directory-files config-dir nil "^[^#].*el$")))
+    (when (file-exists-p user-config-dir)
+      (add-to-list 'load-path user-config-dir)
+      (mapc 'load (directory-files user-config-dir nil "^[^#].*el$")))))
 
 ;; Run the emacs server
 (require 'server)

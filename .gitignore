@@ -15,3 +15,4 @@ elpa/
 nrepl-history
 auto-save-list/
 emacs.frameg
+.emacs.desktop
