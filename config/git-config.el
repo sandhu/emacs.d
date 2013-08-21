@@ -47,6 +47,16 @@
     "...XX..."
     "...XX..."
     "........")
+  (fringe-helper-define 'git-gutter-fr:modified nil
+    "........"
+    "XXXXX..."
+    "XXXXX..."
+    "XXXXX..."
+    "XXXXX..."
+    "XXXXX..."
+    "XXXXX..."
+    "........")
+
   (global-git-gutter-mode))
 
 (require-package 'git-messenger)
