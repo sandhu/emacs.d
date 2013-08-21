@@ -150,4 +150,7 @@
   ;; kibit mode overrides C-c C-n, which is needed for evaluating namespace forms
   (define-key kibit-mode-keymap (kbd "C-c C-n") nil))
 
+;; latest clojars
+(require-package 'latest-clojars)
+
 (provide 'clojure-config)
