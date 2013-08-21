@@ -12,9 +12,8 @@
 (require-package 'ace-jump-mode)
 
 ;; Annoying arrows mode
-;; (require-package 'annoying-arrows-mode)
-;; (after 'annoying-arrows-mode-autoloads
-;;   (global-annoying-arrows-mode))
+(require-package 'annoying-arrows-mode)
+(after 'annoying-arrows-mode-autoloads (global-annoying-arrows-mode))
 
 (add-hook 'text-mode-hook
           (lambda ()
