@@ -60,13 +60,6 @@
 (global-set-key (kbd "<C-return>") 'open-line-below)
 (global-set-key (kbd "<C-S-return>") 'open-line-above)
 
-;; kill ring
-;; (require 'popup)
-;; (require 'pos-tip)
-;; (require 'popup-kill-ring)
-;; (global-set-key (kbd "M-y") 'popup-kill-ring)
-;; (setq popup-kill-ring-interactive-insert t)
-
 ;; recentf
 (recentf-mode t)
 (setq recentf-max-saved-items 50)
@@ -88,7 +81,6 @@
         (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
-
 
 (defun smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
@@ -124,3 +116,5 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'archive-extract-hook (lambda () (toggle-read-only 1)))
 
 (require-package 'expand-region)
+
+(provide 'editing-config)

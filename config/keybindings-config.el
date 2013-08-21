@@ -92,12 +92,13 @@
 (global-set-key (kbd "C-S-b") (lambda () (interactive) (ignore-errors (backward-char 5))))
 
 ;; Smart navigation
-;; (require-package 'smart-forward)
-;; (after 'smart-forward-autoloads
-;;   (global-set-key (kbd "s-<up>") 'smart-up)
-;;   (global-set-key (kbd "s-<down>") 'smart-down)
-;;   (global-set-key (kbd "s-<left>") 'smart-backward)
-;;   (global-set-key (kbd "s-<right>") 'smart-forward))
+(require-package 'smart-forward)
+(after 'smart-forward-autoloads
+  (require 'smart-forward)
+  (global-set-key (kbd "s-<up>") 'smart-up)
+  (global-set-key (kbd "s-<down>") 'smart-down)
+  (global-set-key (kbd "s-<left>") 'smart-backward)
+  (global-set-key (kbd "s-<right>") 'smart-forward))
 
 ;; Expand region
 (after 'expand-region-autoloads
@@ -159,4 +160,4 @@
     (define-key nrepl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
     (define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)))
 
-(provide 'init-keybindings)
+(provide 'keybindings-config)
