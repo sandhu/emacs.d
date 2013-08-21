@@ -6,6 +6,7 @@
   (after 'whitespace (diminish 'whitespace-mode ""))
   (after 'flyspell (diminish 'flyspell-mode " ~"))
 
+  (after 'abbrev (diminish 'abbrev-mode " ⠤"))
   (after 'paredit (diminish 'paredit-mode " ()"))
   (after 'auto-complete (diminish 'auto-complete-mode  " α"))
 
