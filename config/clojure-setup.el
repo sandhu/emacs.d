@@ -152,5 +152,3 @@
 
 ;; latest clojars
 (require-package 'latest-clojars)
-
-(provide 'clojure-config)

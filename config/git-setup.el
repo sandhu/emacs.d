@@ -60,5 +60,3 @@
   (global-git-gutter-mode))
 
 (require-package 'git-messenger)
-
-(provide 'git-config)

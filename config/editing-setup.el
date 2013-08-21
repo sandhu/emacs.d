@@ -116,5 +116,3 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'archive-extract-hook (lambda () (toggle-read-only 1)))
 
 (require-package 'expand-region)
-
-(provide 'editing-config)

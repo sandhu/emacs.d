@@ -33,6 +33,3 @@
 ;;  (diminish 'undo-tree-mode "")
 ;;  (add-hook 'undo-tree-visualizer-mode-hook
 ;;            (lambda () (setq mode-name "⅄"))))
-
-
-(provide 'diminish-config)

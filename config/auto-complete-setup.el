@@ -21,5 +21,3 @@
                  ac-source-words-in-buffer
                  ac-source-words-in-same-mode-buffers
                  ac-source-semantic)))
-
-(provide 'ac-config)

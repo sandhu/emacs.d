@@ -14,5 +14,3 @@
             (rainbow-delimiters-mode)))
 
 (add-hook 'before-save-hook 'cleanup-buffer)
-
-(provide 'prog-config)

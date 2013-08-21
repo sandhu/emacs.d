@@ -12,5 +12,3 @@
 (require 'find-file)
 ;; for the "cc-other-file-alist" variable
 (nconc (cadr (assoc "\\.h\\'" cc-other-file-alist)) '(".m" ".mm"))
-
-(provide 'objc-config)

@@ -27,5 +27,3 @@
                     inhibit-file-name-handlers)))
         (inhibit-file-name-operation operation))
     (apply operation args)))
-
-(provide 'class-file-config)

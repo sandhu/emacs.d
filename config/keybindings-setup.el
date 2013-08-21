@@ -159,5 +159,3 @@
   (after 'nrepl
     (define-key nrepl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
     (define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)))
-
-(provide 'keybindings-config)
