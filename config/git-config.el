@@ -35,6 +35,18 @@
 (require-package 'git-gutter-fringe)
 (after 'git-gutter-fringe-autoloads
   (require 'git-gutter-fringe)
+  (set-face-foreground 'git-gutter-fr:added    "green4")
+  (set-face-foreground 'git-gutter-fr:modified "grey50")
+  (set-face-foreground 'git-gutter-fr:deleted  "red3")
+  (fringe-helper-define 'git-gutter-fr:added nil
+    "........"
+    "...XX..."
+    "...XX..."
+    "XXXXXXXX"
+    "XXXXXXXX"
+    "...XX..."
+    "...XX..."
+    "........")
   (global-git-gutter-mode))
 
 (require-package 'git-messenger)
