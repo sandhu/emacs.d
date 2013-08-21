@@ -44,9 +44,7 @@
     (put-clojure-indent 'fresh 'defun)
     (put-clojure-indent 'conde 'defun))
 
-  (add-hook 'clojure-mode-hook
-            (lambda ()
-              (core-logic-config)))
+  (add-hook 'clojure-mode-hook 'core-logic-config)
 
   (defun live-transpose-words-with-hyphens (arg)
     "Treat hyphens as a word character when transposing words"
@@ -102,16 +100,10 @@
   (add-hook 'nrepl-mode-hook
             (lambda ()
               (lisp-mode-setup)
-              (subword-mode)
               (setq mode-name "η")))
   (add-hook 'nrepl-connected-hook 'nrepl-enable-on-existing-clojure-buffers)
 
-  (add-hook 'nrepl-interaction-mode-hook
-            (lambda ()
-              (nrepl-turn-on-eldoc-mode)
-              (subword-mode)
-              ;;(require 'nrepl-ritz)
-              ))
+  (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
 
   ;; specify the print length to be 100 to stop infinite sequences killing things.
   (defun live-nrepl-set-print-length ()
