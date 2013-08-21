@@ -14,6 +14,7 @@
   (add-hook 'emacs-lisp-mode-hook (lambda () (setq mode-name "ξλ")))
   (add-hook 'lisp-interaction-mode-hook (lambda () (setq mode-name "λ»")))
   (add-hook 'slime-repl-mode-hook (lambda () (setq mode-name "π»")))
+  (after 'elisp-slime-nav (diminish 'elisp-slime-nav-mode " π"))
   (after 'slime '(diminish 'slime-mode " π")) ; σ
   (after 'eldoc (diminish 'eldoc-mode ""))
 
