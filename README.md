@@ -11,6 +11,12 @@ The focus is to provide a "batteries included" configuration for
 development that includes auto-completion and integration
 documentation.
 
+## Overriding configuration
+
+In order to override parts of the configuration, create a directory
+named the same as your user name in .emacs.d and add .el files
+containing the overrides. All files in this directory will be loaded
+after the rest of the configuration has been loaded.
 
 ## Requirements
 
