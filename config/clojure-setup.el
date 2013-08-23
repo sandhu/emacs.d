@@ -11,23 +11,14 @@
               (lisp-mode-setup)
               (setq buffer-save-without-query t)))
 
+  (defun replacement-region (replacement)
+    (compose-region (match-beginning 1) (match-end 1) replacement))
+
   (font-lock-add-keywords
-   'clojure-mode `(("(\\(fn\\)[\[[:space:]]"
-                    (0 (progn (compose-region (match-beginning 1)
-                                              (match-end 1) "λ")
-                              nil)))
-                   ("\\(#\\)("
-                    (0 (progn (compose-region (match-beginning 1)
-                                              (match-end 1) "λ") ; "ƒ"
-                              nil)))
-                   ("(\\(partial\\)[[:space:]]"
-                    (0 (progn (compose-region (match-beginning 1)
-                                              (match-end 1) "Ƥ")
-                              nil)))
-                   ("(\\(comp\\)[[:space:]]"
-                    (0 (progn (compose-region (match-beginning 1)
-                                              (match-end 1) "ο")
-                              nil)))))
+   'clojure-mode '(("(\\(fn\\)[\[[:space:]]" (0 (replacement-region "λ")))
+                   ("\\(#\\)(" (0 (replacement-region "λ")))
+                   ("(\\(partial\\)[[:space:]]" (0 (replacement-region "Ƥ")))
+                   ("(\\(comp\\)[[:space:]]" (0 (replacement-region "ο")))))
 
   (setq auto-mode-alist (append '(("\\.cljs$" . clojure-mode)
                                   ("\\.edn$" . clojure-mode)
