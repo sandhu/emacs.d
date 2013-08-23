@@ -11,6 +11,8 @@
   (after 'flyspell (diminish 'flyspell-mode " ~"))
 
   (after 'abbrev (diminish 'abbrev-mode " ⠤"))
+  (after 'hideshow (diminish 'hs-minor-mode ""))
+
   (after 'paredit (diminish 'paredit-mode " ()"))
   (after 'auto-complete (diminish 'auto-complete-mode  " α"))
 

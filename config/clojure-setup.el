@@ -117,7 +117,7 @@
 ;;
 (require-package 'midje-mode)
 
-(after 'clojure-autoloads
+(after 'midje-mode-autoloads
   (add-hook 'clojure-mode-hook
             (lambda ()
               (clojure-test-mode)
