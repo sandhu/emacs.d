@@ -6,9 +6,8 @@
   (jump-to-register :vc-annotate-fullscreen))
 
 (after 'vc-annotate
-  '(progn
-     (defadvice vc-annotate (around fullscreen activate)
-       (window-configuration-to-register :vc-annotate-fullscreen)
-       ad-do-it
-       (delete-other-windows))
-     (define-key vc-annotate-mode-map (kbd "q") 'vc-annotate-quit)))
+  (defadvice vc-annotate (around fullscreen activate)
+    (window-configuration-to-register :vc-annotate-fullscreen)
+    ad-do-it
+    (delete-other-windows))
+  (define-key vc-annotate-mode-map (kbd "q") 'vc-annotate-quit))
