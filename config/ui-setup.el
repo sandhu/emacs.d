@@ -11,6 +11,14 @@
       (add-hook 'after-init-hook 'load-frameg)
       (add-hook 'kill-emacs-hook 'save-frameg)))
 
+;; fullscreen support
+(defun toggle-fullscreen ()
+  "Toggle full screen"
+  (interactive)
+  (set-frame-parameter
+   nil 'fullscreen
+   (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
+
 ;; visual window switcher
 (require-package 'switch-window)
 (require 'switch-window)
