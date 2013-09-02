@@ -14,6 +14,7 @@
   (after 'hideshow (diminish 'hs-minor-mode ""))
 
   (after 'paredit (diminish 'paredit-mode " ()"))
+
   (after 'auto-complete (diminish 'auto-complete-mode  " α"))
 
   (after 'undo-tree
@@ -36,4 +37,6 @@
   (after 'kibit-mode (diminish 'kibit-mode " κ"))
 
   (after 'git-gutter-mode (diminish 'git-gutter-mode ""))
-  (after 'git-gutter-fringe (diminish 'git-gutter-mode "")))
+  (after 'git-gutter-fringe (diminish 'git-gutter-mode ""))
+
+  (after 'web-mode (diminish-major-mode 'web-mode "ω")))
