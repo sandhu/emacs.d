@@ -39,4 +39,5 @@
   (after 'git-gutter-mode (diminish 'git-gutter-mode ""))
   (after 'git-gutter-fringe (diminish 'git-gutter-mode ""))
 
+  (after 'js2-mode (diminish-major-mode 'js2-mode "J"))
   (after 'web-mode (diminish-major-mode 'web-mode "ω")))
