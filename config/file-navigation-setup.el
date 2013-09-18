@@ -1,5 +1,10 @@
-(require-package 'ack-and-a-half)
+(require-package 'ag)
+(require-package 'wgrep-ag)
 (require-package 'find-file-in-project)
+
+(after 'ag-autoloads
+  (setq ag-highlight-search t)
+  (setq ag-reuse-buffers t))
 
 (after 'find-file-in-project-autoloads
   ;; Helper methods to create local settings
