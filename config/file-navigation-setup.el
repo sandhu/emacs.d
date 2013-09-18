@@ -4,7 +4,8 @@
 
 (after 'ag-autoloads
   (setq ag-highlight-search t)
-  (setq ag-reuse-buffers t))
+  (setq ag-reuse-buffers t)
+  (setq ag-reuse-windows t))
 
 (after 'find-file-in-project-autoloads
   ;; Helper methods to create local settings
