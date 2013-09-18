@@ -3,7 +3,6 @@
 ;;
 (require-package 'clojure-mode)
 (require-package 'clojure-test-mode)
-(require-package 'clojure-cheatsheet)
 
 (after 'clojure-mode-autoloads
   (add-hook 'clojure-mode-hook
