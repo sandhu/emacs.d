@@ -9,6 +9,10 @@
       mouse-yank-at-point t)
 (delete-selection-mode)
 
+;; support the "dangerous" commands :-)
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+
 (require-package 'ace-jump-mode)
 
 ;; Annoying arrows mode
