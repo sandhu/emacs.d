@@ -1,14 +1,14 @@
 # emacs.d
 
 This is an emacs config that started in 1994 and has been
-re-written from the ground up a few time as package management
-approaches has evolved.
+re-written from the ground up a few times as package management
+approaches have evolved.
 
 It is currently geared towards lisp development, but I expect to add
 support for erlang and haskell over time.
 
 The focus is to provide a "batteries included" configuration for
-development that includes auto-completion and integration
+development that includes auto-completion and integrated
 documentation.
 
 ## Overriding configuration
@@ -26,7 +26,7 @@ after the rest of the configuration has been loaded.
 
 To install, clone this repo to `~/.emacs.d`, i.e. ensure that the
 `init.el` contained in this repo ends up at `~/.emacs.d/init.el`.
-Upon starting up Emacs for the first time, further third-party
+Upon starting up Emacs for the first time, the third-party
 packages will be automatically downloaded and installed.
 
 

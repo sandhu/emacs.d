@@ -52,6 +52,8 @@
         (insert "\"" (substring (live-delete-and-extract-sexp) 1) "\"")))
       (goto-char original-point))))
 
+(require-package 'clojure-cheatsheet)
+
 ;;
 ;; nrepl
 ;;
@@ -69,7 +71,7 @@
   (add-to-list 'same-window-buffer-names "*nrepl*")
   (add-hook 'nrepl-mode-hook
             (lambda ()
-              (lisp-mode-setup)
+              (lisp-editing-setup)
               (setq mode-name "η")))
   (add-hook 'nrepl-connected-hook 'nrepl-enable-on-existing-clojure-buffers)
 

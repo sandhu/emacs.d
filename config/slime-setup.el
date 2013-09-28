@@ -17,7 +17,7 @@
       (define-key slime-repl-mode-map
         (read-kbd-macro paredit-backward-delete-key) nil))
     (add-hook 'slime-repl-mode-hook (lambda ()
-                                      (lisp-paren-setup)
+                                      (lisp-editing-setup)
                                       (override-slime-repl-bindings-with-paredit)))
     (add-hook 'lisp-mode-hook 'slime-mode)
 
