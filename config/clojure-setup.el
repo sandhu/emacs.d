@@ -81,10 +81,7 @@
                   (progn
                     (lisp-editing-setup)
                     (clojure-mode)
-                    (setq mode-name "» Cλ")
-                    (local-set-key "q" (lambda ()
-                                         (interactive)
-                                         (kill-buffer (buffer-name))))))))
+                    (setq mode-name "» Cλ")))))
 
   (add-hook 'nrepl-connected-hook 'nrepl-enable-on-existing-clojure-buffers)
 
