@@ -60,6 +60,7 @@
 (require-package 'nrepl)
 (require-package 'nrepl-ritz)
 (require-package 'nrepl-decompile)
+(require-package 'nrepl-tracing)
 
 (after 'nrepl-autoloads
   (add-hook 'clojure-mode-hook 'nrepl-interaction-mode)
@@ -69,19 +70,21 @@
   (setq nrepl-history-file (expand-file-name "nrepl-history" user-emacs-directory))
 
   (add-to-list 'same-window-buffer-names "*nrepl*")
-  (add-hook 'nrepl-mode-hook
+  (add-hook 'nrepl-repl-mode-hook
             (lambda ()
               (lisp-editing-setup)
               (setq mode-name "η")))
 
   (add-hook 'nrepl-popup-buffer-mode-hook
             (lambda ()
-              (if (equal (buffer-name) "*nrepl-result*")
+              (if (equal (buffer-name) nrepl-result-buffer)
                   (progn
                     (lisp-editing-setup)
                     (clojure-mode)
                     (setq mode-name "» Cλ")
-                    (local-set-key "q" 'nrepl-popup-buffer-quit-function)))))
+                    (local-set-key "q" (lambda ()
+                                         (interactive)
+                                         (kill-buffer (buffer-name))))))))
 
   (add-hook 'nrepl-connected-hook 'nrepl-enable-on-existing-clojure-buffers)
 
