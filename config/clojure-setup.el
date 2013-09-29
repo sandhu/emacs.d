@@ -73,6 +73,16 @@
             (lambda ()
               (lisp-editing-setup)
               (setq mode-name "η")))
+
+  (add-hook 'nrepl-popup-buffer-mode-hook
+            (lambda ()
+              (if (equal (buffer-name) "*nrepl-result*")
+                  (progn
+                    (lisp-editing-setup)
+                    (clojure-mode)
+                    (setq mode-name "» Cλ")
+                    (local-set-key "q" 'nrepl-popup-buffer-quit-function)))))
+
   (add-hook 'nrepl-connected-hook 'nrepl-enable-on-existing-clojure-buffers)
 
   (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
@@ -105,15 +115,18 @@
     (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)))
 
 ;;
+;; It only makes sense to run the following modes if we are editing a file
+;;
+
+;;
 ;; Midje mode
 ;;
 (require-package 'midje-mode)
 
 (after 'midje-mode-autoloads
   (add-hook 'clojure-mode-hook
-            (lambda ()
-              (clojure-test-mode)
-              (midje-mode))))
+            (lambda () (if (buffer-file-name)
+                           (progn (clojure-test-mode) (midje-mode))))))
 
 ;;
 ;; Kibit Mode
@@ -122,9 +135,8 @@
 
 (after 'kibit-mode-autoloads
   (add-hook 'clojure-mode-hook
-            (lambda ()
-              (kibit-mode)
-              (flymake-mode-on)))
+            (lambda () (if (buffer-file-name)
+                           (progn (kibit-mode) (flymake-mode-on)))))
 
   ;; Teach compile the syntax of the kibit output
   (require 'compile)
