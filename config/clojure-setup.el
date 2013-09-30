@@ -102,15 +102,15 @@
 
   (after 'auto-complete
     (add-to-list 'ac-modes 'clojure-mode)
-    (add-to-list 'ac-modes 'nrepl-mode))
+    (add-to-list 'ac-modes 'nrepl-repl-mode))
 
   (after 'nrepl-autoloads
-    (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+    (add-hook 'nrepl-repl-mode-hook 'ac-nrepl-setup)
     (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
 
     (defun set-auto-complete-as-completion-at-point-function ()
       (setq completion-at-point-functions '(auto-complete)))
-    (add-hook 'nrepl-mode-hook 'set-auto-complete-as-completion-at-point-function)
+    (add-hook 'nrepl-repl-mode-hook 'set-auto-complete-as-completion-at-point-function)
     (add-hook 'nrepl-interaction-mode-hook 'set-auto-complete-as-completion-at-point-function)
     (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)))
 
