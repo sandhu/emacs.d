@@ -38,6 +38,8 @@
 
   (after 'kibit-mode (diminish 'kibit-mode " κ"))
 
+  (after 'yasnippet (diminish 'yas-minor-mode " ʏ"))
+
   (after 'git-gutter-mode (diminish 'git-gutter-mode ""))
   (after 'git-gutter-fringe (diminish 'git-gutter-mode ""))
 

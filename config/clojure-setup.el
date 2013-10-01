@@ -3,12 +3,14 @@
 ;;
 (require-package 'clojure-mode)
 (require-package 'clojure-test-mode)
+(require-package 'datomic-snippets)
 
 (after 'clojure-mode-autoloads
   (add-hook 'clojure-mode-hook
             (lambda ()
               (lisp-mode-setup)
-              (setq buffer-save-without-query t)))
+              (setq buffer-save-without-query t)
+              (yas-minor-mode)))
 
   (defun replacement-region (replacement)
     (compose-region (match-beginning 1) (match-end 1) replacement))
