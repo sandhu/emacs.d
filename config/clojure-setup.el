@@ -70,10 +70,7 @@
   (setq nrepl-history-file (expand-file-name "nrepl-history" user-emacs-directory))
 
   (add-to-list 'same-window-buffer-names "*nrepl*")
-  (add-hook 'nrepl-repl-mode-hook
-            (lambda ()
-              (lisp-editing-setup)
-              (setq mode-name "η")))
+  (add-hook 'nrepl-repl-mode-hook 'lisp-editing-setup)
 
   (add-hook 'nrepl-popup-buffer-mode-hook
             (lambda ()

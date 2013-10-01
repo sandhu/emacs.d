@@ -1,5 +1,4 @@
 (require-package 'auto-indent-mode)
-(require-package 'hl-sexp)
 
 (after 'lisp-mode
   (defun lisp-editing-setup ()

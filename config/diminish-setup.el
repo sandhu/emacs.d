@@ -31,7 +31,9 @@
 
   (diminish-major-mode 'clojure-mode "Cλ")
   (after 'clojure-test-mode (diminish 'clojure-test-mode ""))
-  (after 'nrepl (diminish 'nrepl-interaction-mode " η"))
+  (after 'nrepl
+    (diminish 'nrepl-interaction-mode " η")
+    (diminish-major-mode 'nrepl-repl-mode "η»"))
   (after 'midje-mode (diminish 'midje-mode " Ɱ"))
 
   (after 'kibit-mode (diminish 'kibit-mode " κ"))
