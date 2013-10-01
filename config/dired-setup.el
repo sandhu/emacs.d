@@ -1,5 +1,6 @@
 (require-package 'dired-details+)
 (require 'dired-details+)
+(require 'dired-x)
 
 (after 'dired-details+-autoloads
   ;; C-a is nicer in dired if it moves back to start of files
