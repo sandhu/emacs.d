@@ -76,20 +76,21 @@
 
   (add-hook 'nrepl-popup-buffer-mode-hook
             (lambda ()
-              (if (equal (buffer-name) nrepl-result-buffer)
-                  (progn
-                    (lisp-editing-setup)
-                    (clojure-mode)
-                    (setq mode-name "» Cλ")))))
-
-  (add-hook 'nrepl-connected-hook 'nrepl-enable-on-existing-clojure-buffers)
+              (if (member (buffer-name) (list nrepl-result-buffer
+                                              nrepl-src-buffer
+                                              nrepl-macroexpansion-buffer))
+                  (clojure-mode))
+              (setq mode-name "» Cλ")))
 
   (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
 
   ;; specify the print length to be 100 to stop infinite sequences killing things.
   (defun live-nrepl-set-print-length ()
     (nrepl-send-string-sync "(set! *print-length* 100)" "clojure.core"))
-  (add-hook 'nrepl-connected-hook 'live-nrepl-set-print-length))
+  (add-hook 'nrepl-connected-hook
+            (lambda ()
+              (live-nrepl-set-print-length)
+              (nrepl-enable-on-existing-clojure-buffers))))
 
 ;;
 ;; Autocompletion for nrepl
@@ -104,14 +105,13 @@
     (add-to-list 'ac-modes 'nrepl-repl-mode))
 
   (after 'nrepl-autoloads
-    (add-hook 'nrepl-repl-mode-hook 'ac-nrepl-setup)
-    (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-
     (defun set-auto-complete-as-completion-at-point-function ()
       (setq completion-at-point-functions '(auto-complete)))
-    (add-hook 'nrepl-repl-mode-hook 'set-auto-complete-as-completion-at-point-function)
-    (add-hook 'nrepl-interaction-mode-hook 'set-auto-complete-as-completion-at-point-function)
-    (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)))
+
+    (add-hook 'nrepl-repl-mode-hook
+              (lambda () (ac-nrepl-setup) (set-auto-complete-as-completion-at-point-function)))
+    (add-hook 'nrepl-interaction-mode-hook
+              (lambda () (ac-nrepl-setup) (set-auto-complete-as-completion-at-point-function)))))
 
 ;;
 ;; It only makes sense to run the following modes if we are editing a file
@@ -124,8 +124,7 @@
 
 (after 'midje-mode-autoloads
   (add-hook 'clojure-mode-hook
-            (lambda () (if (buffer-file-name)
-                           (progn (clojure-test-mode) (midje-mode))))))
+            (lambda () (if (buffer-file-name) (progn (clojure-test-mode) (midje-mode))))))
 
 ;;
 ;; Kibit Mode
@@ -134,8 +133,7 @@
 
 (after 'kibit-mode-autoloads
   (add-hook 'clojure-mode-hook
-            (lambda () (if (buffer-file-name)
-                           (progn (kibit-mode) (flymake-mode-on)))))
+            (lambda () (if (buffer-file-name) (progn (kibit-mode) (flymake-mode-on)))))
 
   ;; Teach compile the syntax of the kibit output
   (require 'compile)
