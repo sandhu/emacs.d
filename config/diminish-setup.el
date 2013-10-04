@@ -6,7 +6,7 @@
 
 (after 'diminish-autoloads
   (diminish 'auto-fill-function "")
-  (after 'auto-indent-mode (diminish 'auto-indent-minor-mode ""))
+  (after 'auto-indent-mode (diminish 'auto-indent-mode ""))
   (after 'whitespace (diminish 'whitespace-mode ""))
   (after 'flyspell (diminish 'flyspell-mode " ~"))
 
