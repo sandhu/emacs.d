@@ -152,9 +152,9 @@
 
 (after 'nrepl-ritz
   (define-key nrepl-interaction-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
-  (define-key nrepl-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
+  (define-key nrepl-repl-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
   (define-key nrepl-interaction-mode-map (kbd "C-c C-a") 'nrepl-apropos)
-  (define-key nrepl-mode-map (kbd "C-c C-a") 'nrepl-apropos))
+  (define-key nrepl-repl-mode-map (kbd "C-c C-a") 'nrepl-apropos))
 
 (after 'ac-nrepl
   (after 'nrepl
