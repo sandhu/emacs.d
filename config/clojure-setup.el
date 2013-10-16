@@ -152,4 +152,4 @@
   (define-key kibit-mode-keymap (kbd "C-c C-n") nil))
 
 ;; latest clojars
-(require-package 'latest-clojars)
+;;(require-package 'latest-clojars)
