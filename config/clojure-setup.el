@@ -2,8 +2,7 @@
 ;; clojure-mode
 ;;
 (require-package 'clojure-mode)
-(require-package 'clojure-test-mode)
-(require-package 'clojure-snippets)
+;;(require-package 'clojure-test-mode)
 (require-package 'datomic-snippets)
 
 (after 'clojure-mode-autoloads
@@ -126,7 +125,8 @@
 
 (after 'midje-mode-autoloads
   (add-hook 'clojure-mode-hook
-            (lambda () (if (buffer-file-name) (progn (clojure-test-mode) (midje-mode))))))
+            (lambda () (if (buffer-file-name) (progn ;;(clojure-test-mode)
+                                                (midje-mode))))))
 
 ;;
 ;; Kibit Mode
