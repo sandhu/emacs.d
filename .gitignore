@@ -13,6 +13,7 @@ elpa/
 .mc-lists.el
 .smex-items
 nrepl-history
+cider-history
 auto-save-list/
 emacs.frameg
 .emacs.desktop

@@ -3,6 +3,7 @@
 ;;
 (require-package 'clojure-mode)
 (require-package 'clojure-test-mode)
+(require-package 'clojure-snippets)
 (require-package 'datomic-snippets)
 
 (after 'clojure-mode-autoloads
@@ -57,40 +58,41 @@
 (require-package 'clojure-cheatsheet)
 
 ;;
-;; nrepl
+;; cider
 ;;
-(require-package 'nrepl)
-(require-package 'nrepl-ritz)
-(require-package 'nrepl-decompile)
-(require-package 'nrepl-tracing)
+(require-package 'cider)
+(require-package 'cider-decompile)
+(require-package 'cider-tracing)
 
-(after 'nrepl-autoloads
-  (add-hook 'clojure-mode-hook 'nrepl-interaction-mode)
+(after 'cider-autoloads
+  (add-hook 'clojure-mode-hook 'cider-interaction-mode)
   (setq nrepl-hide-special-buffers t)
-  (setq nrepl-popup-stacktraces nil) ; will use nrepl-ritz for exceptions
-  (setq nrepl-popup-stacktraces-in-repl nil)
-  (setq nrepl-history-file (expand-file-name "nrepl-history" user-emacs-directory))
+  (setq cider-repl-pop-to-buffer-on-connect nil)
+  (setq cider-popup-stacktraces nil) ; will use nrepl-ritz for exceptions
+  (setq cider-popup-stacktraces-in-repl t)
+  (setq cider-auto-select-error-buffer t)
+  (setq cider-history-file (expand-file-name "cider-history" user-emacs-directory))
 
-  (add-to-list 'same-window-buffer-names "*nrepl*")
-  (add-hook 'nrepl-repl-mode-hook 'lisp-editing-setup)
+  (add-to-list 'same-window-buffer-names "*cider*")
+  (add-hook 'cider-repl-mode-hook 'lisp-editing-setup)
 
-  (add-hook 'nrepl-popup-buffer-mode-hook
+  (add-hook 'cider-popup-buffer-mode-hook
             (lambda ()
-              (if (member (buffer-name) (list nrepl-result-buffer
-                                              nrepl-src-buffer
-                                              nrepl-macroexpansion-buffer))
+              (if (member (buffer-name) (list cider-result-buffer
+                                              cider-src-buffer
+                                              cider-macroexpansion-buffer))
                   (clojure-mode))
               (setq mode-name "» Cλ")))
 
-  (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+  (add-hook 'cider-interaction-mode-hook 'cider-turn-on-eldoc-mode)
 
   ;; specify the print length to be 100 to stop infinite sequences killing things.
-  (defun live-nrepl-set-print-length ()
-    (nrepl-send-string-sync "(set! *print-length* 100)" "clojure.core"))
-  (add-hook 'nrepl-connected-hook
+  (defun live-cider-set-print-length ()
+    (cider-send-string-sync "(set! *print-length* 100)" "clojure.core"))
+  (add-hook 'cider-connected-hook
             (lambda ()
-              (live-nrepl-set-print-length)
-              (nrepl-enable-on-existing-clojure-buffers))))
+              (live-cider-set-print-length)
+              (cider-enable-on-existing-clojure-buffers))))
 
 ;;
 ;; Autocompletion for nrepl
@@ -102,15 +104,15 @@
 
   (after 'auto-complete
     (add-to-list 'ac-modes 'clojure-mode)
-    (add-to-list 'ac-modes 'nrepl-repl-mode))
+    (add-to-list 'ac-modes 'cider-repl-mode))
 
-  (after 'nrepl-autoloads
+  (after 'cider-autoloads
     (defun set-auto-complete-as-completion-at-point-function ()
       (setq completion-at-point-functions '(auto-complete)))
 
-    (add-hook 'nrepl-repl-mode-hook
+    (add-hook 'cider-repl-mode-hook
               (lambda () (ac-nrepl-setup) (set-auto-complete-as-completion-at-point-function)))
-    (add-hook 'nrepl-interaction-mode-hook
+    (add-hook 'cider-interaction-mode-hook
               (lambda () (ac-nrepl-setup) (set-auto-complete-as-completion-at-point-function)))))
 
 ;;
@@ -151,5 +153,7 @@
   ;; kibit mode overrides C-c C-n, which is needed for evaluating namespace forms
   (define-key kibit-mode-keymap (kbd "C-c C-n") nil))
 
-;; latest clojars
-;;(require-package 'latest-clojars)
+;;
+;; dependency management
+;;
+;;(require-package 'latest-clojure-libraries)
