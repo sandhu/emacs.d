@@ -157,6 +157,6 @@
   (define-key nrepl-repl-mode-map (kbd "C-c C-a") 'nrepl-apropos))
 
 (after 'ac-nrepl
-  (after 'nrepl
-    (define-key nrepl-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
-    (define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)))
+  (after 'cider
+    (define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
+    (define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)))
