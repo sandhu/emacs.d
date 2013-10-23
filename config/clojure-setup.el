@@ -87,7 +87,7 @@
 
   ;; specify the print length to be 100 to stop infinite sequences killing things.
   (defun live-cider-set-print-length ()
-    (cider-send-string-sync "(set! *print-length* 100)" "clojure.core"))
+    (nrepl-send-string-sync "(set! *print-length* 100)" "clojure.core"))
   (add-hook 'cider-connected-hook
             (lambda ()
               (live-cider-set-print-length)
