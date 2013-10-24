@@ -156,4 +156,4 @@
 ;;
 ;; dependency management
 ;;
-;;(require-package 'latest-clojure-libraries)
+(require-package 'latest-clojure-libraries)
