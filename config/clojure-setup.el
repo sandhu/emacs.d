@@ -64,7 +64,7 @@
 (require-package 'cider-tracing)
 
 (after 'cider-autoloads
-  (add-hook 'clojure-mode-hook 'cider-interaction-mode)
+  (add-hook 'clojure-mode-hook 'cider-mode)
   (setq nrepl-hide-special-buffers t)
   (setq cider-repl-pop-to-buffer-on-connect nil)
   (setq cider-popup-stacktraces nil) ; will use nrepl-ritz for exceptions
@@ -83,7 +83,7 @@
                   (clojure-mode))
               (setq mode-name "» Cλ")))
 
-  (add-hook 'cider-interaction-mode-hook 'cider-turn-on-eldoc-mode)
+  (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
   ;; specify the print length to be 100 to stop infinite sequences killing things.
   (defun live-cider-set-print-length ()
@@ -111,7 +111,7 @@
 
     (add-hook 'cider-repl-mode-hook
               (lambda () (ac-nrepl-setup) (set-auto-complete-as-completion-at-point-function)))
-    (add-hook 'cider-interaction-mode-hook
+    (add-hook 'cider-mode-hook
               (lambda () (ac-nrepl-setup) (set-auto-complete-as-completion-at-point-function)))))
 
 ;;
