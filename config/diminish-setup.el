@@ -38,7 +38,8 @@
   (after 'cider
     (diminish 'cider-mode " ç")
     (diminish-major-mode 'cider-repl-mode "Ç»")
-    (diminish 'cider-macroexpansion-minor-mode " Ɱ"))
+    (after 'cider-macroexpansion
+      (diminish 'cider-macroexpansion-minor-mode " Ɱ")))
   (after 'midje-mode (diminish 'midje-mode " Ƭ"))
 
   (after 'kibit-mode (diminish 'kibit-mode " κ"))

@@ -75,6 +75,7 @@
   (add-to-list 'same-window-buffer-names "*cider*")
   (add-hook 'cider-repl-mode-hook 'lisp-editing-setup)
 
+  (require 'cider-macroexpansion)
   (add-hook 'cider-popup-buffer-mode-hook
             (lambda ()
               (if (member (buffer-name) (list cider-result-buffer
