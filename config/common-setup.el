@@ -17,3 +17,6 @@
 ;; Also auto refresh dired, but be quiet about it
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-verbose nil)
+
+;; Tune the GC to kick in every 20MB instead of 0.76MB
+(setq gc-cons-threshold 20000000)
