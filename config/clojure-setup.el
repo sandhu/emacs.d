@@ -2,7 +2,9 @@
 ;; clojure-mode
 ;;
 (require-package 'clojure-mode)
-;;(require-package 'clojure-test-mode)
+(require-package 'clojure-cheatsheet)
+(require-package 'cljsbuild-mode)
+
 (require-package 'datomic-snippets)
 
 (after 'clojure-mode-autoloads
@@ -54,8 +56,6 @@
         (insert "\"" (substring (live-delete-and-extract-sexp) 1) "\"")))
       (goto-char original-point))))
 
-(require-package 'clojure-cheatsheet)
-
 ;;
 ;; cider
 ;;
@@ -70,6 +70,7 @@
   (setq cider-popup-stacktraces nil) ; will use nrepl-ritz for exceptions
   (setq cider-popup-stacktraces-in-repl t)
   (setq cider-auto-select-error-buffer t)
+  (setq cider-repl-print-length 100)
   (setq cider-history-file (expand-file-name "cider-history" user-emacs-directory))
 
   (add-to-list 'same-window-buffer-names "*cider*")
@@ -123,6 +124,7 @@
 ;; Midje mode
 ;;
 (require-package 'midje-mode)
+(require-package 'midje-test-mode)
 
 (after 'midje-mode-autoloads
   (add-hook 'clojure-mode-hook
