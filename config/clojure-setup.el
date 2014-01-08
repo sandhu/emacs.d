@@ -71,7 +71,7 @@
   (setq cider-popup-stacktraces-in-repl t)
   (setq cider-auto-select-error-buffer t)
   (setq cider-repl-print-length 100)
-  (setq cider-history-file (expand-file-name "cider-history" user-emacs-directory))
+  (setq cider-repl-history-file (expand-file-name "cider-history" user-emacs-directory))
 
   (add-to-list 'same-window-buffer-names "*cider*")
   (add-hook 'cider-repl-mode-hook 'lisp-editing-setup)
