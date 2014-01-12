@@ -9,7 +9,7 @@
 (push "/usr/local/bin" exec-path)
 
 ;; Add the top level emacs config directory to the load path
-(add-to-list 'load-path user-emacs-directory)
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; Setup the package management
 (require 'init-packages)
