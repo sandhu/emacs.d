@@ -4,6 +4,7 @@
 (require-package 'clojure-mode)
 (require-package 'clojure-cheatsheet)
 (require-package 'cljsbuild-mode)
+(require-package 'typed-clojure-mode)
 
 (require-package 'datomic-snippets)
 
