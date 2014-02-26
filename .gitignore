@@ -17,3 +17,7 @@ cider-history
 auto-save-list/
 emacs.frameg
 .emacs.desktop
+
+# osx stuff
+.DS_Store
+

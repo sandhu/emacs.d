@@ -2,6 +2,8 @@
 (require-package 'wgrep-ag)
 (require-package 'find-file-in-project)
 
+(require-package 'reveal-in-finder)
+
 (after 'ag-autoloads
   (setq ag-highlight-search t)
   (setq ag-reuse-buffers t)
