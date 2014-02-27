@@ -134,6 +134,7 @@
   (global-set-key (kbd "C-x v p") #'git-messenger:popup-message))
 
 (after 'magit
+  (global-set-key (kbd "C-x m") 'magit-status)
   (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
   (define-key magit-status-mode-map (kbd "C-x C-k") 'magit-kill-file-on-line)
   (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace))
