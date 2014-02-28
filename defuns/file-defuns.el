@@ -35,7 +35,9 @@
   (interactive)
   (let ((filename (buffer-file-name)))
     (if filename
-        (kill-new filename)
+        (progn
+          (message "Saving file name '%s' to kill ring." filename)
+          (kill-new filename))
       (error "Buffer does not contain a file name."))))
 
 (defun find-or-create-file-at-point ()
