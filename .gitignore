@@ -17,7 +17,10 @@ cider-history
 auto-save-list/
 emacs.frameg
 .emacs.desktop
+eshell
+
+# projectile
+projectile-bookmarks.eld
 
 # osx stuff
 .DS_Store
-

@@ -21,6 +21,9 @@
     (diminish 'undo-tree-mode "")
     (diminish-major-mode 'undo-tree-visualizer-mode "⅄"))
 
+  (after 'projectile
+    (diminish 'projectile-mode ""))
+
   (diminish-major-mode 'lisp-mode "λ")
   (diminish-major-mode 'emacs-lisp-mode "ξλ")
   (diminish-major-mode 'lisp-interaction-mode "λ»")
