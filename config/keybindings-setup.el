@@ -149,6 +149,8 @@
 
 ;; clojure
 (after 'clojure
+  ;; Remove the binding for inferior-lisp-mode
+  (define-key clojure-mode-map (kbd "C-c C-z") nil)
   (define-key clojure-mode-map (kbd "C-:") 'toggle-clj-keyword-string))
 
 (after 'nrepl-ritz
