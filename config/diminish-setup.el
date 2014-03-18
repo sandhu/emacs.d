@@ -24,6 +24,9 @@
   (after 'projectile
     (diminish 'projectile-mode ""))
 
+  (after 'magit
+    (diminish 'magit-auto-revert-mode ""))
+
   (diminish-major-mode 'lisp-mode "λ")
   (diminish-major-mode 'emacs-lisp-mode "ξλ")
   (diminish-major-mode 'lisp-interaction-mode "λ»")
