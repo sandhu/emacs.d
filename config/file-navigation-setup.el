@@ -1,6 +1,5 @@
 (require-package 'ag)
 (require-package 'wgrep-ag)
-(require-package 'find-file-in-project)
 (require-package 'projectile)
 (require-package 'reveal-in-finder)
 
