@@ -123,7 +123,7 @@
   (define-key wdired-mode-map (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom))
 
 ;; Find File in Project (projectile)
-(after 'find-file-in-project-autoloads
+(after 'projectile-autoloads
   (global-set-key (kbd "C-x p") 'projectile-find-file))
 
 ;; Git
