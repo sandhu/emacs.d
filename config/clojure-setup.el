@@ -73,6 +73,9 @@
   (setq cider-auto-select-error-buffer t)
   (setq cider-repl-print-length 100)
   (setq cider-repl-history-file (expand-file-name "cider-history" user-emacs-directory))
+  (setq cider-repl-use-clojure-font-lock t)
+  (setq cider-repl-print-length 100)
+  (setq cider-switch-to-repl-command 'cider-switch-to-relevant-repl-buffer)
 
   (add-to-list 'same-window-buffer-names "*cider*")
   (add-hook 'cider-repl-mode-hook 'lisp-editing-setup)
@@ -87,14 +90,7 @@
               (setq mode-name "» Cλ")))
 
   (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-
-  ;; specify the print length to be 100 to stop infinite sequences killing things.
-  (defun live-cider-set-print-length ()
-    (nrepl-send-string-sync "(set! *print-length* 100)" "clojure.core"))
-  (add-hook 'cider-connected-hook
-            (lambda ()
-              (live-cider-set-print-length)
-              (cider-enable-on-existing-clojure-buffers))))
+  (add-hook 'cider-connected-hook 'cider-enable-on-existing-clojure-buffers))
 
 ;;
 ;; Autocompletion for nrepl
