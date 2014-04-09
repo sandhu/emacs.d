@@ -17,7 +17,4 @@
               (setq web-mode-disable-auto-pairing nil)
 
               ;; automatically indent on RET
-              (electric-indent-mode)
-
-              ;; disable font lock mode since web-mode does not seem to like it
-              (font-lock-mode 0))))
+              (electric-indent-mode))))
