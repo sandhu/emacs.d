@@ -74,7 +74,6 @@
   (setq cider-repl-print-length 100)
   (setq cider-repl-history-file (expand-file-name "cider-history" user-emacs-directory))
   (setq cider-repl-use-clojure-font-lock t)
-  (setq cider-repl-print-length 100)
   (setq cider-switch-to-repl-command 'cider-switch-to-relevant-repl-buffer)
 
   (add-to-list 'same-window-buffer-names "*cider*")
