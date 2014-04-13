@@ -18,9 +18,12 @@
   :dependencies [[cider/cider-nrepl "0.1.0-SNAPSHOT"]
                  [org.clojars.gjahad/debug-repl "0.3.3"]
                  [difform "1.1.2"]
+
                  [spyscope "0.1.4"]
+                 [org.clojure/tools.trace "0.7.8"]
                  [org.clojure/tools.namespace "0.2.4"]
                  [im.chit/vinyasa "0.2.0"]
+
                  [criterium "0.4.3"]]
 
   :repl-options {:nrepl-middleware
@@ -34,6 +37,7 @@
                (require '[vinyasa.inject :as inj])
                (inj/inject 'clojure.core '>
                            '[[clojure.repl apropos dir doc find-doc pst source]
+                             [clojure.tools.trace trace trace-forms trace-ns trace-vars]
                              [clojure.pprint pprint pp]
                              [com.georgejahad.difform difform]
                              [alex-and-georges.debug-repl debug-repl]
