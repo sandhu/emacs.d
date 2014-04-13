@@ -33,7 +33,7 @@
                (require 'com.georgejahad.difform)
                (require '[vinyasa.inject :as inj])
                (inj/inject 'clojure.core '>
-                           '[[clojure.repl doc source]
+                           '[[clojure.repl apropos dir doc find-doc pst source]
                              [clojure.pprint pprint pp]
                              [com.georgejahad.difform difform]
                              [alex-and-georges.debug-repl debug-repl]
