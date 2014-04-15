@@ -37,7 +37,8 @@
                (require '[vinyasa.inject :as inj])
                (inj/inject 'clojure.core '>
                            '[[clojure.repl apropos dir doc find-doc pst source]
-                             [clojure.tools.trace trace trace-forms trace-ns trace-vars]
+                             [clojure.tools.trace trace trace-forms trace-ns trace-vars
+                              untrace untrace-forms untrace-ns untrace-vars]
                              [clojure.pprint pprint pp]
                              [com.georgejahad.difform difform]
                              [alex-and-georges.debug-repl debug-repl]
