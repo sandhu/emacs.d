@@ -4,6 +4,7 @@
 
             ;; Automated testing
             [lein-cloverage "1.0.2"]
+            [lein-test-out "0.3.1"]
 
             ;; Package management
             [lein-ancient "0.5.5"]
@@ -38,7 +39,7 @@
                (inj/inject 'clojure.core '>
                            '[[clojure.repl apropos dir doc find-doc pst source]
                              [clojure.tools.trace trace trace-forms trace-ns trace-vars
-                              untrace untrace-forms untrace-ns untrace-vars]
+                              untrace-forms untrace-ns untrace-vars]
                              [clojure.pprint pprint pp]
                              [com.georgejahad.difform difform]
                              [alex-and-georges.debug-repl debug-repl]
