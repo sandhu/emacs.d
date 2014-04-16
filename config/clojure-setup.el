@@ -9,11 +9,11 @@
 (require-package 'datomic-snippets)
 
 (after 'clojure-mode-autoloads
-  (add-hook 'clojure-mode-hook
-            (lambda ()
-              (lisp-mode-setup)
-              (setq buffer-save-without-query t)
-              (yas-minor-mode)))
+    (add-hook 'clojure-mode-hook
+     (lambda ()
+       (lisp-mode-setup)
+       (setq buffer-save-without-query t)
+       (yas-minor-mode)))
 
   (defun replacement-region (replacement)
     (compose-region (match-beginning 1) (match-end 1) replacement))
@@ -25,11 +25,12 @@
                    ("(\\(comp\\)[[:space:]]" (0 (replacement-region "ο")))))
 
   (setq auto-mode-alist (append '(("\\.cljs$" . clojure-mode)
+                                  ("\\.cljx$" . clojure-mode)
                                   ("\\.edn$" . clojure-mode)
                                   ("\\.dtm$" . clojure-mode))
                                 auto-mode-alist))
   (after 'find-file-in-project
-    (add-to-list 'ffip-patterns "*.clj")
+      (add-to-list 'ffip-patterns "*.clj")
     (add-to-list 'ffip-patterns "*.edn")
     (add-to-list 'ffip-patterns "*.dtm"))
 
@@ -49,12 +50,12 @@
                   (not (equal ":" (buffer-substring-no-properties (point) (+ 1 (point))))))
         (backward-char))
       (cond
-       ((equal 1 (point))
-        (message "beginning of file reached, this was probably a mistake."))
-       ((equal "\"" (buffer-substring-no-properties (point) (+ 1 (point))))
-        (insert ":" (substring (live-delete-and-extract-sexp) 1 -1)))
-       ((equal ":" (buffer-substring-no-properties (point) (+ 1 (point))))
-        (insert "\"" (substring (live-delete-and-extract-sexp) 1) "\"")))
+        ((equal 1 (point))
+         (message "beginning of file reached, this was probably a mistake."))
+        ((equal "\"" (buffer-substring-no-properties (point) (+ 1 (point))))
+         (insert ":" (substring (live-delete-and-extract-sexp) 1 -1)))
+        ((equal ":" (buffer-substring-no-properties (point) (+ 1 (point))))
+         (insert "\"" (substring (live-delete-and-extract-sexp) 1) "\"")))
       (goto-char original-point))))
 
 ;;
@@ -65,7 +66,7 @@
 (require-package 'cider-tracing)
 
 (after 'cider-autoloads
-  (add-hook 'clojure-mode-hook 'cider-mode)
+    (add-hook 'clojure-mode-hook 'cider-mode)
   (setq nrepl-hide-special-buffers t)
   (setq cider-repl-pop-to-buffer-on-connect nil)
   (setq cider-popup-stacktraces nil) ; will use nrepl-ritz for exceptions
@@ -99,13 +100,13 @@
 
 (after 'ac-nrepl-autoloads
 
-  (after 'auto-complete
-    (add-to-list 'ac-modes 'clojure-mode)
-    (add-to-list 'ac-modes 'cider-repl-mode))
+    (after 'auto-complete
+        (add-to-list 'ac-modes 'clojure-mode)
+      (add-to-list 'ac-modes 'cider-repl-mode))
 
   (after 'cider-autoloads
-    (defun set-auto-complete-as-completion-at-point-function ()
-      (setq completion-at-point-functions '(auto-complete)))
+      (defun set-auto-complete-as-completion-at-point-function ()
+        (setq completion-at-point-functions '(auto-complete)))
 
     (add-hook 'cider-repl-mode-hook
               (lambda () (ac-nrepl-setup) (set-auto-complete-as-completion-at-point-function)))
@@ -123,9 +124,9 @@
 (require-package 'midje-test-mode)
 
 (after 'midje-mode-autoloads
-  (add-hook 'clojure-mode-hook
-            (lambda () (if (buffer-file-name) (progn ;;(clojure-test-mode)
-                                                (midje-mode))))))
+    (add-hook 'clojure-mode-hook
+     (lambda () (if (buffer-file-name) (progn ;;(clojure-test-mode)
+                                         (midje-mode))))))
 
 ;;
 ;; Kibit Mode
@@ -133,8 +134,8 @@
 (require-package 'kibit-mode)
 
 (after 'kibit-mode-autoloads
-  (add-hook 'clojure-mode-hook
-            (lambda () (if (buffer-file-name) (progn (kibit-mode) (flymake-mode-on)))))
+    (add-hook 'clojure-mode-hook
+     (lambda () (if (buffer-file-name) (progn (kibit-mode) (flymake-mode-on)))))
 
   ;; Teach compile the syntax of the kibit output
   (require 'compile)
@@ -149,8 +150,8 @@
     (interactive)
     (compile "lein kibit")))
 (after 'kibit-mode
-  ;; kibit mode overrides C-c C-n, which is needed for evaluating namespace forms
-  (define-key kibit-mode-keymap (kbd "C-c C-n") nil))
+    ;; kibit mode overrides C-c C-n, which is needed for evaluating namespace forms
+    (define-key kibit-mode-keymap (kbd "C-c C-n") nil))
 
 ;;
 ;; dependency management
