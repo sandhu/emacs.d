@@ -163,3 +163,8 @@
   (after 'cider
     (define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
     (define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)))
+
+;; paredit
+(after 'paredit
+  (define-key paredit-mode-map (kbd "C-M-<backspace>") 'backward-kill-sexp))
+
