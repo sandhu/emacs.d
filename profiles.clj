@@ -39,7 +39,7 @@
                (inj/inject 'clojure.core '>
                            '[[clojure.repl apropos dir doc find-doc pst source]
                              [clojure.tools.trace trace trace-forms trace-ns trace-vars
-                              untrace-forms untrace-ns untrace-vars]
+                              untrace-ns untrace-vars]
                              [clojure.pprint pprint pp]
                              [com.georgejahad.difform difform]
                              [alex-and-georges.debug-repl debug-repl]
