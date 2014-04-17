@@ -40,6 +40,7 @@
                            '[[clojure.repl apropos dir doc find-doc pst source]
                              [clojure.tools.trace trace trace-forms trace-ns trace-vars
                               untrace-ns untrace-vars]
+                             [clojure.test run-tests run-all-tests]
                              [clojure.pprint pprint pp]
                              [com.georgejahad.difform difform]
                              [alex-and-georges.debug-repl debug-repl]
