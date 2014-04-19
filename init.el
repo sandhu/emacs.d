@@ -3,6 +3,7 @@
   (when (fboundp mode) (funcall mode -1)))
 (setq inhibit-startup-message t)
 (set-fringe-mode '(1 . 1))
+(setq use-dialog-box nil)
 
 ;; Make sure path is correct when launched as application
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
