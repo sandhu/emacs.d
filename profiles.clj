@@ -16,7 +16,7 @@
             [lein-bikeshed "0.1.6"]
             [lein-kibit "0.0.8"]]
 
-  :dependencies [[cider/cider-nrepl "0.1.0-SNAPSHOT"]
+  :dependencies [;;[cider/cider-nrepl "0.1.0-SNAPSHOT"]
                  [org.clojars.gjahad/debug-repl "0.3.3"]
                  [difform "1.1.2"]
 
@@ -27,10 +27,10 @@
 
                  [criterium "0.4.3"]]
 
-  :repl-options {:nrepl-middleware
-                 [cider.nrepl.middleware.complete/wrap-complete
-                  cider.nrepl.middleware.info/wrap-info
-                  cider.nrepl.middleware.inspect/wrap-inspect]}
+  ;; :repl-options {:nrepl-middleware
+  ;;                [cider.nrepl.middleware.complete/wrap-complete
+  ;;                 cider.nrepl.middleware.info/wrap-info
+  ;;                 cider.nrepl.middleware.inspect/wrap-inspect]}
 
   :injections [(require 'spyscope.core)
                (require 'alex-and-georges.debug-repl)
