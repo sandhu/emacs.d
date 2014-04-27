@@ -3,25 +3,12 @@
   (tooltip-mode -1)
   (mouse-wheel-mode t)
   (blink-cursor-mode -1)
-  (menu-bar-mode -1))
-
-;; Special work to do ONLY when there is a window system being used
-(if window-system
-    (progn
-      (add-hook 'after-init-hook 'load-frameg)
-      (add-hook 'kill-emacs-hook 'save-frameg)))
-
-;; fullscreen support
-(defun toggle-fullscreen ()
-  "Toggle full screen"
-  (interactive)
-  (set-frame-parameter
-   nil 'fullscreen
-   (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
+  (menu-bar-mode -1)
+  (add-hook 'after-init-hook 'load-frameg)
+  (add-hook 'kill-emacs-hook 'save-frameg))
 
 ;; visual window switcher
 (require-package 'switch-window)
-(require 'switch-window)
 
 ;; rotate windows
 (defun rotate-windows ()

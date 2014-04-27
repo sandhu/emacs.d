@@ -38,16 +38,31 @@
 (global-set-key (kbd "C-M-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-M-r") 'isearch-backward-regexp)
 
+(require-package 'buffer-move)
+(global-set-key (kbd "<C-s-up>") 'buf-move-up)
+(global-set-key (kbd "<C-s-down>") 'buf-move-down)
+(global-set-key (kbd "<C-s-left>") 'buf-move-left)
+(global-set-key (kbd "<C-s-right>") 'buf-move-right)
+
 ;; Ace jump mode
-(after 'ace-jump-mode-autoloads
-  (global-set-key (kbd "C-o") 'ace-jump-mode))
+(require-package 'ace-jump-mode)
+(global-set-key (kbd "C-o") 'ace-jump-mode)
+
+;; Multiple cursors
+(after 'multiple-cursors
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
+
+  ;; From active region to multiple cursors:
+  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (global-set-key (kbd "C-S-c C-e") 'mc/edit-ends-of-lines))
 
 ;; Transpose stuff with M-t
 (global-unset-key (kbd "M-t")) ;; which used to be transpose-words
 (global-set-key (kbd "M-t l") 'transpose-lines)
 (global-set-key (kbd "M-t w") 'transpose-words)
 (global-set-key (kbd "M-t s") 'transpose-sexps)
-(global-set-key (kbd "M-t p") 'transpose-params)
 
 ;; Killing text
 (global-set-key (kbd "C-S-k") 'kill-and-retry-line)
@@ -63,19 +78,18 @@
 ;; Removing spaces
 (global-set-key (kbd "C-c j") 'just-one-space)
 
+(require-package 'ido-ubiquitous)
+;; Jump to a definition in the current file. (This is awesome)
+(global-set-key (kbd "C-x C-i") 'ido-imenu)
 
-(after 'ido-ubiquitous-autoloads
-  ;; Jump to a definition in the current file. (This is awesome)
-  (global-set-key (kbd "C-x C-i") 'ido-imenu)
-
-  ;; File finding
-  (global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
-  (global-set-key (kbd "C-x f") 'recentf-ido-find-file)
-  (global-set-key (kbd "C-x C-p") 'find-or-create-file-at-point)
-  (global-set-key (kbd "C-x M-p") 'find-or-create-file-at-point-other-window)
-  (global-set-key (kbd "C-c y") 'bury-buffer)
-  (global-set-key (kbd "C-c r") 'revert-buffer)
-  (global-set-key (kbd "M-`") 'file-cache-minibuffer-complete))
+;; File finding
+(global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
+(global-set-key (kbd "C-x f") 'recentf-ido-find-file)
+(global-set-key (kbd "C-x C-p") 'find-or-create-file-at-point)
+(global-set-key (kbd "C-x M-p") 'find-or-create-file-at-point-other-window)
+(global-set-key (kbd "C-c y") 'bury-buffer)
+(global-set-key (kbd "C-c r") 'revert-buffer)
+(global-set-key (kbd "M-`") 'file-cache-minibuffer-complete)
 
 ;; Edit file with sudo
 (global-set-key (kbd "M-s e") 'sudo-edit)
@@ -94,16 +108,14 @@
 
 ;; Smart navigation
 (require-package 'smart-forward)
-(after 'smart-forward-autoloads
-  (require 'smart-forward)
-  (global-set-key (kbd "s-<up>") 'smart-up)
-  (global-set-key (kbd "s-<down>") 'smart-down)
-  (global-set-key (kbd "s-<left>") 'smart-backward)
-  (global-set-key (kbd "s-<right>") 'smart-forward))
+(global-set-key (kbd "s-<up>") 'smart-up)
+(global-set-key (kbd "s-<down>") 'smart-down)
+(global-set-key (kbd "s-<left>") 'smart-backward)
+(global-set-key (kbd "s-<right>") 'smart-forward)
 
 ;; Expand region
-(after 'expand-region-autoloads
-  (global-set-key (kbd "C-=") 'er/expand-region))
+(require-package 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
 
 ;; dired
 (after 'dired
@@ -123,14 +135,14 @@
   (define-key wdired-mode-map (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom))
 
 ;; Find File in Project (projectile)
-(after 'projectile-autoloads
+(after 'projectile
   (global-set-key (kbd "C-x p") 'projectile-find-file))
 
 ;; Git
 (after 'git
   (global-set-key (kbd "C-x v f") 'vc-git-grep))
 
-(after 'git-messenger-autoloads
+(after 'git-messenger
   (global-set-key (kbd "C-x v p") #'git-messenger:popup-message))
 
 (after 'magit
@@ -139,32 +151,12 @@
   (define-key magit-status-mode-map (kbd "C-x C-k") 'magit-kill-file-on-line)
   (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace))
 
-;; auto-complete
-(after 'auto-complete
-  (define-key ac-completing-map (kbd "C-M-n") 'ac-next)
-  (define-key ac-completing-map (kbd "C-M-p") 'ac-previous)
-  (define-key ac-completing-map "\t" 'ac-complete)
-  (define-key ac-completing-map (kbd "M-RET") 'ac-help)
-  (define-key ac-completing-map "\r" 'nil))
-
 ;; clojure
 (after 'clojure
   ;; Remove the binding for inferior-lisp-mode
   (define-key clojure-mode-map (kbd "C-c C-z") nil)
   (define-key clojure-mode-map (kbd "C-:") 'toggle-clj-keyword-string))
 
-(after 'nrepl-ritz
-  (define-key nrepl-interaction-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
-  (define-key nrepl-repl-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
-  (define-key nrepl-interaction-mode-map (kbd "C-c C-a") 'nrepl-apropos)
-  (define-key nrepl-repl-mode-map (kbd "C-c C-a") 'nrepl-apropos))
-
-(after 'ac-nrepl
-  (after 'cider
-    (define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
-    (define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)))
-
 ;; paredit
 (after 'paredit
   (define-key paredit-mode-map (kbd "C-M-<backspace>") 'backward-kill-sexp))
-

@@ -10,17 +10,19 @@
 If NO-REFRESH is non-nil, the available package lists will not be
 re-downloaded in order to locate PACKAGE."
   (if (package-installed-p package min-version)
-      t
-    (if (or (assoc package package-archive-contents) no-refresh)
-        (package-install package)
-      (progn
-        (package-refresh-contents)
-        (require-package package min-version t)))))
+      (require package)
+      (if (or (assoc package package-archive-contents) no-refresh)
+          (progn
+            (package-install package)
+            (require-package package min-version t))
+          (progn
+            (package-refresh-contents)
+            (require-package package min-version t)))))
 
-(defmacro after (mode &rest body)
-  "`eval-after-load' MODE evaluate BODY."
-  (declare (indent defun))
-  `(eval-after-load ,mode
+(defmacro after (feature &rest body)
+  "After FEATURE is loaded, evaluate BODY."
+  (declare (indent 1))
+  `(eval-after-load ,feature
      '(progn ,@body)))
 
 ;; Fire up the package manager

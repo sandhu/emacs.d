@@ -1,6 +1,3 @@
-;; Don't truncate messages in the echo area
-;;(setq eval-expression-print-length nil)
-
 (require 'uniquify)
 (setq make-backup-files nil
       auto-save-default nil

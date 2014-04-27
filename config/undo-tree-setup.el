@@ -1,5 +1,5 @@
 (require-package 'undo-tree)
-(after 'undo-tree-autoloads (global-undo-tree-mode))
+(global-undo-tree-mode)
 
 ;; Keep region when undoing in region
 (defadvice undo-tree-undo (around keep-region activate)
@@ -11,4 +11,4 @@
         (set-mark m)
         (set-marker p nil)
         (set-marker m nil))
-    ad-do-it))
+      ad-do-it))

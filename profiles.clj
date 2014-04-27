@@ -1,5 +1,8 @@
 {:user
- {:plugins [;; Application server
+ {:plugins [;; REPL
+            [cider/cider-nrepl "0.6.1-SNAPSHOT"]
+
+            ;; Application server
             [lein-immutant "1.2.0"]
 
             ;; Automated testing
@@ -16,21 +19,16 @@
             [lein-bikeshed "0.1.6"]
             [lein-kibit "0.0.8"]]
 
-  :dependencies [;;[cider/cider-nrepl "0.1.0-SNAPSHOT"]
-                 [org.clojars.gjahad/debug-repl "0.3.3"]
+  :dependencies [[org.clojars.gjahad/debug-repl "0.3.3"]
                  [difform "1.1.2"]
 
                  [spyscope "0.1.4"]
                  [org.clojure/tools.trace "0.7.8"]
+
                  [org.clojure/tools.namespace "0.2.4"]
                  [im.chit/vinyasa "0.2.0"]
 
                  [criterium "0.4.3"]]
-
-  ;; :repl-options {:nrepl-middleware
-  ;;                [cider.nrepl.middleware.complete/wrap-complete
-  ;;                 cider.nrepl.middleware.info/wrap-info
-  ;;                 cider.nrepl.middleware.inspect/wrap-inspect]}
 
   :injections [(require 'spyscope.core)
                (require 'alex-and-georges.debug-repl)

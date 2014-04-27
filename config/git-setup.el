@@ -33,30 +33,29 @@
 
 ;; Use the fringe version of git-gutter
 (require-package 'git-gutter-fringe)
-(after 'git-gutter-fringe-autoloads
-  (require 'git-gutter-fringe)
-  (set-face-foreground 'git-gutter-fr:added    "green4")
-  (set-face-foreground 'git-gutter-fr:modified "grey50")
-  (set-face-foreground 'git-gutter-fr:deleted  "red3")
-  (fringe-helper-define 'git-gutter-fr:added nil
-    "........"
-    "...XX..."
-    "...XX..."
-    "XXXXXXXX"
-    "XXXXXXXX"
-    "...XX..."
-    "...XX..."
-    "........")
-  (fringe-helper-define 'git-gutter-fr:modified nil
-    "........"
-    "XXXXX..."
-    "XXXXX..."
-    "XXXXX..."
-    "XXXXX..."
-    "XXXXX..."
-    "XXXXX..."
-    "........")
+(require 'git-gutter-fringe)
+(set-face-foreground 'git-gutter-fr:added    "green4")
+(set-face-foreground 'git-gutter-fr:modified "grey50")
+(set-face-foreground 'git-gutter-fr:deleted  "red3")
+(fringe-helper-define 'git-gutter-fr:added nil
+  "........"
+  "...XX..."
+  "...XX..."
+  "XXXXXXXX"
+  "XXXXXXXX"
+  "...XX..."
+  "...XX..."
+  "........")
+(fringe-helper-define 'git-gutter-fr:modified nil
+  "........"
+  "XXXXX..."
+  "XXXXX..."
+  "XXXXX..."
+  "XXXXX..."
+  "XXXXX..."
+  "XXXXX..."
+  "........")
 
-  (global-git-gutter-mode))
+(global-git-gutter-mode)
 
 (require-package 'git-messenger)

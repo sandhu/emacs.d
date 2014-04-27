@@ -17,7 +17,7 @@
 
 ;; Annoying arrows mode
 (require-package 'annoying-arrows-mode)
-(after 'annoying-arrows-mode-autoloads (global-annoying-arrows-mode))
+(global-annoying-arrows-mode)
 
 (add-hook 'text-mode-hook
           (lambda ()
@@ -64,6 +64,17 @@
 (global-set-key (kbd "<C-return>") 'open-line-below)
 (global-set-key (kbd "<C-S-return>") 'open-line-above)
 
+(defun kill-region-or-backward-word ()
+  (interactive)
+  (if (region-active-p)
+      (kill-region (region-beginning) (region-end))
+      (backward-kill-word 1)))
+
+(defun kill-to-beginning-of-line ()
+  (interactive)
+  (kill-region (save-excursion (beginning-of-line) (point))
+               (point)))
+
 ;; recentf
 (recentf-mode t)
 (setq recentf-max-saved-items 50)
@@ -73,16 +84,16 @@
   (interactive)
   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
-    (message "Aborting")))
+      (message "Aborting")))
 
 ;; Line number based navigation
 (defun goto-line-with-feedback ()
   "Show line numbers temporarily, while prompting for the line number input"
   (interactive)
   (unwind-protect
-      (progn
-        (linum-mode 1)
-        (goto-line (read-number "Goto line: ")))
+       (progn
+         (linum-mode 1)
+         (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
 
@@ -118,5 +129,3 @@ point reaches the beginning or end of the buffer, stop there."
 ;; of jar files
 (autoload 'archive-extract-hook "arc-mode")
 (add-hook 'archive-extract-hook (lambda () (toggle-read-only 1)))
-
-(require-package 'expand-region)
