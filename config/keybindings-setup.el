@@ -44,6 +44,10 @@
 (global-set-key (kbd "<C-s-left>") 'buf-move-left)
 (global-set-key (kbd "<C-s-right>") 'buf-move-right)
 
+(require-package 'shell-pop)
+(after 'shell-pop
+  (global-set-key (kbd "M-`") 'shell-pop))
+
 ;; Ace jump mode
 (require-package 'ace-jump-mode)
 (global-set-key (kbd "C-o") 'ace-jump-mode)
