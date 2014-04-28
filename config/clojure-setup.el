@@ -68,7 +68,8 @@
 ;; using ac-nrepl-popup-doc for documentation
 (require-package 'ac-nrepl)
 (after 'cider
-  (define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
+  (define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
+  (define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
 
 ;;
 ;; Kibit Mode
