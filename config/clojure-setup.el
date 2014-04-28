@@ -65,6 +65,11 @@
 
 (add-hook 'cider-connected-hook 'cider-enable-on-existing-clojure-buffers)
 
+;; using ac-nrepl-popup-doc for documentation
+(require-package 'ac-nrepl)
+(after 'cider
+  (define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
+
 ;;
 ;; Kibit Mode
 ;;
