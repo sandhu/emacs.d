@@ -13,6 +13,9 @@
             [lein-ancient "0.5.5"]
             [lein-clojars "0.9.1"]
 
+            ;; Documentation
+            [codox "0.6.8"]
+
             ;; Static analysis
             [lein-typed "0.3.4"]
             [jonase/eastwood "0.1.2"]
