@@ -1,6 +1,6 @@
 {:user
  {:plugins [;; REPL
-            [cider/cider-nrepl "0.6.1-SNAPSHOT"]
+            [cider/cider-nrepl "0.7.0-SNAPSHOT"]
 
             ;; Application server
             [lein-immutant "1.2.0"]
@@ -15,6 +15,7 @@
 
             ;; Documentation
             [codox "0.6.8"]
+            [lein-clojuredocs "1.0.2"]
 
             ;; Static analysis
             [lein-typed "0.3.4"]
