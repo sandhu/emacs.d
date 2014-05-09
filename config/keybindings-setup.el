@@ -136,7 +136,8 @@
 
 ;; Find File in Project (projectile)
 (after 'projectile
-  (global-set-key (kbd "C-x p") 'projectile-find-file))
+  (global-set-key (kbd "C-x p") 'projectile-find-file)
+  (global-set-key (kbd "C-x C-p") 'projectile-switch-project))
 
 ;; Git
 (after 'git
