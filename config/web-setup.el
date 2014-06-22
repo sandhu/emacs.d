@@ -1,6 +1,8 @@
 (require-package 'web-mode)
 
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
+
 (add-hook 'web-mode-hook
           (lambda ()
             ;; setup indentation
@@ -13,12 +15,12 @@
             (setq web-mode-block-padding 0)
 
             ;; enable auto-pairing
-            (setq web-mode-disable-auto-pairing nil)
+            (setq web-mode-enable-auto-pairing t)
+
+            (setq web-mode-enable-css-colorization t)
 
             ;; automatically indent on RET
             (electric-indent-mode)))
-
-
 
 ;; In html-mode, forward/backward-paragraph is infuriatingly slow
 (defun skip-to-next-blank-line ()
