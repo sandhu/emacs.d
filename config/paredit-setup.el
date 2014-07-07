@@ -31,29 +31,6 @@
   (yank)
   (exchange-point-and-mark))
 
-(defun setup-paredit-for-mode-map (mode-map)
-  (define-key mode-map (kbd "s-<up>") 'paredit-raise-sexp)
-  (define-key mode-map (kbd "s-<right>") 'paredit-forward-slurp-sexp)
-  (define-key mode-map (kbd "s-<left>") 'paredit-forward-barf-sexp)
-  (define-key mode-map (kbd "s-<backspace>") 'paredit-splice-sexp-killing-backward)
-  (define-key mode-map (kbd "s-t") 'transpose-sexps)
-  (define-key mode-map (kbd "M-(") 'paredit-wrap-round)
-  (define-key mode-map (kbd "M-)") 'paredit-wrap-round-from-behind)
-  (define-key mode-map (kbd "M-[") 'paredit-wrap-square)
-  (define-key mode-map (kbd "C-M-d") 'paredit-duplicate-closest-sexp))
-
-;; making paredit work with delete-selection-mode
-;; (put 'paredit-forward-delete 'delete-selection 'supersede)
-;; (put 'paredit-backward-delete 'delete-selection 'supersede)
-;; (put 'paredit-open-round 'delete-selection t)
-;; (put 'paredit-open-square 'delete-selection t)
-;; (put 'paredit-doublequote 'delete-selection t)
-;; (put 'paredit-newline 'delete-selection t)
-
-
-;; Ensure that paredit is loaded for emacs-lisp
-(after 'lisp-mode '(setup-paredit-for-mode-map emacs-lisp-mode-map))
-
 ;; Selectively enable paredit in the minibuffer
 (defun conditionally-enable-paredit-mode ()
   "Enable 'paredit-mode' in the minibuffer, during 'eval-expression'."

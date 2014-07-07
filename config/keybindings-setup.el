@@ -160,4 +160,6 @@
 
 ;; paredit
 (after 'paredit
-  (define-key paredit-mode-map (kbd "C-M-<backspace>") 'backward-kill-sexp))
+  (define-key paredit-mode-map (kbd "C-M-<backspace>") 'backward-kill-sexp)
+  (define-key paredit-mode-map (kbd "C-M-d") 'paredit-duplicate-closest-sexp)
+  (define-key paredit-mode-map (kbd "M-[") 'paredit-wrap-square))

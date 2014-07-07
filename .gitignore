@@ -5,6 +5,8 @@
 *~
 .#*
 ac-comphist.dat
+ido.last
+recentf
 
 # the package repository
 elpa/
