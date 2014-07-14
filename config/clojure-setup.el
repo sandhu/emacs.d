@@ -71,6 +71,9 @@
   (define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
   (define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
 
+;; slamhound to rewrite ns forms
+(require-package 'slamhound)
+
 ;;
 ;; Kibit Mode
 ;;

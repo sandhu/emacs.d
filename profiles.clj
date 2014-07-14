@@ -31,6 +31,7 @@
 
                  [org.clojure/tools.namespace "0.2.4"]
                  [im.chit/vinyasa "0.2.0"]
+                 [slamhound "1.5.5"]
 
                  [criterium "0.4.3"]]
 
