@@ -1,6 +1,6 @@
 {:user
  {:plugins [;; REPL
-            [cider/cider-nrepl "0.7.0-SNAPSHOT"]
+            [cider/cider-nrepl "0.7.0"]
 
             ;; Application server
             [lein-immutant "1.2.0"]
@@ -19,7 +19,7 @@
 
             ;; Static analysis
             [lein-typed "0.3.4"]
-            [jonase/eastwood "0.1.2"]
+            ;; [jonase/eastwood "0.1.2"]
             [lein-bikeshed "0.1.6"]
             [lein-kibit "0.0.8"]]
 
