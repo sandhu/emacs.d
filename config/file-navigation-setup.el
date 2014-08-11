@@ -7,8 +7,6 @@
 (setq ag-reuse-buffers t)
 (setq ag-reuse-windows t)
 
-(projectile-global-mode)
-
 (defun file-name-with-one-directory (file-name)
   (concat (cadr (reverse (split-string file-name "/"))) "/"
           (file-name-nondirectory file-name)))
