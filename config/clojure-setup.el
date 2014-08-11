@@ -2,18 +2,15 @@
 ;; clojure-mode
 ;;
 (require-package 'clojure-mode)
-(require-package 'clojure-test-mode)
 (require-package 'clojure-cheatsheet)
 (require-package 'cljsbuild-mode)
-(require-package 'typed-clojure-mode)
 
 (require-package 'datomic-snippets)
 
 (add-hook 'clojure-mode-hook
           (lambda ()
             (lisp-mode-setup)
-            (setq buffer-save-without-query t)
-            (clojure-test-mode)))
+            (setq buffer-save-without-query t)))
 
 (defun replacement-region (replacement)
   (compose-region (match-beginning 1) (match-end 1) replacement))
