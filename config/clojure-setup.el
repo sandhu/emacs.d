@@ -64,10 +64,10 @@
 (add-hook 'cider-connected-hook 'cider-enable-on-existing-clojure-buffers)
 
 ;; using ac-nrepl-popup-doc for documentation
-(require-package 'ac-nrepl)
+(require-package 'ac-cider)
 (after 'cider
-  (define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
-  (define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
+  (define-key cider-mode-map (kbd "C-c C-d") 'ac-cider-popup-doc)
+  (define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-cider-popup-doc))
 
 ;; slamhound to rewrite ns forms
 (require-package 'slamhound)
