@@ -39,7 +39,6 @@
 ;;
 (require-package 'cider)
 (require-package 'cider-decompile)
-(require-package 'cider-tracing)
 (require-package 'cider-browse-ns)
 
 (add-hook 'clojure-mode-hook 'cider-mode)
@@ -63,7 +62,7 @@
 
 (add-hook 'cider-connected-hook 'cider-enable-on-existing-clojure-buffers)
 
-;; using ac-nrepl-popup-doc for documentation
+;; using ac-cider-popup-doc for documentation
 (require-package 'ac-cider)
 (after 'cider
   (define-key cider-mode-map (kbd "C-c C-d") 'ac-cider-popup-doc)

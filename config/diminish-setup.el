@@ -38,7 +38,6 @@
 (after 'eldoc (diminish 'eldoc-mode ""))
 
 (diminish-major-mode 'clojure-mode "Cλ")
-(after 'clojure-test-mode (diminish 'clojure-test-mode " Ƭ"))
 (after 'cider
   (diminish 'cider-mode " ç")
   (diminish-major-mode 'cider-repl-mode "Ç»")
