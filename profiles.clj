@@ -3,7 +3,7 @@
             [cider/cider-nrepl "0.7.0"]
 
             ;; Application server
-            [lein-immutant "1.2.0"]
+            [lein-immutant "2.0.0-SNAPSHOT"]
 
             ;; Automated testing
             [lein-cloverage "1.0.2"]
