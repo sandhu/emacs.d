@@ -2,7 +2,6 @@
 ;; clojure-mode
 ;;
 (require-package 'clojure-mode)
-(require-package 'clojure-cheatsheet)
 (require-package 'cljsbuild-mode)
 
 (require-package 'datomic-snippets)
@@ -10,7 +9,9 @@
 (add-hook 'clojure-mode-hook
           (lambda ()
             (lisp-mode-setup)
-            (setq buffer-save-without-query t)))
+            (setq buffer-save-without-query t)
+            (dolist (c (string-to-list ":_-?!#*"))
+              (modify-syntax-entry c "w" clojure-mode-syntax-table))))
 
 (defun replacement-region (replacement)
   (compose-region (match-beginning 1) (match-end 1) replacement))
