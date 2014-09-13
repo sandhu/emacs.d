@@ -82,9 +82,12 @@
 (defun ido-recentf-open ()
   "Use `ido-completing-read' to \\[find-file] a recent file"
   (interactive)
-  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
+  (if (find-file
+       (ido-completing-read
+        "Find recent file: "
+        (mapcar 'abbreviate-file-name recentf-list) nil t))
       (message "Opening file...")
-      (message "Aborting")))
+    (message "Aborting")))
 
 ;; Line number based navigation
 (defun goto-line-with-feedback ()
