@@ -40,7 +40,6 @@
 ;;
 (require-package 'cider)
 (require-package 'cider-decompile)
-(require-package 'cider-browse-ns)
 
 (add-hook 'clojure-mode-hook 'cider-mode)
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
