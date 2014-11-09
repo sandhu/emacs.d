@@ -21,13 +21,6 @@
                                 ("\\.dtm$" . clojure-mode))
                               auto-mode-alist))
 
-(defun core-logic-config ()
-  "Update the indentation rules for core.logic"
-  (put-clojure-indent 'run* 'defun)
-  (put-clojure-indent 'fresh 'defun)
-  (put-clojure-indent 'conde 'defun))
-(add-hook 'clojure-mode-hook 'core-logic-config)
-
 ;;
 ;; cider
 ;;
