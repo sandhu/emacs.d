@@ -10,17 +10,10 @@
           (lambda ()
             (lisp-mode-setup)
             (setq buffer-save-without-query t)
+            (push '("partial" . ?Ƥ) prettify-symbols-alist)
+            (push '("comp" . ?ο) prettify-symbols-alist)
             (dolist (c (string-to-list ":_-?!#*"))
               (modify-syntax-entry c "w" clojure-mode-syntax-table))))
-
-(defun replacement-region (replacement)
-  (compose-region (match-beginning 1) (match-end 1) replacement))
-
-(font-lock-add-keywords
- 'clojure-mode '(("(\\(fn\\)[\[[:space:]]" (0 (replacement-region "λ")))
-                 ("\\(#\\)(" (0 (replacement-region "λ")))
-                 ("(\\(partial\\)[[:space:]]" (0 (replacement-region "Ƥ")))
-                 ("(\\(comp\\)[[:space:]]" (0 (replacement-region "ο")))))
 
 (setq auto-mode-alist (append '(("\\.cljs$" . clojure-mode)
                                 ("\\.cljx$" . clojure-mode)

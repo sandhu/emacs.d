@@ -1,5 +1,7 @@
 (require-package 'rainbow-delimiters)
 
+(global-prettify-symbols-mode +1)
+
 (defun lisp-editing-setup ()
   (paredit-mode +1)
   (show-paren-mode)
