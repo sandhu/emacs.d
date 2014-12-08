@@ -49,6 +49,13 @@
 
 (add-hook 'cider-connected-hook 'cider-enable-on-existing-clojure-buffers)
 
+;; refactoring support
+(require-package 'clj-refactor)
+(add-hook 'clojure-mode-hook (lambda ()
+                               (clj-refactor-mode 1)
+                               (cljr-add-keybindings-with-prefix "C-c C-m")))
+(add-hook 'nrepl-connected-hook #'cljr-update-artifact-cache)
+
 ;; slamhound to rewrite ns forms
 (require-package 'slamhound)
 

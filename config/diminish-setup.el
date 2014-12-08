@@ -44,6 +44,8 @@
   (after 'cider-macroexpansion
     (diminish 'cider-macroexpansion-minor-mode " Ɱ")))
 
+(after 'clj-refactor (diminish 'clj-refactor-mode ""))
+
 (after 'kibit-mode (diminish 'kibit-mode " κ"))
 
 (after 'yasnippet (diminish 'yas-minor-mode " ʏ"))
