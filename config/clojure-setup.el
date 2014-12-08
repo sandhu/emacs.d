@@ -27,12 +27,10 @@
 (require-package 'cider)
 (require-package 'cider-decompile)
 
-(add-hook 'clojure-mode-hook 'cider-mode)
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-
 (setq nrepl-hide-special-buffers nil)
 (setq cider-repl-pop-to-buffer-on-connect nil)
 
+(setq nrepl-log-messages t)
 (setq cider-popup-stacktraces t)
 (setq cider-repl-popup-stacktraces t)
 (setq cider-auto-select-error-buffer t)
@@ -42,6 +40,9 @@
 
 (setq cider-repl-use-clojure-font-lock t)
 (setq cider-switch-to-repl-command 'cider-switch-to-relevant-repl-buffer)
+
+(add-hook 'clojure-mode-hook 'cider-mode)
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
 (add-to-list 'same-window-buffer-names "*cider*")
 (add-hook 'cider-repl-mode-hook 'lisp-editing-setup)
