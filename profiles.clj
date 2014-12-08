@@ -1,6 +1,6 @@
 {:user
  {:plugins [;; REPL
-            [cider/cider-nrepl "0.7.0"]
+            [cider/cider-nrepl "0.8.1"]
 
             ;; Application server
             [lein-immutant "2.0.0-SNAPSHOT"]
