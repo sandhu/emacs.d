@@ -20,7 +20,7 @@ after the rest of the configuration has been loaded.
 
 ## Requirements
 
-* Emacs 23 or greater (note that Emacs 24 is required for some functionality)
+* Emacs 24.4 or greater
 
 ## Installation
 
