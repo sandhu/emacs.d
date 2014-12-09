@@ -26,9 +26,14 @@ after the rest of the configuration has been loaded.
 
 To install, clone this repo to `~/.emacs.d`, i.e. ensure that the
 `init.el` contained in this repo ends up at `~/.emacs.d/init.el`.
-Create a symlink from profiles.clj to `~/.lein/profiles.clj`. Upon starting up
-Emacs for the first time, the third-party packages will be
-automatically downloaded and installed.
+Create a symlink from profiles.clj to `~/.lein/profiles.clj`.
+
+The easiest way is to do this is:
+`git clone https://github.com/sandhu/emacs.d ~/.emacs.d`
+`ln -s ~/.emacs.d/profiles.clj ~/.lein/profiles.clj`
+
+Upon starting up Emacs for the first time, the third-party packages
+will be automatically downloaded and installed.
 
 
 ## References
