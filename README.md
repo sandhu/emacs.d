@@ -30,9 +30,10 @@ Create a symlink from profiles.clj to `~/.lein/profiles.clj`.
 
 The easiest way is to do this is:
 
-`git clone https://github.com/sandhu/emacs.d ~/.emacs.d`
-
-`ln -s ~/.emacs.d/profiles.clj ~/.lein/profiles.clj`
+````
+git clone https://github.com/sandhu/emacs.d ~/.emacs.d
+ln -s ~/.emacs.d/profiles.clj ~/.lein/profiles.clj
+````
 
 Upon starting up Emacs for the first time, the third-party packages
 will be automatically downloaded and installed.
