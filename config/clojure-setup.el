@@ -60,31 +60,6 @@
 (require-package 'slamhound)
 
 ;;
-;; Kibit Mode
-;;
-(require-package 'kibit-mode)
-
-(add-hook 'clojure-mode-hook
-          (lambda () (when (buffer-file-name) (progn (kibit-mode) (flymake-mode-on)))))
-
-;; Teach compile the syntax of the kibit output
-(require 'compile)
-(add-to-list 'compilation-error-regexp-alist-alist
-             '(kibit "At \\([^:]+\\):\\([[:digit:]]+\\):" 1 2 nil 0))
-(add-to-list 'compilation-error-regexp-alist 'kibit)
-
-;; A convenient command to run "lein kibit" in the project to which
-;; the current emacs buffer belongs to.
-(defun kibit ()
-  "Run kibit on the current project. Display the results in a hyperlinked *compilation* buffer."
-  (interactive)
-  (compile "lein kibit"))
-
-(after 'kibit-mode
-  ;; kibit mode overrides C-c C-n, which is needed for evaluating namespace forms
-  (define-key kibit-mode-keymap (kbd "C-c C-n") nil))
-
-;;
 ;; dependency management
 ;;
 (require-package 'latest-clojure-libraries)
