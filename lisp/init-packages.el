@@ -7,7 +7,7 @@
              '("melpa" . "http://melpa.org/packages/") t)
 
 (ignore-errors
-  (setq package-pinned-archives '((clojure-mode . "melpa-stable")
+  (setq package-pinned-packages '((clojure-mode . "melpa-stable")
                                   (cider . "melpa-stable"))))
 
 ;; On demand installation of packages
