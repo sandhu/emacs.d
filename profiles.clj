@@ -12,6 +12,7 @@
 
             ;; Package management
             [lein-ancient "0.6.3"]
+            [lein-licenses "0.2.0"]
             [lein-clojars "0.9.1"]
 
             ;; Documentation
