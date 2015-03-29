@@ -1,3 +1,5 @@
+(setq ns-use-srgb-colorspace nil)
+
 ;; Remove the UI
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode) (funcall mode -1)))
