@@ -1,6 +1,6 @@
 {:user
  {:plugins [;; REPL
-            [cider/cider-nrepl "0.8.2"]
+            [cider/cider-nrepl "0.9.0-SNAPSHOT"]
             [refactor-nrepl "0.2.2"]
 
             ;; Application server
