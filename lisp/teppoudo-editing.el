@@ -2,7 +2,7 @@
   (interactive)
   (if (region-active-p)
       (kill-region (region-beginning) (region-end))
-    (backward-kill-word 1)))
+    (backward-kill-sexp 1)))
 
 (defun swallow-newline ()
   (interactive)
