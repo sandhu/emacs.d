@@ -18,6 +18,7 @@
   :init (progn
           (setq nrepl-hide-special-buffers nil
                 cider-repl-pop-to-buffer-on-connect nil
+                cider-prompt-for-symbol nil
                 nrepl-log-messages t
                 cider-popup-stacktraces t
                 cider-repl-popup-stacktraces t
@@ -34,6 +35,11 @@
             (add-hook 'cider-repl-mode-hook 'lisp-mode-setup)
             (add-hook 'cider-connected-hook 'cider-enable-on-existing-clojure-buffers))
   :diminish " ç") ; Remove the binding for inferior-lisp-mode
+
+(use-package eval-sexp-fu :ensure t
+  :init (custom-set-faces '(eval-sexp-fu-flash ((t (:foreground "green4" :weight bold))))))
+
+(use-package cider-eval-sexp-fu :ensure t)
 
 (use-package clj-refactor :ensure t
   :init (add-hook 'clojure-mode-hook (lambda ()

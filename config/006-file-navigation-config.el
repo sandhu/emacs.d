@@ -22,7 +22,6 @@
           (defun recentf--file-cons (file-name)
             (cons (file-name-with-one-directory file-name) file-name))
 
-          ;; TODO: Get recentf working
           (defun ido-recentf-open ()
             "Use `ido-completing-read' to \\[find-file] a recent file"
             (interactive)

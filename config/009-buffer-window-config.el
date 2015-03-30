@@ -34,8 +34,6 @@
                         (ibuffer-auto-mode 1)
                         (diminish-major-mode 'ibuffer "≣")))))
 
-
-;; TODO: Deal with - Error (use-package): ibuffer :config: This buffer is not in Ibuffer mode
 (use-package ibuffer-vc :ensure t
   :config (progn
             (defun ibuffer-set-up-preferred-filters ()
