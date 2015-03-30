@@ -16,7 +16,8 @@
   :config (setq color-theme-is-global t))
 
 ;; TODO: Configure powerline
-(use-package powerline :ensure t)
+(use-package powerline :ensure t
+  :config (powerline-default-theme))
 
 (use-package popwin :ensure t
   :init (setq display-buffer-function 'popwin:display-buffer
