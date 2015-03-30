@@ -15,9 +15,45 @@
   :init (load-theme 'solarized-light 'no-confirm)
   :config (setq color-theme-is-global t))
 
-;; TODO: Configure powerline
 (use-package powerline :ensure t
-  :config (powerline-default-theme))
+  :config (setq-default mode-line-format
+                        '("%e"
+                          (:eval
+                           (let* ((active (powerline-selected-window-active))
+                                  (mode-line (if active 'mode-line 'mode-line-inactive))
+                                  (face1 (if active 'powerline-active1 'powerline-inactive1))
+                                  (face2 (if active 'powerline-active2 'powerline-inactive2))
+                                  (separator-left (intern (format "powerline-%s-%s"
+                                                                  (powerline-current-separator)
+                                                                  (car powerline-default-separator-dir))))
+                                  (separator-right (intern (format "powerline-%s-%s"
+                                                                   (powerline-current-separator)
+                                                                   (cdr powerline-default-separator-dir))))
+                                  (lhs (list (powerline-major-mode face2 'l)
+                                             (powerline-process face2)
+                                             (powerline-minor-modes face2 'l)
+                                             (powerline-raw " " face2)
+                                             (funcall separator-left face2 face1)
+
+                                             (powerline-raw "%* %b " face1 'l)
+                                             (funcall separator-left face1 face2)
+
+                                             (powerline-vc face2 'r)))
+
+                                  (rhs (list (powerline-raw global-mode-string face2 'r)
+                                             (funcall separator-right face2 face1)
+
+                                             (unless window-system
+                                               (powerline-raw (char-to-string #xe0a1) face1 'l))
+                                             (powerline-raw "%p " face1 'l)
+                                             (funcall separator-right face1 mode-line)
+
+                                             (powerline-raw "%4l " nil 'r))))
+
+                             (concat (powerline-render lhs)
+                                     (powerline-fill face2 (powerline-width rhs))
+                                     (powerline-render rhs)))))))
+
 
 (use-package popwin :ensure t
   :init (setq display-buffer-function 'popwin:display-buffer
