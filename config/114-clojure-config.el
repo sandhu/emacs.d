@@ -2,16 +2,17 @@
   :pin melpa-stable
   :init (progn
           (setq buffer-save-without-query t)
-          (add-hook 'clojure-mode-hook (lambda ()
-                                         (push '("partial" . ?Ƥ) prettify-symbols-alist)
-                                         (push '("comp" . ?ο) prettify-symbols-alist)
-                                         (lisp-mode-setup))))
+          (add-hook 'clojure-mode-hook
+                    (lambda ()
+                      (push '("partial" . ?Ƥ) prettify-symbols-alist)
+                      (push '("comp" . ?ο) prettify-symbols-alist)
+                      (lisp-mode-setup))))
   :mode (("\\.cljs$" . clojure-mode)
          ("\\.cljx$" . clojure-mode)
          ("\\.edn$" . clojure-mode)
          ("\\.dtm$" . clojure-mode))
   :config (diminish-major-mode 'clojure-mode "Cλ")
-  :bind-keymap ("C-c C-z" . nil))
+  :bind-keymap ("C-c C-z" . nil)) ; Remove the binding for inferior-lisp-mode
 
 (use-package cider :ensure t
   :pin melpa-stable
@@ -34,7 +35,7 @@
             (add-to-list 'same-window-buffer-names "*cider*")
             (add-hook 'cider-repl-mode-hook 'lisp-mode-setup)
             (add-hook 'cider-connected-hook 'cider-enable-on-existing-clojure-buffers))
-  :diminish " ç") ; Remove the binding for inferior-lisp-mode
+  :diminish " ç")
 
 (use-package eval-sexp-fu :ensure t
   :init (custom-set-faces '(eval-sexp-fu-flash ((t (:foreground "green4" :weight bold))))))
