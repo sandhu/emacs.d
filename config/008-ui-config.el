@@ -39,10 +39,10 @@
                                   (lhs (list (powerline-major-mode face2 'l)
                                              (powerline-process face2 'l)
                                              (powerline-minor-modes face2 'l)
-                                             (powerline-raw "" face2 'r)
+                                             (powerline-raw " " face2)
                                              (funcall separator-left face2 face1)
 
-                                             (powerline-raw "[" face1 'l)
+                                             (powerline-raw "[" face1)
                                              (powerline-raw (projectile-project-name) face1)
                                              (powerline-raw "] %b %* (" face1)
                                              (powerline-raw (let ((file-name (buffer-file-name (current-buffer))))
