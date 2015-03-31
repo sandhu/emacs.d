@@ -11,6 +11,7 @@
   :diminish "()")
 
 (defun lisp-mode-setup ()
+  (eldoc-mode)
   (paredit-mode +1)
   (whitespace-mode))
 
