@@ -2,15 +2,15 @@
   :pin melpa-stable
   :init (progn
           (setq buffer-save-without-query t)
-          (add-hook 'clojure-mode-hook 'lisp-mode-setup))
+          (add-hook 'clojure-mode-hook (lambda ()
+                                         (push '("partial" . ?Ƥ) prettify-symbols-alist)
+                                         (push '("comp" . ?ο) prettify-symbols-alist)
+                                         (lisp-mode-setup))))
   :mode (("\\.cljs$" . clojure-mode)
          ("\\.cljx$" . clojure-mode)
          ("\\.edn$" . clojure-mode)
          ("\\.dtm$" . clojure-mode))
-  :config (progn
-            (push '("partial" . ?Ƥ) prettify-symbols-alist)
-            (push '("comp" . ?ο) prettify-symbols-alist)
-            (diminish-major-mode 'clojure-mode "Cλ"))
+  :config (diminish-major-mode 'clojure-mode "Cλ")
   :bind-keymap ("C-c C-z" . nil))
 
 (use-package cider :ensure t
