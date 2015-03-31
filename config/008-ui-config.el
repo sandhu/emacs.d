@@ -37,8 +37,9 @@
                                                                    (powerline-current-separator)
                                                                    (cdr powerline-default-separator-dir))))
                                   (lhs (list (powerline-major-mode face2 'l)
-                                             (powerline-process face2 'r)
-                                             (powerline-minor-modes face2 'r)
+                                             (powerline-process face2 'l)
+                                             (powerline-minor-modes face2 'l)
+                                             (powerline-raw "" face2 'r)
                                              (funcall separator-left face2 face1)
 
                                              (powerline-raw "[" face1 'l)
