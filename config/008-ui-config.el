@@ -12,10 +12,13 @@
 (after 'yasnippet (diminish 'yas-minor-mode " ʏ"))
 
 (use-package solarized-theme :ensure t
-  :init (load-theme 'solarized-light 'no-confirm)
+  :init (progn
+          (setq solarized-high-contrast-mode-line t)
+          (load-theme 'solarized-light 'no-confirm))
   :config (setq color-theme-is-global t))
 
 (use-package powerline :ensure t
+  :init (setq powerline-default-separator 'wave)
   :config (setq-default mode-line-format
                         '("%e"
                           (:eval
@@ -35,10 +38,10 @@
                                              (powerline-raw " " face2)
                                              (funcall separator-left face2 face1)
 
-                                             (powerline-raw "%* %b " face1 'l)
-                                             (funcall separator-left face1 face2)
-
-                                             (powerline-vc face2 'r)))
+                                             (powerline-raw "%* %b" face1 'l)
+                                             (powerline-vc face1 'l)
+                                             (powerline-raw " " face1)
+                                             (funcall separator-left face1 face2)))
 
                                   (rhs (list (powerline-raw global-mode-string face2 'r)
                                              (funcall separator-right face2 face1)
