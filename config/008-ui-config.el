@@ -19,6 +19,7 @@
 
 (use-package string-utils :ensure t)
 (use-package dash :ensure t)
+(use-package projectile)
 
 (use-package powerline :ensure t
   :init (setq powerline-default-separator 'wave)
@@ -36,18 +37,19 @@
                                                                    (powerline-current-separator)
                                                                    (cdr powerline-default-separator-dir))))
                                   (lhs (list (powerline-major-mode face2 'l)
-                                             (powerline-process face2)
-                                             (powerline-minor-modes face2 'l)
-                                             (powerline-raw " " face2)
+                                             (powerline-process face2 'r)
+                                             (powerline-minor-modes face2 'r)
                                              (funcall separator-left face2 face1)
 
-                                             (powerline-raw "%* %b (" face1 'l)
+                                             (powerline-raw "[" face1 'l)
+                                             (powerline-raw (projectile-project-name) face1)
+                                             (powerline-raw "] %b %* (" face1)
                                              (powerline-raw (let ((file-name (buffer-file-name (current-buffer))))
                                                               (when (and file-name vc-mode)
                                                                 (-> file-name
                                                                     vc-working-revision
                                                                     (string-utils-truncate-to 40)))) face1)
-                                             (powerline-raw ") " face1)
+                                             (powerline-raw ")" face1 'r)
                                              (funcall separator-left face1 face2)))
 
                                   (rhs (list (powerline-raw global-mode-string face2 'r)
