@@ -17,6 +17,9 @@
           (load-theme 'solarized-light 'no-confirm))
   :config (setq color-theme-is-global t))
 
+(use-package string-utils :ensure t)
+(use-package dash :ensure t)
+
 (use-package powerline :ensure t
   :init (setq powerline-default-separator 'wave)
   :config (setq-default mode-line-format
@@ -38,9 +41,13 @@
                                              (powerline-raw " " face2)
                                              (funcall separator-left face2 face1)
 
-                                             (powerline-raw "%* %b" face1 'l)
-                                             (powerline-vc face1 'l)
-                                             (powerline-raw " " face1)
+                                             (powerline-raw "%* %b (" face1 'l)
+                                             (powerline-raw (let ((file-name (buffer-file-name (current-buffer))))
+                                                              (when (and file-name vc-mode)
+                                                                (-> file-name
+                                                                    vc-working-revision
+                                                                    (string-utils-truncate-to 40)))) face1)
+                                             (powerline-raw ") " face1)
                                              (funcall separator-left face1 face2)))
 
                                   (rhs (list (powerline-raw global-mode-string face2 'r)
@@ -56,7 +63,6 @@
                              (concat (powerline-render lhs)
                                      (powerline-fill face2 (powerline-width rhs))
                                      (powerline-render rhs)))))))
-
 
 (use-package popwin :ensure t
   :init (setq display-buffer-function 'popwin:display-buffer
