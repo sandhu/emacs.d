@@ -26,7 +26,8 @@
   :config (setq-default mode-line-format
                         '("%e"
                           (:eval
-                           (let* ((active (powerline-selected-window-active))
+                           (let* ((file-name (buffer-file-name (current-buffer)))
+                                  (active (powerline-selected-window-active))
                                   (mode-line (if active 'mode-line 'mode-line-inactive))
                                   (face1 (if active 'powerline-active1 'powerline-inactive1))
                                   (face2 (if active 'powerline-active2 'powerline-inactive2))
@@ -44,13 +45,14 @@
 
                                              (powerline-raw "[" face1)
                                              (powerline-raw (projectile-project-name) face1)
-                                             (powerline-raw "] %b %* (" face1)
-                                             (powerline-raw (let ((file-name (buffer-file-name (current-buffer))))
-                                                              (when (and file-name vc-mode)
-                                                                (-> file-name
-                                                                    vc-working-revision
-                                                                    (string-utils-truncate-to 40)))) face1)
-                                             (powerline-raw ")" face1 'r)
+                                             (powerline-raw "] %b %*" face1)
+                                             (powerline-raw (concat " "
+                                                                    (when (and file-name vc-mode)
+                                                                      (concat "(" (-> file-name
+                                                                                      vc-working-revision
+                                                                                      (string-utils-truncate-to 40))
+                                                                              ")")))
+                                                            face1 'r)
                                              (funcall separator-left face1 face2)))
 
                                   (rhs (list (powerline-raw global-mode-string face2 'r)
