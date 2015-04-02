@@ -1,6 +1,6 @@
 {:user
  {:plugins [;; REPL
-            [cider/cider-nrepl "0.8.2"]
+            [cider/cider-nrepl "0.9.0-SNAPSHOT"]
             [refactor-nrepl "0.2.2"]
 
             ;; Application server
@@ -31,7 +31,6 @@
                  [spyscope "0.1.5"]
                  [org.clojure/tools.trace "0.7.8"]
                  [org.clojure/tools.namespace "0.2.9"]
-                 [leiningen #=(leiningen.core.main/leiningen-version)]
                  [io.aviso/pretty "0.1.8"]
                  [im.chit/vinyasa "0.3.3"]
 
@@ -45,14 +44,6 @@
 
                 ;; note that `:refer, :all and :exclude can be used
                 [vinyasa.inject :refer [inject [in inject-in]]]
-                [vinyasa.lein :exclude [*project*]]
-
-                ;; imports all functions in vinyasa.pull
-                [vinyasa.pull :all]
-
-                ;; same as [cemerick.pomegranate
-                ;;           :refer [add-classpath get-classpath resources]]
-                [cemerick.pomegranate add-classpath get-classpath resources]
 
                 ;; inject into clojure.core
                 clojure.core
