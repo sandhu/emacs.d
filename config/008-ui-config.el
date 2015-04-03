@@ -13,7 +13,9 @@
 
 (use-package solarized-theme :ensure t
   :init (progn
-          (setq solarized-high-contrast-mode-line t)
+          (setq solarized-high-contrast-mode-line t
+                solarized-use-less-bold t
+                x-underline-at-descent-line t)
           (load-theme 'solarized-light 'no-confirm))
   :config (setq color-theme-is-global t))
 
