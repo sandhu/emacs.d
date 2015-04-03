@@ -17,6 +17,9 @@
           (load-theme 'solarized-light 'no-confirm))
   :config (setq color-theme-is-global t))
 
+(use-package rainbow-mode :ensure t
+  :diminish rainbow-mode)
+
 (use-package string-utils :ensure t)
 (use-package dash :ensure t)
 (use-package projectile)
