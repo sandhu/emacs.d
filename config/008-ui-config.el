@@ -28,51 +28,61 @@
 
 (use-package powerline :ensure t
   :init (setq powerline-default-separator 'wave)
-  :config (setq-default mode-line-format
-                        '("%e"
-                          (:eval
-                           (let* ((file-name (buffer-file-name (current-buffer)))
-                                  (active (powerline-selected-window-active))
-                                  (mode-line (if active 'mode-line 'mode-line-inactive))
-                                  (face1 (if active 'powerline-active1 'powerline-inactive1))
-                                  (face2 (if active 'powerline-active2 'powerline-inactive2))
-                                  (separator-left (intern (format "powerline-%s-%s"
-                                                                  (powerline-current-separator)
-                                                                  (car powerline-default-separator-dir))))
-                                  (separator-right (intern (format "powerline-%s-%s"
-                                                                   (powerline-current-separator)
-                                                                   (cdr powerline-default-separator-dir))))
-                                  (lhs (list (powerline-major-mode face2 'l)
-                                             (powerline-process face2 'l)
-                                             (powerline-minor-modes face2 'l)
-                                             (powerline-raw " " face2)
-                                             (funcall separator-left face2 face1)
+  :config (progn
+            (defface modes-ml-face '((t (:background "#002b36" :inherit mode-line)))
+              "Powerline face for modes section of the mode-line"
+              :group 'powerline)
+            (defface file-ml-face '((t (:background "#586e75" :inherit mode-line)))
+              "Powerline face for file and branch section of the mode-line"
+              :group 'powerline)
+            (defface line-ml-face '((t (:background "#93a1a1" :inherit mode-line)))
+              "Powerline face for file and branch section of the mode-line"
+              :group 'powerline)
+            (defface pos-ml-face '((t (:background "#586e75" :inherit mode-line)))
+              "Powerline face for file and branch section of the mode-line"
+              :group 'powerline)
+            (defface ml-fill-face '((t (:background "#93a1a1" :inherit mode-line)))
+              "Powerline face for file and branch section of the mode-line"
+              :group 'powerline)
+            (setq-default mode-line-format
+                          '("%e"
+                            (:eval
+                             (let* ((file-name (buffer-file-name (current-buffer)))
+                                    (active (powerline-selected-window-active))
+                                    (separator-left (intern (format "powerline-%s-%s"
+                                                                    (powerline-current-separator)
+                                                                    (car powerline-default-separator-dir))))
+                                    (separator-right (intern (format "powerline-%s-%s"
+                                                                     (powerline-current-separator)
+                                                                     (cdr powerline-default-separator-dir))))
+                                    (lhs (list (powerline-major-mode 'modes-ml-face 'l)
+                                               (powerline-process 'modes-ml-face 'l)
+                                               (powerline-minor-modes 'modes-ml-face 'l)
+                                               (powerline-raw " " 'modes-ml-face)
+                                               (funcall separator-left 'modes-ml-face 'file-ml-face)
 
-                                             (powerline-raw "[" face1)
-                                             (powerline-raw (projectile-project-name) face1)
-                                             (powerline-raw "] %b %*" face1)
-                                             (powerline-raw (concat " "
-                                                                    (when (and file-name vc-mode)
-                                                                      (concat "(" (-> file-name
-                                                                                      vc-working-revision
-                                                                                      (string-utils-truncate-to 40))
-                                                                              ")")))
-                                                            face1 'r)
-                                             (funcall separator-left face1 face2)))
+                                               (powerline-raw "[" 'file-ml-face)
+                                               (powerline-raw (projectile-project-name) 'file-ml-face)
+                                               (powerline-raw "] %b %*" 'file-ml-face)
+                                               (powerline-raw (concat " "
+                                                                      (when (and file-name vc-mode)
+                                                                        (concat "(" (-> file-name
+                                                                                        vc-working-revision
+                                                                                        (string-utils-truncate-to 40))
+                                                                                ")")))
+                                                              'file-ml-face 'r)
+                                               (funcall separator-left 'file-ml-face 'ml-fill-face)))
 
-                                  (rhs (list (powerline-raw global-mode-string face2 'r)
-                                             (funcall separator-right face2 face1)
+                                    (rhs (list (powerline-raw global-mode-string 'ml-fill-face 'r)
+                                               (funcall separator-right 'ml-fill-face 'pos-ml-face)
+                                               (powerline-raw "%p " 'pos-ml-face 'l)
+                                               (funcall separator-right 'pos-ml-face 'line-ml-face)
 
-                                             (unless window-system
-                                               (powerline-raw (char-to-string #xe0a1) face1 'l))
-                                             (powerline-raw "%p " face1 'l)
-                                             (funcall separator-right face1 mode-line)
+                                               (powerline-raw " %4l " 'line-ml-face 'r))))
 
-                                             (powerline-raw "%4l " nil 'r))))
-
-                             (concat (powerline-render lhs)
-                                     (powerline-fill face2 (powerline-width rhs))
-                                     (powerline-render rhs)))))))
+                               (concat (powerline-render lhs)
+                                       (powerline-fill 'ml-fill-face (powerline-width rhs))
+                                       (powerline-render rhs))))))))
 
 (use-package popwin :ensure t
   :init (setq display-buffer-function 'popwin:display-buffer
