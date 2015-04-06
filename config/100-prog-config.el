@@ -14,7 +14,8 @@
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package smartscan :ensure t
-  :init (add-hook 'prog-mode-hook 'smartscan-mode))
+  :init (add-hook 'prog-mode-hook 'smartscan-mode)
+  :config (setq smartscan-symbol-selector "symbol"))
 
 (use-package subword-mode
   :init (add-hook 'prog-mode-hook 'subword-mode)
