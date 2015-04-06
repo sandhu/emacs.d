@@ -36,13 +36,13 @@
               "Powerline face for file and branch section of the mode-line"
               :group 'powerline)
             (defface line-ml-face '((t (:background "#93a1a1" :inherit mode-line)))
-              "Powerline face for file and branch section of the mode-line"
+              "Powerline face for line number section of the mode-line"
               :group 'powerline)
             (defface pos-ml-face '((t (:background "#586e75" :inherit mode-line)))
-              "Powerline face for file and branch section of the mode-line"
+              "Powerline face for file position section of the mode-line"
               :group 'powerline)
             (defface ml-fill-face '((t (:background "#93a1a1" :inherit mode-line)))
-              "Powerline face for file and branch section of the mode-line"
+              "Powerline face used to fill the unused portion of the mode-line"
               :group 'powerline)
             (setq-default mode-line-format
                           '("%e"
