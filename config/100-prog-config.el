@@ -23,4 +23,5 @@
 
 (use-package flyspell
   :init (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+  :config (bind-key "C-." nil flyspell-mode-map)
   :diminish " ~")

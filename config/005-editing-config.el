@@ -43,7 +43,8 @@
 
 (use-package ace-jump-mode :ensure t :pin melpa-stable
   :init (autoload 'ace-jump-mode "ace-jump-mode" nil t)
-  :bind ("C-." . ace-jump-mode))
+  :bind (("C-." . ace-jump-mode)
+         ("C-o" . ace-jump-mode)))
 
 (use-package multiple-cursors :ensure t :pin melpa-stable
   :bind (("C->" . mc/mark-next-like-this)
