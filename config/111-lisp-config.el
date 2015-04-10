@@ -18,12 +18,13 @@
 (add-hook 'lisp-mode-hook 'lisp-mode-setup)
 (add-hook 'emacs-lisp-mode-hook 'lisp-mode-setup)
 
-(use-package lisp-interaction-mode
-  :config (paredit-mode +1))
+(add-hook 'lisp-interaction-mode-hook
+          (lambda ()
+            (paredit-mode +1)
+            (diminish-major-mode 'lisp-interaction-mode "λ»")))
 
 (diminish-major-mode 'lisp-mode "λ")
 (diminish-major-mode 'emacs-lisp-mode "ξλ")
-(diminish-major-mode 'lisp-interaction-mode "λ»")
 (diminish-major-mode 'slime-repl-mode "π»")
 
 (use-package eldoc :diminish "")

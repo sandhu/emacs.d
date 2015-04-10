@@ -17,7 +17,7 @@
   :init (add-hook 'prog-mode-hook 'smartscan-mode)
   :config (setq smartscan-symbol-selector "symbol"))
 
-(use-package subword-mode
+(use-package subword
   :init (add-hook 'prog-mode-hook 'subword-mode)
   :diminish "")
 

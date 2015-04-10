@@ -38,8 +38,6 @@
           (mapc 'load (directory-files config-dir nil "^[^#].*el$")))))))
 
 ;; Run the emacs server
-(use-package edit-server
+(use-package server
   :if window-system
-  :init (progn
-          (add-hook 'after-init-hook 'server-start t)
-          (add-hook 'after-init-hook 'edit-server-start t)))
+  :init (add-hook 'after-init-hook 'server-start t))
