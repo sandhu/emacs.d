@@ -11,8 +11,9 @@
          ("\\.cljx$" . clojure-mode)
          ("\\.edn$" . clojure-mode)
          ("\\.dtm$" . clojure-mode))
-  :config (diminish-major-mode 'clojure-mode "Cλ")
-  :bind-keymap ("C-c C-z" . nil)) ; Remove the binding for inferior-lisp-mode
+  :config (progn
+            (diminish-major-mode 'clojure-mode "Cλ")
+            (bind-key "C-c C-z" nil clojure-mode-map))) ; Remove the binding for inferior-lisp-mode
 
 (use-package cider :ensure t
   :pin melpa-stable
