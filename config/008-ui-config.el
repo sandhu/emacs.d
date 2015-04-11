@@ -15,6 +15,8 @@
   :init (progn
           (setq solarized-high-contrast-mode-line t
                 solarized-use-less-bold t
+                solarized-emphasize-indicators nil
+                solarized-scale-org-headlines nil
                 x-underline-at-descent-line t)
           (load-theme 'solarized-light 'no-confirm))
   :config (setq color-theme-is-global t))
