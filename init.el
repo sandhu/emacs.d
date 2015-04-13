@@ -1,3 +1,5 @@
+(setq ns-use-srgb-colorspace nil)
+
 ;; Remove the UI
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode) (funcall mode -1)))
@@ -9,32 +11,33 @@
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
 (push "/usr/local/bin" exec-path)
 
-;; Add the top level emacs config directory to the load path
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-
 ;; Setup the package management
-(require 'init-packages)
+(require 'package)
+(setq package-enable-at-startup nil)
+(setq package-user-dir "~/.emacs.d/elpa/")
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 
-;; Install the essential packages
-(require 'init-essential)
+(package-initialize)
+
+;; Bootstrap 'use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'use-package)
 
 ;; Load the configuration
-(let ((custom-file (expand-file-name "emacs-custom.el" user-emacs-directory))
-      (defuns-dir (expand-file-name "defuns" user-emacs-directory))
-      (config-dir (expand-file-name "config" user-emacs-directory))
-      (user-config-dir (expand-file-name user-login-name user-emacs-directory)))
+(let ((custom-file (expand-file-name "emacs-custom.el" user-emacs-directory)))
   (progn
     (when (file-exists-p custom-file) (load custom-file))
-    (when (file-exists-p defuns-dir)
-      (add-to-list 'load-path defuns-dir)
-      (mapc 'load (directory-files defuns-dir nil "^[^#].*el$")))
-    (when (file-exists-p config-dir)
-      (add-to-list 'load-path config-dir)
-      (mapc 'load (directory-files config-dir nil "^[^#].*el$")))
-    (when (file-exists-p user-config-dir)
-      (add-to-list 'load-path user-config-dir)
-      (mapc 'load (directory-files user-config-dir nil "^[^#].*el$")))))
+    (dolist (dir (list "lisp" "config" user-login-name))
+      (let ((config-dir (expand-file-name dir user-emacs-directory)))
+        (when (file-exists-p config-dir)
+          (add-to-list 'load-path config-dir)
+          (mapc 'load (directory-files config-dir nil "^[^#].*el$")))))))
 
 ;; Run the emacs server
-(require 'server)
-(unless (server-running-p) (server-start))
+(use-package server
+  :if window-system
+  :init (add-hook 'after-init-hook 'server-start t))
