@@ -31,6 +31,8 @@
 (use-package powerline :ensure t
   :init (setq powerline-default-separator 'wave)
   :config (progn
+            (require 'powerline)
+            (add-hook 'desktop-after-read-hook 'powerline-reset)
             (defface modes-ml-face '((t (:background "#002b36" :inherit mode-line)))
               "Powerline face for modes section of the mode-line"
               :group 'powerline)
