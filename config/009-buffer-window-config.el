@@ -50,7 +50,7 @@
          ("<C-s-right>" . buf-move-right)))
 
 (use-package switch-window :ensure t
-  :config (windmove-default-keybindings)
+  :init (windmove-default-keybindings)
   :bind (("C-x o" . switch-window)
          ("C-M-]" . scroll-other-window)
          ("C-M-[" . scroll-other-window-down)))
