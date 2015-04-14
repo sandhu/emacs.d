@@ -1,5 +1,6 @@
 {:user
- {:plugins [;; REPL
+ {:jvm-opts ["-XX:-OmitStackTraceInFastThrow"]
+  :plugins [;; REPL
             [cider/cider-nrepl "0.9.0-SNAPSHOT"]
             [refactor-nrepl "0.2.2"]
 
