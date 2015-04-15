@@ -31,7 +31,8 @@
          ("C-w" . kill-region-or-backward-word)))
 
 (use-package expand-region :ensure t
-  :bind ("C-=" . er/expand-region))
+  :bind (("C-=" . er/expand-region)
+         ("C--" . er/contract-region)))
 
 (use-package undo-tree :ensure t
   :config (progn (global-undo-tree-mode)

@@ -8,5 +8,5 @@
 
 ;; Text size
 (global-unset-key (kbd "C-x C-+")) ; don't zoom like this
-(bind-key "C-+" 'text-scale-increase)
-(bind-key "C--" 'text-scale-decrease)
+(bind-key "C-s-+" 'text-scale-increase)
+(bind-key "C-s--" 'text-scale-decrease)
