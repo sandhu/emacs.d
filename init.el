@@ -28,14 +28,15 @@
 (require 'use-package)
 
 ;; Load the configuration
-(let ((custom-file (expand-file-name "emacs-custom.el" user-emacs-directory)))
-  (progn
-    (when (file-exists-p custom-file) (load custom-file))
-    (dolist (dir (list "lisp" "config" user-login-name))
-      (let ((config-dir (expand-file-name dir user-emacs-directory)))
-        (when (file-exists-p config-dir)
-          (add-to-list 'load-path config-dir)
-          (mapc 'load (directory-files config-dir nil "^[^#].*el$")))))))
+(let ((custom-file (expand-file-name "emacs-custom.el" user-emacs-directory))
+      (user-config-file (expand-file-name (concat user-login-name ".el") user-emacs-directory)))
+  (when (file-exists-p custom-file) (load custom-file))
+  (dolist (dir (list "lisp" "config" user-login-name))
+    (let ((config-dir (expand-file-name dir user-emacs-directory)))
+      (when (file-exists-p config-dir)
+        (add-to-list 'load-path config-dir)
+        (mapc 'load (directory-files config-dir nil "^[^#].*el$")))))
+  (when (file-exists-p user-config-file) (load user-config-file)))
 
 ;; Run the emacs server
 (use-package server
