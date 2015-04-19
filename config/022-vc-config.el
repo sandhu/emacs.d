@@ -5,7 +5,8 @@
 
 (use-package magit :ensure t
   :interpreter ("magit" . magit-status-mode)
-  :init (progn (setq-default magit-save-some-buffers nil
+  :init (progn (setq magit-last-seen-setup-instructions "1.4.0")
+               (setq-default magit-save-some-buffers nil
                              magit-process-popup-time 10
                              magit-diff-refine-hunk t
                              magit-completing-read-function 'magit-ido-completing-read)
