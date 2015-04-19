@@ -49,8 +49,8 @@
          ("<C-s-left>" . buf-move-left)
          ("<C-s-right>" . buf-move-right)))
 
-(use-package switch-window :ensure t
+(use-package ace-window :ensure t
   :init (windmove-default-keybindings)
-  :bind (("C-x o" . switch-window)
+  :bind (("C-x o" . ace-window)
          ("C-M-]" . scroll-other-window)
          ("C-M-[" . scroll-other-window-down)))
