@@ -2,10 +2,10 @@
  {:jvm-opts ["-XX:-OmitStackTraceInFastThrow"]
   :plugins [;; REPL
             [cider/cider-nrepl "0.9.0-SNAPSHOT"]
-            [refactor-nrepl "0.2.2"]
+            [refactor-nrepl "1.0.3"]
 
             ;; Application server
-            [lein-immutant "2.0.0-SNAPSHOT"]
+            [lein-immutant "2.0.0"]
 
             ;; Automated testing
             [lein-cloverage "1.0.2"]
@@ -26,31 +26,29 @@
             [lein-bikeshed "0.2.0"]
             [lein-kibit "0.0.8"]]
 
-  :dependencies [[org.clojars.gjahad/debug-repl "0.3.3"]
+  :dependencies [[org.clojure/tools.nrepl "0.2.7"]
+                 [org.clojars.gjahad/debug-repl "0.3.3"]
                  [difform "1.1.2"]
 
                  [spyscope "0.1.5"]
                  [org.clojure/tools.trace "0.7.8"]
                  [org.clojure/tools.namespace "0.2.9"]
+                 [alembic "0.3.2"]
+                 [im.chit/vinyasa.inject "0.3.4"]
+                 [im.chit/vinyasa.reflection "0.3.4"]
                  [io.aviso/pretty "0.1.8"]
-                 [im.chit/vinyasa "0.3.3"]
 
                  [slamhound "1.5.5"]
                  [criterium "0.4.3"]]
 
   :injections [(require 'spyscope.core)
                (require '[vinyasa.inject :as inject])
-               (require 'io.aviso.repl)
-               (inject/in ;; the default injected namespace is `.`
+               (inject/in [vinyasa.inject :refer [inject [in inject-in]]]
+                          [clojure.pprint pprint]
+                          [clojure.java.shell sh]
+                          [alembic.still [distill pull] lein [load-project pull-project]]
+                          [clojure.tools.namespace.repl refresh]
+                          [clojure.repl doc source]
 
-                ;; note that `:refer, :all and :exclude can be used
-                [vinyasa.inject :refer [inject [in inject-in]]]
-
-                ;; inject into clojure.core
-                clojure.core
-                [vinyasa.reflection .> .? .* .% .%> .& .>ns .>var]
-
-                ;; inject into clojure.core with prefix
-                clojure.core >
-                [clojure.pprint pprint]
-                [clojure.java.shell sh])]}}
+                          clojure.core
+                          [vinyasa.reflection .& .> .? .* .% .%>])]}}

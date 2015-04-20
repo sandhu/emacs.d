@@ -47,7 +47,6 @@
   :init (add-hook 'clojure-mode-hook (lambda ()
                                        (clj-refactor-mode 1)
                                        (cljr-add-keybindings-with-prefix "C-c C-m")))
-  :config (add-hook 'nrepl-connected-hook #'cljr-update-artifact-cache)
   :diminish "")
 
 (use-package cljsbuild-mode :ensure t)
