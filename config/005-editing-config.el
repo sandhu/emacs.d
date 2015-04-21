@@ -30,6 +30,10 @@
          ("M-j" . swallow-newline)
          ("C-w" . kill-region-or-backward-word)))
 
+(use-package teppoudo-search
+  :load-path "lisp/"
+  :init (bind-key "<backspace>" 'isearch-remove-unmatched-part isearch-mode-map))
+
 (use-package expand-region :ensure t
   :bind (("C-=" . er/expand-region)
          ("C--" . er/contract-region)))
