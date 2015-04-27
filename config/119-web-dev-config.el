@@ -1,6 +1,7 @@
 (use-package web-mode :ensure t
   :mode (("\\.html?\\'" . web-mode)
          ("\\.xml?\\'" . web-mode)
+         ("\\.sgml?\\'" . web-mode)
          ("\\.css?\\'" . web-mode))
   :config (progn (setq web-mode-markup-indent-offset 2
                        web-mode-css-indent-offset 2
@@ -13,6 +14,10 @@
                        web-mode-enable-css-colorization t)
                  (electric-indent-mode)
                  (diminish-major-mode 'web-mode "ω")))
+
+(use-package emmet-mode :ensure t
+  :init (add-hook 'web-mode-hook 'emmet-mode)
+  :diminish (emmet-mode . ""))
 
 ;; In html-mode, forward/backward-paragraph is infuriatingly slow
 (defun skip-to-next-blank-line ()
