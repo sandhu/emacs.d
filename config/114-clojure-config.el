@@ -12,6 +12,7 @@
          ("\\.edn$" . clojure-mode)
          ("\\.dtm$" . clojure-mode))
   :config (progn
+            (fset 'clojure-indent-line 'lisp-indent-line)
             (diminish-major-mode 'clojure-mode "Cλ")
             (bind-key "C-c C-z" nil clojure-mode-map))) ; Remove the binding for inferior-lisp-mode
 
