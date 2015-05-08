@@ -2,7 +2,7 @@
  {:jvm-opts ["-XX:-OmitStackTraceInFastThrow"]
   :plugins [;; REPL
             [cider/cider-nrepl "0.9.0-SNAPSHOT"]
-            [refactor-nrepl "1.0.3"]
+            [refactor-nrepl "1.0.5"]
 
             ;; Application server
             [lein-immutant "2.0.0"]
