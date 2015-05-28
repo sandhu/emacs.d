@@ -66,3 +66,5 @@
 ;; of jar files
 (use-package arc-mode
   :init (add-hook 'archive-extract-hook (lambda () (toggle-read-only 1))))
+
+(use-package lorem-ipsum :ensure t)
