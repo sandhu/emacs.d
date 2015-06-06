@@ -10,3 +10,6 @@
 (global-unset-key (kbd "C-x C-+")) ; don't zoom like this
 (bind-key "C-s-+" 'text-scale-increase)
 (bind-key "C-s--" 'text-scale-decrease)
+
+(use-package beginend :ensure t
+  :config (beginend-setup-all))
