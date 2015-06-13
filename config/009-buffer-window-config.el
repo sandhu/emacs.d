@@ -1,3 +1,5 @@
+(setq scroll-preserve-screen-position 'always)
+
 (use-package ibuffer
   :init (progn
           (setq ibuffer-expert t
