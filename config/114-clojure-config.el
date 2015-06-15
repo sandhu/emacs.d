@@ -1,5 +1,4 @@
 (use-package clojure-mode :ensure t
-  :pin melpa-stable
   :init (progn
           (setq buffer-save-without-query t)
           (add-hook 'clojure-mode-hook
@@ -12,9 +11,10 @@
          ("\\.edn$" . clojure-mode)
          ("\\.dtm$" . clojure-mode))
   :config (progn
-            (fset 'clojure-indent-line 'lisp-indent-line)
             (diminish-major-mode 'clojure-mode "Cλ")
             (bind-key "C-c C-z" nil clojure-mode-map))) ; Remove the binding for inferior-lisp-mode
+
+(use-package clojure-mode-extra-font-locking :ensure t)
 
 (use-package cider :ensure t
   :pin melpa-stable
