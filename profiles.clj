@@ -1,7 +1,7 @@
 {:user
  {:jvm-opts ["-XX:-OmitStackTraceInFastThrow"]
   :plugins [;; REPL
-            [cider/cider-nrepl "0.9.0-SNAPSHOT"]
+            [cider/cider-nrepl "0.9.0"]
             [refactor-nrepl "1.0.5"]
 
             ;; Application server
