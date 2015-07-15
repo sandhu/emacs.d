@@ -4,7 +4,6 @@
                  (set-face-foreground 'diff-removed "red3")))
 
 (use-package magit :ensure t
-  :interpreter ("magit" . magit-status-mode)
   :init (progn (setq magit-last-seen-setup-instructions "1.4.0")
                (setq-default magit-save-some-buffers nil
                              magit-process-popup-time 10
@@ -42,9 +41,7 @@
 
             (bind-key "q" 'magit-quit-session magit-status-mode-map)
             (bind-key "C-x C-k" 'magit-kill-file-on-line magit-status-mode-map)
-            (bind-key "W" 'magit-toggle-whitespace magit-status-mode-map)
-            (global-magit-wip-save-mode))
-  :diminish (magit-wip-save-mode magit-auto-revert-mode))
+            (bind-key "W" 'magit-toggle-whitespace magit-status-mode-map)))
 
 (use-package git-gutter :ensure t :diminish "")
 (use-package git-gutter-fringe :ensure t
