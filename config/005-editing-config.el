@@ -46,10 +46,9 @@
 (use-package browse-kill-ring :ensure t :pin melpa-stable
   :config (browse-kill-ring-default-keybindings))
 
-(use-package ace-jump-mode :ensure t :pin melpa-stable
-  :init (autoload 'ace-jump-mode "ace-jump-mode" nil t)
-  :bind (("C-." . ace-jump-mode)
-         ("C-o" . ace-jump-mode)))
+(use-package avy :ensure t :pin melpa-stable
+  :bind (("C-." . avy-goto-word-or-subword-1)
+         ("C-o" . avy-goto-word-or-subword-1)))
 
 (use-package multiple-cursors :ensure t :pin melpa-stable
   :bind (("C->" . mc/mark-next-like-this)
