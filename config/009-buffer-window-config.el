@@ -46,13 +46,8 @@
             (add-hook 'ibuffer-hook 'ibuffer-set-up-preferred-filters)))
 
 (use-package buffer-move :ensure t
+  :init (windmove-default-keybindings)
   :bind (("<C-s-up>" . buf-move-up)
          ("<C-s-down>" . buf-move-down)
          ("<C-s-left>" . buf-move-left)
          ("<C-s-right>" . buf-move-right)))
-
-(use-package ace-window :ensure t
-  :init (windmove-default-keybindings)
-  :bind (("C-x o" . ace-window)
-         ("C-M-]" . scroll-other-window)
-         ("C-M-[" . scroll-other-window-down)))
