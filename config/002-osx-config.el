@@ -25,4 +25,4 @@
   (setq ispell-program-name "/usr/local/bin/aspell" ; use aspell instead of ispell
         ispell-extra-args '("--sug-mode=ultra"))
 
-  (use-package reveal-in-finder :ensure t :pin melpa-stable))
+  (use-package reveal-in-osx-finder :ensure t))
