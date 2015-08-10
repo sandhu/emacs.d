@@ -51,3 +51,7 @@
          ("<C-s-down>" . buf-move-down)
          ("<C-s-left>" . buf-move-left)
          ("<C-s-right>" . buf-move-right)))
+
+(use-package transpose-frame :ensure t
+  :bind (("s-(" . rotate-frame-anticlockwise)
+         ("s-)" . rotate-frame-clockwise)))
