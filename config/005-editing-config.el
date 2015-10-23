@@ -57,9 +57,6 @@
          ("C-S-c C-S-c" . mc/edit-lines)
          ("C-S-c C-e" . mc/edit-ends-of-lines)))
 
-(use-package annoying-arrows-mode :ensure t
-  :config (global-annoying-arrows-mode))
-
 ;; Ensure that when we navigate to a file in an archive, it is opened as
 ;; read-only by default. Primarily there to prevent unintentional editing
 ;; of jar files
