@@ -52,8 +52,6 @@
 
 (use-package cljsbuild-mode :ensure t)
 
-(use-package datomic-snippets :ensure t)
-
 (use-package slamhound :ensure t)
 
 (use-package latest-clojure-libraries :ensure t)
