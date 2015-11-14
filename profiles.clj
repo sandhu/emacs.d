@@ -5,6 +5,5 @@
 
             [lein-ancient "0.6.7"]]
 
-  :dependencies [[acyclic/squiggly-clojure "0.1.3-SNAPSHOT"]
-                 ^:replace [org.clojure/tools.nrepl "0.2.10"]
+  :dependencies [[org.clojure/tools.nrepl "0.2.12"]
                  [criterium "0.4.3"]]}}
