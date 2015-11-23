@@ -64,3 +64,7 @@
   :init (add-hook 'archive-extract-hook (lambda () (toggle-read-only 1))))
 
 (use-package lorem-ipsum :ensure t)
+
+(use-package goto-chg :ensure t
+  :bind (("C-M-," . goto-last-change)
+         ("C-M-." . goto-last-change-reverse)))
