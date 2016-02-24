@@ -8,7 +8,7 @@
 (setq use-dialog-box nil)
 
 ;; Make sure path is correct when launched as application
-(setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+(setenv "PATH" (concat "/usr/local/bin:/Library/TeX/texbin:" (getenv "PATH")))
 (push "/usr/local/bin" exec-path)
 
 ;; Setup the package management
