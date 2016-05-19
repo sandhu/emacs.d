@@ -1,1 +1,1 @@
-(use-package scala-mode2 :ensure t)
+(use-package scala-mode :ensure t)
