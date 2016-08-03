@@ -6,5 +6,8 @@
   :config (global-company-mode 1)
   :diminish " α")
 
+(use-package company-flx :ensure t
+  :config (company-flx-mode +1))
+
 (use-package company-quickhelp :ensure t
   :config (company-quickhelp-mode 1))
