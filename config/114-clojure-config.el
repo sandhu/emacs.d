@@ -6,8 +6,7 @@
                       (push '("partial" . ?Ƥ) prettify-symbols-alist)
                       (push '("comp" . ?ο) prettify-symbols-alist)
                       (lisp-mode-setup))))
-  :mode (("\\.cljs$" . clojure-mode)
-         ("\\.cljx$" . clojure-mode)
+  :mode (("\\.cljx$" . clojure-mode)
          ("\\.edn$" . clojure-mode)
          ("\\.dtm$" . clojure-mode))
   :config (progn
@@ -33,7 +32,6 @@
           (add-hook 'clojure-mode-hook 'cider-mode))
   :config (progn
             (diminish-major-mode 'cider-repl-mode "Ç»")
-            (cider-turn-on-eldoc-mode)
             (add-to-list 'same-window-buffer-names "*cider*")
             (add-hook 'cider-repl-mode-hook 'lisp-mode-setup)
             (add-hook 'cider-connected-hook 'cider-enable-on-existing-clojure-buffers))
