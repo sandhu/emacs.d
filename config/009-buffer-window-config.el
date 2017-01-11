@@ -21,11 +21,11 @@
                (t (format "%8d" (buffer-size)))))
             (defun ibuffer-back-to-top ()
               (interactive)
-              (beginning-of-buffer)
+              (goto-char (point-min))
               (next-line 3))
             (defun ibuffer-jump-to-bottom ()
               (interactive)
-              (end-of-buffer)
+              (goto-char (point-max))
               (next-line -2))
 
             (define-key ibuffer-mode-map (vector 'remap 'end-of-buffer) 'ibuffer-jump-to-bottom)
