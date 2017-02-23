@@ -3,10 +3,10 @@
               whitespace-line-column 80)
   :diminish whitespace-mode)
 
-(use-package auto-indent-mode :ensure t
-  :init (setq auto-indent-on-save-file t
-              auto-indent-delete-trailing-whitespace-on-save-file t
-              auto-indent-untabify-on-save-file t
-              auto-indent-indent-style 'aggressive)
-  :config (auto-indent-global-mode)
-  :diminish auto-indent-mode)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(use-package aggressive-indent :ensure t
+  :config (progn
+            (global-aggressive-indent-mode 1)
+            (unbind-key "C-c C-q" aggressive-indent-mode-map))
+  :diminish aggressive-indent-mode)
