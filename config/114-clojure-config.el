@@ -6,9 +6,6 @@
                       (push '("partial" . ?Ƥ) prettify-symbols-alist)
                       (push '("comp" . ?ο) prettify-symbols-alist)
                       (lisp-mode-setup))))
-  :mode (("\\.cljx$" . clojure-mode)
-         ("\\.edn$" . clojure-mode)
-         ("\\.dtm$" . clojure-mode))
   :config (progn
             (diminish-major-mode 'clojure-mode "Cλ")
             (bind-key "C-c C-z" nil clojure-mode-map))) ; Remove the binding for inferior-lisp-mode
@@ -16,26 +13,18 @@
 (use-package clojure-mode-extra-font-locking :ensure t)
 
 (use-package cider :ensure t
-  :pin melpa-stable
   :init (progn
           (setq nrepl-hide-special-buffers nil
                 cider-repl-pop-to-buffer-on-connect nil
                 cider-prompt-for-symbol nil
+                cider-overlays-use-font-lock t
                 nrepl-log-messages t
-                cider-popup-stacktraces t
-                cider-repl-popup-stacktraces t
-                cider-auto-select-error-buffer t
-                cider-repl-print-length 100
                 cider-repl-history-file (expand-file-name "cider-history" user-emacs-directory)
-                cider-repl-use-clojure-font-lock t
-                cider-switch-to-repl-command 'cider-switch-to-relevant-repl-buffer)
-          (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
-          (add-hook 'clojure-mode-hook 'cider-mode))
+                cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))"))
   :config (progn
             (diminish-major-mode 'cider-repl-mode "Ç»")
             (add-to-list 'same-window-buffer-names "*cider*")
-            (add-hook 'cider-repl-mode-hook 'lisp-mode-setup)
-            (add-hook 'cider-connected-hook 'cider-enable-on-existing-clojure-buffers))
+            (add-hook 'cider-repl-mode-hook 'lisp-mode-setup))
   :diminish " ç")
 
 (use-package eval-sexp-fu :ensure t
