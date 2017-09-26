@@ -50,7 +50,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (lua-mode yaml-mode wgrep-ag web-mode use-package undo-tree transpose-frame string-utils solarized-theme smex smartscan shell-pop reveal-in-osx-finder rainbow-mode rainbow-delimiters projectile powerline popwin markdown-mode+ magit lorem-ipsum js2-mode ido-ubiquitous ibuffer-vc goto-chg git-gutter-fringe flx-ido expand-region es-mode emmet-mode elisp-slime-nav dockerfile-mode docker company-quickhelp company-flx clojure-mode-extra-font-locking cljsbuild-mode clj-refactor cider-eval-sexp-fu buffer-move browse-kill-ring beginend avy auto-indent-mode ag)))
+    (lua-mode yaml-mode wgrep-ag web-mode use-package undo-tree transpose-frame string-utils solarized-theme smex smartscan shell-pop reveal-in-osx-finder rainbow-mode rainbow-delimiters projectile powerline popwin markdown-mode+ magit lorem-ipsum js2-mode ido-ubiquitous ibuffer-vc goto-chg git-timemachine git-gutter-fringe flx-ido expand-region es-mode emmet-mode elisp-slime-nav dockerfile-mode docker company-quickhelp company-flx clojure-mode-extra-font-locking cljsbuild-mode clj-refactor cider-eval-sexp-fu buffer-move browse-kill-ring beginend avy auto-indent-mode ag)))
  '(shell-pop-shell-type
    (quote
     ("eshell" "*eshell*"
