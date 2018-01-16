@@ -1,4 +1,4 @@
-(use-package ido-ubiquitous :ensure t :pin melpa-stable
+(use-package ido-completing-read+ :ensure t :pin melpa-stable
   :config (progn
             (defun ido-imenu ()
               "Update the imenu index and then use ido to select a symbol to navigate to.
