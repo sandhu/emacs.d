@@ -43,22 +43,6 @@
   :if window-system
   :init (add-hook 'after-init-hook 'server-start t))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (lua-mode yaml-mode wgrep-ag web-mode use-package undo-tree transpose-frame string-utils solarized-theme smex smartscan shell-pop reveal-in-osx-finder rainbow-mode rainbow-delimiters projectile powerline popwin markdown-mode+ magit lorem-ipsum js2-mode ido-ubiquitous ibuffer-vc goto-chg git-timemachine git-gutter-fringe flx-ido expand-region es-mode emmet-mode elisp-slime-nav dockerfile-mode docker company-quickhelp company-flx clojure-mode-extra-font-locking cljsbuild-mode clj-refactor cider-eval-sexp-fu buffer-move browse-kill-ring beginend avy auto-indent-mode ag)))
- '(shell-pop-shell-type
-   (quote
-    ("eshell" "*eshell*"
-     (lambda nil
-       (eshell shell-pop-term-shell)))))
- '(shell-pop-universal-key "M-`")
- '(shell-pop-window-position "top")
- '(shell-pop-window-size 100))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -5,9 +5,6 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(use-package auto-indent-mode :ensure t
-  :init (setq auto-indent-indent-style 'aggressive
-              auto-indent-on-save-file t
-              auto-indent-untabify-on-visit-file t)
-  :config (auto-indent-global-mode)
-  :diminish auto-indent-mode)
+(use-package aggresive-indent :ensure t
+  :config (do (global-aggressive-indent-mode 1)
+              (add-to-list 'aggressive-indent-excluded-modes 'elisp-mode)))
