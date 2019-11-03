@@ -19,12 +19,13 @@
                 cider-prompt-for-symbol nil
                 cider-overlays-use-font-lock t
                 nrepl-log-messages t
-                cider-repl-history-file (expand-file-name "cider-history" user-emacs-directory)
-                cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))"))
+                cider-repl-history-file (expand-file-name "cider-history" user-emacs-directory)))
   :config (progn
             (diminish-major-mode 'cider-repl-mode "Ç»")
             (add-to-list 'same-window-buffer-names "*cider*")
-            (add-hook 'cider-repl-mode-hook 'lisp-mode-setup))
+            (add-hook 'cider-repl-mode-hook 'lisp-mode-setup)
+            (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
+            (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion))
   :diminish " ç")
 
 (use-package eval-sexp-fu :ensure t
