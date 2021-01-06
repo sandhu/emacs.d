@@ -1,6 +1,5 @@
 (use-package whitespace :ensure t
-  :init (setq whitespace-style '(face trailing lines-tail tabs)
-              whitespace-line-column 80)
+  :init (setq whitespace-style '(face trailing tabs))
   :diminish whitespace-mode)
 
 (use-package auto-indent-mode :ensure t
