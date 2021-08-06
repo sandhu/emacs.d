@@ -39,4 +39,4 @@
                                        (cljr-add-keybindings-with-prefix "C-c M-r")))
   :diminish "")
 
-(use-package cljsbuild-mode :ensure t)
+

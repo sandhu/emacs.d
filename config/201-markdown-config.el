@@ -2,4 +2,3 @@
   :mode (("\\.markdown\\'" . markdown-mode)
          ("\\.md\\'" . markdown-mode)))
 
-(use-package markdown-mode+ :ensure t)
