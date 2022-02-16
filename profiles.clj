@@ -1,2 +1,3 @@
-{:user {:plugins [[lein-ancient "0.7.0"]
-                  [lein-nvd "1.4.1"]]}}
+{:user {:plugins [[lein-ancient "1.0.0-RC3"]
+                  [com.github.liquidz/antq "1.3.1"]
+                  [nvd-clojure "2.1.0"]]}}
