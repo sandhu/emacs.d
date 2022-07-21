@@ -7,10 +7,10 @@
                     (lambda ()
                       (push '("partial" . ?Ƥ) prettify-symbols-alist)
                       (push '("comp" . ?ο) prettify-symbols-alist)
+                      (require 'flycheck-clj-kondo)
+                      (flycheck-mode)
                       (lisp-mode-setup))))
   :config (progn
-            (require 'flycheck-clj-kondo)
-            (flycheck-mode)
             (diminish-major-mode 'clojure-mode "Cλ")
             (bind-key "C-c C-z" nil clojure-mode-map))) ; Remove the binding for inferior-lisp-mode
 
