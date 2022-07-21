@@ -1,3 +1,5 @@
+(use-package flycheck-clj-kondo :ensure t)
+
 (use-package clojure-mode :ensure t
   :init (progn
           (setq buffer-save-without-query t)
@@ -7,6 +9,8 @@
                       (push '("comp" . ?ο) prettify-symbols-alist)
                       (lisp-mode-setup))))
   :config (progn
+            (require 'flycheck-clj-kondo)
+            (flycheck-mode)
             (diminish-major-mode 'clojure-mode "Cλ")
             (bind-key "C-c C-z" nil clojure-mode-map))) ; Remove the binding for inferior-lisp-mode
 
@@ -38,5 +42,3 @@
                                        (clj-refactor-mode 1)
                                        (cljr-add-keybindings-with-prefix "C-c M-r")))
   :diminish "")
-
-

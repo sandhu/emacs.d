@@ -1,8 +1,5 @@
 (when (equal system-type 'darwin)
   ;; Use the command key as 'meta'
-  ;; (setq mac-right-command-modifier 'meta)
-  ;; (setq ns-left-option-modifier 'super)
-  ;; (setq ns-function-modifier 'hyper)
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier 'super)
   (setq ns-function-modifier 'hyper)

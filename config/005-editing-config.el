@@ -39,8 +39,10 @@
          ("C--" . er/contract-region)))
 
 (use-package undo-tree :ensure t
-  :config (progn (global-undo-tree-mode)
-                 (diminish-major-mode 'undo-tree-visualizer-mode "⅄"))
+  :config (progn
+            (setq undo-tree-history-directory-alist nil)
+            (global-undo-tree-mode)
+            (diminish-major-mode 'undo-tree-visualizer-mode "⅄"))
   :diminish ((undo-tree-mode . "")))
 
 (use-package browse-kill-ring :ensure t :pin melpa-stable
@@ -51,6 +53,9 @@
          ("C-o" . avy-goto-word-or-subword-1)))
 
 (use-package multiple-cursors :ensure t :pin melpa-stable
+  :config (progn
+            (setq mc/always-run-for-all t)
+            (define-key mc/keymap (kbd "<return>") nil))
   :bind (("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C->" . mc/mark-all-like-this)

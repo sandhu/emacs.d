@@ -33,7 +33,3 @@
     (skip-syntax-backward " >")
     (unless (search-backward-regexp "^\\s *$" nil t)
       (goto-char (point-min)))))
-
-(use-package sgml-mode
-  :bind (([remap forward-paragraph] . skip-to-next-blank-line)
-         ([remap backward-paragraph] . skip-to-previous-blank-line)))
