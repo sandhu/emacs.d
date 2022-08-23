@@ -2,13 +2,8 @@
   :init (setq whitespace-style '(face trailing tabs))
   :diminish whitespace-mode)
 
-(use-package auto-indent-mode :ensure t
-  :init (setq auto-indent-indent-style 'aggressive
-              auto-indent-on-save-file t
-              auto-indent-untabify-on-visit-file t
-              auto-indent-delete-trailing-whitespace-on-save-file t
-              auto-indent-key-for-end-of-line-then-newline "<M-return>")
+(use-package aggressive-indent :ensure t
   :config (progn
-            (auto-indent-global-mode)
-            (global-set-key (kbd "RET") auto-indent-newline-function))
-  :diminish auto-indent-mode)
+            (add-to-list 'aggressive-indent-excluded-modes 'makefile-mode)
+            (global-aggressive-indent-mode 1))
+  :diminish aggressive-indent-mode)

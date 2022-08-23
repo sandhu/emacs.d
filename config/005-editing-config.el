@@ -40,7 +40,7 @@
 
 (use-package undo-tree :ensure t
   :config (progn
-            (setq undo-tree-history-directory-alist nil)
+            (setq undo-tree-auto-save-history nil)
             (global-undo-tree-mode)
             (diminish-major-mode 'undo-tree-visualizer-mode "⅄"))
   :diminish ((undo-tree-mode . "")))
