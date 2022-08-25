@@ -1,5 +1,7 @@
 (use-package whitespace :ensure t
-  :init (setq whitespace-style '(face trailing tabs))
+  :init (progn
+          (setq whitespace-style '(face tabs empty trailing lines-tail))
+          (add-hook 'before-save-hook 'whitespace-cleanup))
   :diminish whitespace-mode)
 
 (use-package aggressive-indent :ensure t
