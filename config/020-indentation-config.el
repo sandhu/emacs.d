@@ -7,5 +7,6 @@
 (use-package aggressive-indent :ensure t
   :config (progn
             (add-to-list 'aggressive-indent-excluded-modes 'makefile-mode)
-            (global-aggressive-indent-mode 1))
+            (global-aggressive-indent-mode 1)
+            (bind-key "C-c C-q" nil aggressive-indent-mode-map))
   :diminish aggressive-indent-mode)
