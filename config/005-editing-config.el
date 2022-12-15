@@ -45,14 +45,14 @@
             (diminish-major-mode 'undo-tree-visualizer-mode "⅄"))
   :diminish ((undo-tree-mode . "")))
 
-(use-package browse-kill-ring :ensure t :pin melpa-stable
+(use-package browse-kill-ring :ensure t
   :config (browse-kill-ring-default-keybindings))
 
 (use-package avy :ensure t :pin melpa-stable
   :bind (("C-." . avy-goto-word-or-subword-1)
          ("C-o" . avy-goto-word-or-subword-1)))
 
-(use-package multiple-cursors :ensure t :pin melpa-stable
+(use-package multiple-cursors :ensure t
   :config (progn
             (setq mc/always-run-for-all t)
             (define-key mc/keymap (kbd "<return>") nil))

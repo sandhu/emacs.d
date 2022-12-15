@@ -7,6 +7,7 @@
 ac-comphist.dat
 ido.last
 recentf
+transient
 
 # the package repository
 elpa/
