@@ -52,7 +52,7 @@
   :bind (("C-." . avy-goto-word-or-subword-1)
          ("C-o" . avy-goto-word-or-subword-1)))
 
-(use-package multiple-cursors :ensure t
+(use-package multiple-cursors :ensure t :pin melpa-stable
   :config (progn
             (setq mc/always-run-for-all t)
             (define-key mc/keymap (kbd "<return>") nil))
