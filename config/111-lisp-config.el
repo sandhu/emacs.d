@@ -1,4 +1,5 @@
 (global-prettify-symbols-mode +1)
+(global-eldoc-mode -1)
 
 (use-package paredit :ensure t
   :config (progn (defun conditionally-enable-paredit-mode ()
@@ -11,7 +12,6 @@
   :diminish "()")
 
 (defun lisp-mode-setup ()
-  (eldoc-mode)
   (paredit-mode +1)
   (whitespace-mode))
 
@@ -26,8 +26,6 @@
 (diminish-major-mode 'lisp-mode "λ")
 (diminish-major-mode 'emacs-lisp-mode "ξλ")
 (diminish-major-mode 'slime-repl-mode "π»")
-
-(use-package eldoc :diminish "")
 
 (use-package elisp-slime-nav :ensure t
   :config (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
