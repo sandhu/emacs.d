@@ -85,10 +85,15 @@
         (when (and (buffer-file-name) (buffer-modified-p))
           (propertize "•" 'face font-lock-warning-face))))
 
-(use-package flycheck :ensure t)
+(use-package flycheck
+  :ensure t
+  :config (setq flycheck-display-errors-delay 0))
+
+(use-package flycheck-inline
+  :ensure t
+  :init (global-flycheck-inline-mode))
 
 (defvar-local flycheck-message nil)
-
 (defvar-local line-column-info nil)
 (defun line-column-info ()
   (setq line-column-info
