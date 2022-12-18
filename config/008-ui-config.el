@@ -31,9 +31,14 @@
                              "git rev-parse --symbolic-full-name --abbrev-ref HEAD 2>/dev/null"))
                     (branch-str (string-trim (replace-regexp-in-string
                                               "^HEAD" "(DETACHED HEAD)"
-                                              branch))))
-               (unless (= 0 (length branch-str))
-                 (propertize (concat "  " branch-str) 'face '((t :foreground "#444444"))))))
+                                              branch)))
+                    (branch-dirty (shell-command-to-string
+                                   "git diff --stat")))
+               (concat
+                (unless (= 0 (length branch-str))
+                  (propertize (concat "  " branch-str) 'face '((t :foreground "#444444"))))
+                (unless (= 0 (length branch-dirty))
+                  (propertize "•" 'face font-lock-warning-face)))))
            "]"))))
 
 (defvar-local git-file-message nil)
