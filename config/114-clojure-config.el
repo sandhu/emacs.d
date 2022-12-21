@@ -27,9 +27,9 @@
   :config (progn
             (diminish-major-mode 'cider-repl-mode "Ç»")
             (add-to-list 'same-window-buffer-names "*cider*")
-            (add-hook 'cider-repl-mode-hook 'lisp-mode-setup)
             (add-hook 'cider-repl-mode-hook
                       (lambda ()
+                        (lisp-mode-setup)
                         (aggressive-indent-mode 0)))
             (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
             (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion))
@@ -41,7 +41,8 @@
 (use-package cider-eval-sexp-fu :ensure t)
 
 (use-package clj-refactor :ensure t
-  :init (add-hook 'clojure-mode-hook (lambda ()
-                                       (clj-refactor-mode 1)
-                                       (cljr-add-keybindings-with-prefix "C-c M-r")))
+  :init (add-hook 'clojure-mode-hook
+                  (lambda ()
+                    (clj-refactor-mode 1)
+                    (cljr-add-keybindings-with-prefix "C-c M-r")))
   :diminish "")

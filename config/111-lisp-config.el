@@ -2,12 +2,15 @@
 (global-eldoc-mode -1)
 (eldoc-mode -1)
 
+(defun conditionally-enable-paredit-mode ()
+  "Enable 'paredit-mode' in the minibuffer, during 'eval-expression'."
+  (if (eq this-command 'eval-expression)
+      (paredit-mode 1)))
+
 (use-package paredit :ensure t
-  :config (progn (defun conditionally-enable-paredit-mode ()
-                   "Enable 'paredit-mode' in the minibuffer, during 'eval-expression'."
-                   (if (eq this-command 'eval-expression)
-                       (paredit-mode 1)))
-                 (add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode))
+  :config (progn
+            (add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)
+            (unbind-key (kbd "RET") paredit-mode-map))
   :bind (("C-M-<backspace>" . backward-kill-sexp)
          ("M-[" . paredit-wrap-square))
   :diminish "()")
