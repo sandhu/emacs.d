@@ -5,23 +5,28 @@
   (blink-cursor-mode -1)
   (menu-bar-mode -1)
   (global-font-lock-mode)
+  (window-divider-mode t)
   (desktop-save-mode 1))
 
 (use-package solarized-theme :ensure t
   :init (progn
-          (setq solarized-high-contrast-mode-line t
-                solarized-use-less-bold t
+          (setq solarized-use-less-bold t
                 solarized-emphasize-indicators nil
                 solarized-scale-org-headlines nil
                 x-underline-at-descent-line t)
           (load-theme 'solarized-light 'no-confirm))
-  :config (setq color-theme-is-global t))
+  :config (let ((line (face-attribute 'mode-line :underline)))
+            (setq color-theme-is-global t)
+            (set-face-attribute 'mode-line          nil :overline line)
+            (set-face-attribute 'mode-line-inactive nil :overline line)
+            (set-face-attribute 'mode-line          nil :underline line)
+            (set-face-attribute 'mode-line-inactive nil :underline line)))
 
 (use-package projectile :ensure t)
 
-(defvar-local git-project-message nil)
-(defun git-project-message ()
-  (setq git-project-message
+(defvar-local git-project-text nil)
+(defun git-project-text ()
+  (setq git-project-text
         (when (cdr (project-current))
           (concat
            " ["
@@ -41,9 +46,9 @@
                   (propertize "•" 'face font-lock-warning-face)))))
            "]"))))
 
-(defvar-local git-file-message nil)
-(defun git-file-message ()
-  (setq git-file-message
+(defvar-local git-file-text nil)
+(defun git-file-text ()
+  (setq git-file-text
         (when (cdr (project-current))
           (let* ((diff-str (lambda (cmd)
                              (let ((diff (shell-command-to-string cmd)))
@@ -60,9 +65,9 @@
                       staged
                       "]"))))))
 
-(defvar-local file-directory-message nil)
-(defun file-directory-message ()
-  (setq file-directory-message
+(defvar-local file-directory-text nil)
+(defun file-directory-text ()
+  (setq file-directory-text
         (propertize
          (or (if (and (buffer-file-name) (cdr (project-current)))
                  (replace-regexp-in-string
@@ -75,18 +80,18 @@
              "")
          'face 'font-lock-keyword-face)))
 
-(defvar-local file-or-buffer-message nil)
-(defun file-or-buffer-message ()
-  (setq file-or-buffer-message
+(defvar-local file-or-buffer-text nil)
+(defun file-or-buffer-text ()
+  (setq file-or-buffer-text
         (propertize
          (if (buffer-file-name)
              (file-name-nondirectory (buffer-file-name))
            (concat " " (buffer-name)))
          'face 'font-lock-variable-name-face)))
 
-(defvar-local file-save-status-message nil)
-(defun file-save-status-message ()
-  (setq file-save-status-message
+(defvar-local file-save-status-text nil)
+(defun file-save-status-text ()
+  (setq file-save-status-text
         (when (and (buffer-file-name) (buffer-modified-p))
           (propertize "•" 'face font-lock-warning-face))))
 
@@ -98,34 +103,29 @@
   :ensure t
   :init (global-flycheck-inline-mode))
 
-(defvar-local flycheck-message nil)
+(defvar-local flycheck-text nil)
 (defvar-local line-column-info nil)
 (defun line-column-info ()
   (setq line-column-info
         (format "%5s:%-3s" (line-number-at-pos) (current-column))))
 
-(defun update-minibuffer-modeline ()
-  (unless (current-message)
-    (let ((minibuf " *Minibuf-0*"))
-      (let ((left (concat
-                   git-project-message " "
-                   file-directory-message
-                   file-or-buffer-message
-                   file-save-status-message
-                   git-file-message " "
-                   flycheck-message))
-            (right (concat
-                    line-column-info " ")))
-        (with-current-buffer minibuf
-          (erase-buffer)
-          (let* ((message-truncate-lines t)
-                 (max-mini-window-height 1)
-                 (free-space (- (frame-width) (length left) (length right)))
-                 (padding (make-string (max 0 free-space) ?\ )))
-            (insert (concat left (when right (concat padding right))))))))))
+(defun update-modeline-text ()
+  (let ((left (concat
+               git-project-text " "
+               file-directory-text
+               file-or-buffer-text
+               file-save-status-text
+               git-file-text " "
+               flycheck-text))
+        (right (concat
+                line-column-info " ")))
+    (let* ((free-space (- (window-width) (length left) (length right)))
+           (padding (make-string (max 0 free-space) ?\ )))
+      (setq mode-line-format (concat left (when right (concat padding right))))
+      (force-mode-line-update))))
 
-(defun update-flycheck-message (&optional status)
-  (setq flycheck-message
+(defun update-flycheck-text (&optional status)
+  (setq flycheck-text
         (concat
          "[»"
          (pcase status
@@ -142,34 +142,30 @@
            ('interrupted (propertize " ⏸" 'face 'fringe))
            ('no-checker ""))
          "]"))
-  (update-minibuffer-modeline))
+  (update-modeline-text))
 
 (defun handle-cursor-move ()
   (line-column-info)
-  (file-save-status-message)
-  (update-minibuffer-modeline))
+  (file-save-status-text)
+  (update-modeline-text))
 
 (defun handle-file-save ()
-  (git-project-message)
-  (file-directory-message)
-  (file-or-buffer-message)
-  (file-save-status-message)
-  (git-file-message)
-  (update-minibuffer-modeline))
+  (git-project-text)
+  (file-directory-text)
+  (file-or-buffer-text)
+  (file-save-status-text)
+  (git-file-text)
+  (update-modeline-text))
 
-(defun setup-minibuffer-modeline ()
-  (setq window-divider-default-bottom-width 1
-        window-divider-default-places (quote bottom-only))
-  (window-divider-mode 1)
-  (setq-default mode-line-format nil)
-  (walk-windows (lambda (window) (with-selected-window window (setq mode-line-format nil))) nil t)
+(defun setup-custom-modeline ()
   (handle-file-save)
   (handle-cursor-move))
 
 (add-hook 'post-command-hook 'handle-cursor-move)
 (add-hook 'after-save-hook 'handle-file-save)
 
-(add-hook 'flycheck-status-changed-functions #'update-flycheck-message)
-(add-hook 'flycheck-mode-hook #'update-flycheck-message)
+(add-hook 'flycheck-status-changed-functions #'update-flycheck-text)
+(add-hook 'flycheck-mode-hook #'update-flycheck-text)
 
-(add-hook 'window-configuration-change-hook 'setup-minibuffer-modeline)
+(add-hook 'window-state-change-hook 'setup-custom-modeline)
+(add-hook 'window-configuration-change-hook 'setup-custom-modeline)
