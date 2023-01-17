@@ -27,7 +27,7 @@
 (defvar-local git-project-text nil)
 (defun git-project-text ()
   (setq git-project-text
-        (when (cdr (project-current))
+        (when (and (buffer-file-name) (cdr (project-current)))
           (concat
            " ["
            (file-name-nondirectory (directory-file-name (cdr (project-current))))
@@ -49,7 +49,7 @@
 (defvar-local git-file-text nil)
 (defun git-file-text ()
   (setq git-file-text
-        (when (cdr (project-current))
+        (when (and (buffer-file-name) (cdr (project-current)))
           (let* ((diff-str (lambda (cmd)
                              (let ((diff (shell-command-to-string cmd)))
                                (when (and diff (string-match "^\\([0-9]+\\)\t\\([0-9]+\\)\t" diff))
