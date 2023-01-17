@@ -53,9 +53,8 @@
          ("C-o" . avy-goto-word-or-subword-1)))
 
 (use-package multiple-cursors :ensure t :pin melpa-stable
-  :config (progn
-            (setq mc/always-run-for-all t)
-            (define-key mc/keymap (kbd "<return>") nil))
+  :init (setq mc/always-run-for-all t)
+  :config (define-key mc/keymap (kbd "<return>") nil)
   :bind (("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C->" . mc/mark-all-like-this)

@@ -103,7 +103,9 @@
   :ensure t
   :init (global-flycheck-inline-mode))
 
+(defvar-local multiple-cursors-text nil)
 (defvar-local flycheck-text nil)
+
 (defvar-local line-column-info nil)
 (defun line-column-info ()
   (setq line-column-info
@@ -116,6 +118,7 @@
                file-or-buffer-text
                file-save-status-text
                git-file-text " "
+               multiple-cursors-text " "
                flycheck-text))
         (right (concat
                 line-column-info " ")))
@@ -144,6 +147,9 @@
          "]"))
   (update-modeline-text))
 
+(defun handle-multiple-cursors ()
+  (setq multiple-cursors-text (format "▮%d" (mc/num-cursors))))
+
 (defun handle-cursor-move ()
   (line-column-info)
   (file-save-status-text)
@@ -163,6 +169,9 @@
 
 (add-hook 'post-command-hook 'handle-cursor-move)
 (add-hook 'after-save-hook 'handle-file-save)
+
+(add-hook 'multiple-cursors-mode-enabled-hook 'handle-multiple-cursors)
+(add-hook 'multiple-cursors-mode-disabled-hook (lambda () (setq multiple-cursors-text nil)))
 
 (add-hook 'flycheck-status-changed-functions #'update-flycheck-text)
 (add-hook 'flycheck-mode-hook #'update-flycheck-text)
