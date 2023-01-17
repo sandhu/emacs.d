@@ -41,7 +41,7 @@
                                    "git diff --stat")))
                (concat
                 (unless (= 0 (length branch-str))
-                  (propertize (concat "  " branch-str) 'face '((t :foreground "#444444"))))
+                  (propertize (concat "  " branch-str) 'face '(:foreground "#444444")))
                 (unless (= 0 (length branch-dirty))
                   (propertize "•" 'face font-lock-warning-face)))))
            "]"))))
@@ -54,8 +54,8 @@
                              (let ((diff (shell-command-to-string cmd)))
                                (when (and diff (string-match "^\\([0-9]+\\)\t\\([0-9]+\\)\t" diff))
                                  (concat
-                                  (propertize (format "+%s"  (match-string 1 diff)) 'face '((t :foreground "green4")))
-                                  (propertize (format " -%s" (match-string 2 diff)) 'face '((t :foreground "red4"))))))))
+                                  (propertize (format "+%s"  (match-string 1 diff)) 'face '(:foreground "green4"))
+                                  (propertize (format " -%s" (match-string 2 diff)) 'face '(:foreground "red4")))))))
                  (unstaged (funcall diff-str (concat "git diff --numstat -- " (buffer-file-name))))
                  (staged   (funcall diff-str (concat "git diff --cached --numstat -- " (buffer-file-name)))))
             (when (or unstaged staged)
