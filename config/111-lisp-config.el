@@ -1,6 +1,6 @@
 (global-prettify-symbols-mode +1)
-(global-eldoc-mode -1)
-(eldoc-mode -1)
+(global-eldoc-mode 1)
+(eldoc-mode 1)
 
 (defun conditionally-enable-paredit-mode ()
   "Enable 'paredit-mode' in the minibuffer, during 'eval-expression'."
