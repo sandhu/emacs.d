@@ -106,11 +106,6 @@
 (defvar-local multiple-cursors-text nil)
 (defvar-local flycheck-text nil)
 
-(defvar-local line-column-info nil)
-(defun line-column-info ()
-  (setq line-column-info
-        (format "%5s:%-3s" (line-number-at-pos) (current-column))))
-
 (defun update-modeline-text ()
   (let ((left (concat
                git-project-text " "
@@ -119,12 +114,10 @@
                file-save-status-text
                git-file-text " "
                multiple-cursors-text " "
-               flycheck-text))
-        (right (concat
-                line-column-info " ")))
-    (let* ((free-space (- (window-width) (length left) (length right)))
+               flycheck-text)))
+    (let* ((free-space (- (window-width) (length left) 8))
            (padding (make-string (max 0 free-space) ?\ )))
-      (setq mode-line-format (concat left (when right (concat padding right))))
+      (setq mode-line-format (concat left padding "%l:%c"))
       (force-mode-line-update))))
 
 (defun update-flycheck-text (&optional status)
@@ -150,12 +143,7 @@
 (defun handle-multiple-cursors ()
   (setq multiple-cursors-text (format "▮%d" (mc/num-cursors))))
 
-(defun handle-cursor-move ()
-  (line-column-info)
-  (file-save-status-text)
-  (update-modeline-text))
-
-(defun handle-file-save ()
+(defun update-file-status-text ()
   (git-project-text)
   (file-directory-text)
   (file-or-buffer-text)
@@ -163,12 +151,12 @@
   (git-file-text)
   (update-modeline-text))
 
-(defun setup-custom-modeline ()
-  (handle-file-save)
-  (handle-cursor-move))
+(defun buffer-change-fn (region length)
+  (file-save-status-text)
+  (update-modeline-text))
 
-(add-hook 'post-command-hook 'handle-cursor-move)
-(add-hook 'after-save-hook 'handle-file-save)
+(add-hook 'before-change-functions 'buffer-change-fn)
+(add-hook 'after-save-hook 'update-file-status-text)
 
 (add-hook 'multiple-cursors-mode-enabled-hook 'handle-multiple-cursors)
 (add-hook 'multiple-cursors-mode-disabled-hook (lambda () (setq multiple-cursors-text nil)))
@@ -176,5 +164,5 @@
 (add-hook 'flycheck-status-changed-functions #'update-flycheck-text)
 (add-hook 'flycheck-mode-hook #'update-flycheck-text)
 
-(add-hook 'window-state-change-hook 'setup-custom-modeline)
-(add-hook 'window-configuration-change-hook 'setup-custom-modeline)
+(add-hook 'window-state-change-hook 'update-file-status-text)
+(add-hook 'window-configuration-change-hook 'update-file-status-text)
