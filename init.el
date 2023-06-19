@@ -8,8 +8,8 @@
 (setq use-dialog-box nil)
 
 ;; Make sure path is correct when launched as application
-(setenv "PATH" (concat "/usr/local/bin:/Library/TeX/texbin:" (getenv "PATH")))
-(push "/usr/local/bin" exec-path)
+(setenv "PATH" (concat "/Library/TeX/texbin:" (getenv "PATH")))
+(push "/opt/homebrew/bin" exec-path)
 
 ;; Setup the package management
 (require 'package)
