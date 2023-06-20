@@ -7,10 +7,6 @@
 (set-fringe-mode '(1 . 1))
 (setq use-dialog-box nil)
 
-;; Make sure path is correct when launched as application
-(setenv "PATH" (concat "/Library/TeX/texbin:" (getenv "PATH")))
-(push "/opt/homebrew/bin" exec-path)
-
 ;; Setup the package management
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -27,6 +23,9 @@
 
 (require 'use-package)
 
+(use-package exec-path-from-shell :ensure t
+  :init (exec-path-from-shell-initialize))
+
 ;; Load the configuration
 (let ((custom-file (expand-file-name "emacs-custom.el" user-emacs-directory))
       (user-config-file (expand-file-name (concat user-login-name ".el") user-emacs-directory)))
@@ -42,3 +41,17 @@
 (use-package server
   :if window-system
   :init (add-hook 'after-init-hook 'server-start t))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(exec-path-from-shell dockerfile-mode docker yaml-mode markdown-mode es-mode js2-mode web-mode clj-refactor cider-eval-sexp-fu eval-sexp-fu cider clojure-mode-extra-font-locking clojure-mode flycheck-clj-kondo company-quickhelp company elisp-slime-nav paredit smartscan rainbow-delimiters magit aggressive-indent transpose-frame buffer-move ibuffer-vc flycheck-inline flycheck solarized-theme projectile wgrep-ag ag goto-chg lorem-ipsum multiple-cursors avy browse-kill-ring undo-tree expand-region smex flx-ido ido-completing-read+ beginend reveal-in-osx-finder diminish use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "apple" :family "Menlo"))))
+ '(eval-sexp-fu-flash ((t (:foreground "green4" :weight bold)))))
