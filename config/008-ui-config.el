@@ -41,7 +41,7 @@
                                    "git diff --stat")))
                (concat
                 (unless (= 0 (length branch-str))
-                  (propertize (concat "  " branch-str) 'face '(:foreground "#444444")))
+                  (propertize (concat " " branch-str) 'face '(:foreground "#444444")))
                 (unless (= 0 (length branch-dirty))
                   (propertize "•" 'face font-lock-warning-face)))))
            "]"))))
@@ -71,7 +71,7 @@
         (propertize
          (or (if (and (buffer-file-name) (cdr (project-current)))
                  (replace-regexp-in-string
-                  (concat "^" (cdr (project-current))) ""
+                  (concat "^" (expand-file-name (cdr (project-current)))) ""
                   default-directory)
                (when (buffer-file-name)
                  (replace-regexp-in-string
