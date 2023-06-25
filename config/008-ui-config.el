@@ -5,8 +5,7 @@
   (blink-cursor-mode -1)
   (menu-bar-mode -1)
   (global-font-lock-mode)
-  (window-divider-mode t)
-  (desktop-save-mode 1))
+  (window-divider-mode t))
 
 (use-package solarized-theme :ensure t
   :init (progn
