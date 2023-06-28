@@ -7,6 +7,9 @@
 (set-fringe-mode '(1 . 1))
 (setq use-dialog-box nil)
 
+;; Disable spell check
+(setq-default spell-checking-enable-by-default nil)
+
 ;; Setup the package management
 (require 'package)
 (setq package-enable-at-startup nil)

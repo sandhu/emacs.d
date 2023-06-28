@@ -6,6 +6,7 @@
           (add-hook 'clojure-mode-hook
                     (lambda ()
                       (put-clojure-indent '>fn 1)
+                      (push '(">fn" . ">λ") prettify-symbols-alist)
                       (push '("partial" . ?Ƥ) prettify-symbols-alist)
                       (push '("comp" . ?ο) prettify-symbols-alist)
                       (require 'flycheck-clj-kondo)
