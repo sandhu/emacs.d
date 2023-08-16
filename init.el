@@ -1,4 +1,5 @@
 (setq ns-use-srgb-colorspace nil)
+(setq debug-on-error t)
 
 ;; Remove the UI
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
@@ -18,16 +19,18 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 
 (package-initialize)
+(setq package-check-signature nil)
 
 ;; Bootstrap 'use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-
 (require 'use-package)
 
 (use-package exec-path-from-shell :ensure t
   :init (exec-path-from-shell-initialize))
+
+(use-package gnu-elpa-keyring-update :ensure t)
 
 ;; Load the configuration
 (let ((custom-file (expand-file-name "emacs-custom.el" user-emacs-directory))

@@ -23,13 +23,16 @@
 
 (use-package projectile :ensure t)
 
+(defun current-project-dir ()
+  (caddr (project-current)))
+
 (defvar-local git-project-text nil)
 (defun git-project-text ()
   (setq git-project-text
-        (when (and (buffer-file-name) (cdr (project-current)))
+        (when (and (buffer-file-name) (current-project-dir))
           (concat
            " ["
-           (file-name-nondirectory (directory-file-name (cdr (project-current))))
+           (file-name-nondirectory (directory-file-name (current-project-dir)))
            (unless (and (buffer-file-name) (file-remote-p (buffer-file-name)))
              (let* ((branch (shell-command-to-string
                              "git rev-parse --symbolic-full-name --abbrev-ref HEAD 2>/dev/null"))
@@ -48,7 +51,7 @@
 (defvar-local git-file-text nil)
 (defun git-file-text ()
   (setq git-file-text
-        (when (and (buffer-file-name) (cdr (project-current)))
+        (when (and (buffer-file-name) (current-project-dir))
           (let* ((diff-str (lambda (cmd)
                              (let ((diff (shell-command-to-string cmd)))
                                (when (and diff (string-match "^\\([0-9]+\\)\t\\([0-9]+\\)\t" diff))
@@ -68,9 +71,9 @@
 (defun file-directory-text ()
   (setq file-directory-text
         (propertize
-         (or (if (and (buffer-file-name) (cdr (project-current)))
+         (or (if (and (buffer-file-name) (current-project-dir))
                  (replace-regexp-in-string
-                  (concat "^" (expand-file-name (cdr (project-current)))) ""
+                  (concat "^" (expand-file-name (current-project-dir))) ""
                   default-directory)
                (when (buffer-file-name)
                  (replace-regexp-in-string
