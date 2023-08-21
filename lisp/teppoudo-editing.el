@@ -13,9 +13,9 @@
   (interactive)
   (unwind-protect
       (progn
-        (linum-mode 1)
+        (display-line-numbers-mode 1)
         (goto-line (read-number "Goto line: ")))
-    (linum-mode -1)))
+    (display-line-numbers-mode -1)))
 
 (defun smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
