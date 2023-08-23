@@ -1,5 +1,4 @@
 (setq ns-use-srgb-colorspace nil)
-(setq debug-on-error t)
 
 ;; Remove the UI
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
