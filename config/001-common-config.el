@@ -17,6 +17,6 @@
       auto-revert-verbose nil)
 
 ;; Tune the GC to kick in every 20MB instead of 0.76MB
-(setq gc-cons-threshold 20000000)
+(setq gc-cons-threshold 200000000)
 
 (use-package diminish :ensure t)

@@ -5,7 +5,9 @@
   (blink-cursor-mode -1)
   (menu-bar-mode -1)
   (global-font-lock-mode)
-  (window-divider-mode t))
+  (window-divider-mode t)
+  ;;(pixel-scroll-precision-mode)
+  )
 
 (use-package solarized-theme :ensure t
   :init (progn
@@ -43,7 +45,7 @@
                                    "git diff --stat")))
                (concat
                 (unless (= 0 (length branch-str))
-                  (propertize (concat " " branch-str) 'face '(:foreground "#444444")))
+                  (propertize (concat " " branch-str) 'face font-lock-variable-name-face))
                 (unless (= 0 (length branch-dirty))
                   (propertize "•" 'face font-lock-warning-face)))))
            "]"))))
@@ -56,8 +58,8 @@
                              (let ((diff (shell-command-to-string cmd)))
                                (when (and diff (string-match "^\\([0-9]+\\)\t\\([0-9]+\\)\t" diff))
                                  (concat
-                                  (propertize (format "+%s"  (match-string 1 diff)) 'face '(:foreground "green4"))
-                                  (propertize (format " -%s" (match-string 2 diff)) 'face '(:foreground "red4")))))))
+                                  (propertize (format "+%s"  (match-string 1 diff)) 'face font-lock-keyword-face)
+                                  (propertize (format " -%s" (match-string 2 diff)) 'face font-lock-warning-face))))))
                  (unstaged (funcall diff-str (concat "git diff --numstat -- " (buffer-file-name))))
                  (staged   (funcall diff-str (concat "git diff --cached --numstat -- " (buffer-file-name)))))
             (when (or unstaged staged)
