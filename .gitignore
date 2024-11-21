@@ -1,7 +1,5 @@
-#emacs byte compiled files
 *.elc
 
-# emacs temp files
 *~
 .#*
 ac-comphist.dat
@@ -9,10 +7,9 @@ ido.last
 recentf
 transient
 
-# the package repository
 elpa/
 
-# session information
+.lsp-session*
 .mc-lists.el
 .smex-items
 nrepl-history
@@ -23,9 +20,7 @@ emacs.frameg
 .emacs.desktop.lock
 eshell
 
-# projectile
 projectile-bookmarks.eld
 
-# osx stuff
 .DS_Store
 /tramp
