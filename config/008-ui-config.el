@@ -6,16 +6,11 @@
   (menu-bar-mode -1)
   (global-font-lock-mode)
   (window-divider-mode t)
-  ;;(pixel-scroll-precision-mode)
-  )
+  (pixel-scroll-precision-mode))
 
 (use-package solarized-theme :ensure t
   :init (progn
-          (setq solarized-use-less-bold t
-                solarized-emphasize-indicators nil
-                solarized-scale-org-headlines nil
-                x-underline-at-descent-line t)
-          (load-theme 'solarized-light 'no-confirm))
+          (load-theme 'solarized-dark-high-contrast 'no-confirm))
   :config (let ((line (face-attribute 'mode-line :underline)))
             (setq color-theme-is-global t)
             (set-face-attribute 'mode-line          nil :overline line)
@@ -99,13 +94,13 @@
         (when (and (buffer-file-name) (buffer-modified-p))
           (propertize "•" 'face font-lock-warning-face))))
 
-(use-package flycheck
-  :ensure t
+(use-package flycheck :ensure t
   :config (setq flycheck-display-errors-delay 0))
 
-(use-package flycheck-inline
-  :ensure t
+(use-package flycheck-inline :ensure t
   :init (global-flycheck-inline-mode))
+
+(use-package flycheck-projectile :ensure t)
 
 (defvar-local multiple-cursors-text nil)
 (defvar-local flycheck-text nil)

@@ -1,12 +1,8 @@
-(use-package flycheck-clj-kondo :ensure t)
-
 (use-package clojure-mode :ensure t
   :init (progn
           (setq buffer-save-without-query t)
           (add-hook 'clojure-mode-hook
                     (lambda ()
-                      (require 'flycheck-clj-kondo)
-                      (flycheck-mode)
                       (lisp-mode-setup)
                       (put-clojure-indent 'async 1)
                       (put-clojure-indent 'checking 1)
@@ -41,8 +37,7 @@
                       (lambda ()
                         (lisp-mode-setup)
                         (aggressive-indent-mode 0)))
-            (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
-            (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion))
+            (cider-enable-cider-completion-style))
   :diminish " ç")
 
 (use-package eval-sexp-fu :ensure t
@@ -50,9 +45,14 @@
 
 (use-package cider-eval-sexp-fu :ensure t)
 
-(use-package clj-refactor :ensure t
-  :init (add-hook 'clojure-mode-hook
-                  (lambda ()
-                    (clj-refactor-mode 1)
-                    (cljr-add-keybindings-with-prefix "C-c M-r")))
-  :diminish "")
+(use-package lsp-mode :ensure t
+  :hook ((clojure-mode . lsp)
+         (clojurec-mode . lsp)
+         (clojurescript-mode . lsp))
+  :config
+  (progn
+    (dolist (m '(clojure-mode
+                 clojurec-mode
+                 clojurescript-mode
+                 clojurex-mode))
+      (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))))

@@ -20,3 +20,27 @@
 (use-package subword
   :init (add-hook 'prog-mode-hook 'subword-mode)
   :diminish "")
+
+(use-package lsp-mode :ensure t
+  :commands lsp
+  :custom
+  (lsp-eldoc-render-all nil)
+  (lsp-idle-delay 0.6)
+  (lsp-inlay-hint-enable t)
+  :config
+  (progn
+    (setq lsp-headerline-breadcrumb-enable nil)
+    (setq lsp-enable-indentation nil)
+    (add-hook 'lsp-mode-hook 'lsp-ui-mode)))
+
+;; (use-package lsp-treemacs :ensure t)
+
+(use-package lsp-ui :ensure t
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-doc-enable nil)
+  :config
+  (progn
+    (setq lsp-ui-sideline-enable nil)
+    (setq lsp-ui-doc-show-with-cursor nil)))
