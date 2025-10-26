@@ -39,11 +39,12 @@
          ("C--" . er/contract-region)))
 
 (use-package undo-tree :ensure t
-  :config (progn
-            (setq undo-tree-auto-save-history nil)
-            (global-undo-tree-mode)
-            (diminish-major-mode 'undo-tree-visualizer-mode "⅄"))
-  :diminish ((undo-tree-mode . "")))
+  :config
+  (setq undo-tree-auto-save-history nil)
+  (global-undo-tree-mode)
+  (diminish-major-mode 'undo-tree-visualizer-mode "⅄")
+  :diminish
+  ((undo-tree-mode . "")))
 
 (use-package browse-kill-ring :ensure t
   :config (browse-kill-ring-default-keybindings))

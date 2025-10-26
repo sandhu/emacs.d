@@ -9,14 +9,15 @@
   (pixel-scroll-precision-mode))
 
 (use-package solarized-theme :ensure t
-  :init (progn
-          (load-theme 'solarized-dark-high-contrast 'no-confirm))
-  :config (let ((line (face-attribute 'mode-line :underline)))
-            (setq color-theme-is-global t)
-            (set-face-attribute 'mode-line          nil :overline line)
-            (set-face-attribute 'mode-line-inactive nil :overline line)
-            (set-face-attribute 'mode-line          nil :underline line)
-            (set-face-attribute 'mode-line-inactive nil :underline line)))
+  :init
+  (load-theme 'solarized-dark-high-contrast 'no-confirm)
+  :config
+  (let ((line (face-attribute 'mode-line :underline)))
+    (setq color-theme-is-global t)
+    (set-face-attribute 'mode-line          nil :overline line)
+    (set-face-attribute 'mode-line-inactive nil :overline line)
+    (set-face-attribute 'mode-line          nil :underline line)
+    (set-face-attribute 'mode-line-inactive nil :underline line)))
 
 (use-package projectile :ensure t)
 

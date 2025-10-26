@@ -1,3 +1,5 @@
+history
+
 *.elc
 
 *~
@@ -8,6 +10,7 @@ recentf
 transient
 workspace
 
+tree-sitter
 elpa/
 
 .lsp-session*

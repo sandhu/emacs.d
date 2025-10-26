@@ -8,11 +8,12 @@
       (paredit-mode 1)))
 
 (use-package paredit :ensure t
-  :config (progn
-            (add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)
-            (unbind-key (kbd "RET") paredit-mode-map))
-  :bind (("C-M-<backspace>" . backward-kill-sexp)
-         ("M-[" . paredit-wrap-square))
+  :config
+  (add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)
+  (unbind-key (kbd "RET") paredit-mode-map)
+  :bind
+  (("C-M-<backspace>" . backward-kill-sexp)
+   ("M-[" . paredit-wrap-square))
   :diminish "()")
 
 (defun lisp-mode-setup ()

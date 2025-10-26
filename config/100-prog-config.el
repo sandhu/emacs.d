@@ -6,9 +6,9 @@
 (use-package prog-mode
   :init (setq font-lock-maximum-decoration t)
   :bind ("M-/" . comment-or-uncomment-region)
-  :config (progn
-            (show-paren-mode)
-            (add-watchwords)))
+  :config
+  (show-paren-mode)
+  (add-watchwords))
 
 (use-package rainbow-delimiters :ensure t
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
@@ -22,16 +22,20 @@
   :diminish "")
 
 (use-package lsp-mode :ensure t
+  :init
+  ;;(setq lsp-use-plists t)
   :commands lsp
   :custom
   (lsp-eldoc-render-all nil)
   (lsp-idle-delay 0.6)
   (lsp-inlay-hint-enable t)
+  (lsp-diagnostics-provider :flycheck)
   :config
-  (progn
-    (setq lsp-headerline-breadcrumb-enable nil)
-    (setq lsp-enable-indentation nil)
-    (add-hook 'lsp-mode-hook 'lsp-ui-mode)))
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (setq lsp-enable-indentation nil)
+  (setq lsp-keymap-prefix "C-c l")
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
 
 ;; (use-package lsp-treemacs :ensure t)
 
@@ -41,6 +45,5 @@
   (lsp-ui-peek-always-show t)
   (lsp-ui-doc-enable nil)
   :config
-  (progn
-    (setq lsp-ui-sideline-enable nil)
-    (setq lsp-ui-doc-show-with-cursor nil)))
+  (setq lsp-ui-sideline-enable nil)
+  (setq lsp-ui-doc-show-with-cursor nil))

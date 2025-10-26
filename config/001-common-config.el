@@ -16,7 +16,13 @@
 (setq global-auto-revert-non-file-buffers t
       auto-revert-verbose nil)
 
-;; Tune the GC to kick in every 20MB instead of 0.76MB
-(setq gc-cons-threshold 200000000)
+;; Tune the GC to kick in every 2MB instead of 0.76MB
+(setq gc-cons-threshold 20000000)
+
+(setq read-process-output-max (* 5 1024 1024))
 
 (use-package diminish :ensure t)
+
+(use-package savehist :ensure t
+  :init
+  (savehist-mode))
