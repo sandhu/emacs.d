@@ -1,3 +1,5 @@
+(setq redisplay-skip-fontification-on-input t)
+
 (defun add-watchwords ()
   (font-lock-add-keywords
    nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
@@ -47,3 +49,6 @@
   :config
   (setq lsp-ui-sideline-enable nil)
   (setq lsp-ui-doc-show-with-cursor nil))
+
+(add-hook 'after-save-hook
+          #'executable-make-buffer-file-executable-if-script-p)

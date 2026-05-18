@@ -28,5 +28,6 @@
                (python-mode . python-ts-mode)
                (sh-mode . bash-ts-mode)
                (sh-base-mode . bash-ts-mode)
-               (typescript-mode . typescript-ts-mode)))
+               (typescript-mode . typescript-ts-mode)
+               (yaml-mode . yaml-ts-mode)))
       (add-to-list 'major-mode-remap-alist mapping))))
