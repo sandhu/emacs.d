@@ -5,14 +5,19 @@
   (setopt clojure-ts-indent-style 'fixed)
   (setopt clojure-ts-extra-def-forms '("defnc"))
   (setopt clojure-ts-toplevel-inside-comment-form t)
-  (push '(">fn" . (?> (Br . Bl) ?λ)) prettify-symbols-alist)
-  (push '("partial" . ?Ƥ) prettify-symbols-alist)
-  (push '("comp" . ?ο) prettify-symbols-alist)
   :hook
-  (clojure-ts-mode . lisp-mode-setup)
-  (clojure-ts-mode . cider-mode)
+  (clojure-ts-mode . (lambda ()
+                       (setq-local prettify-symbols-alist
+                                   '(("fn" . ?λ)
+                                     ("#"  . ?λ)
+                                     ("partial" . ?Ƥ)
+                                     ("comp" . ?ο)
+                                     (">fn" . (?> (Br . Bl) ?λ))))
+                       (lisp-mode-setup)
+                       (cider-mode)))
   (before-save . lsp-clojure-clean-ns)
   :diminish "Cλ")
+;; clojure-ts-reinstall-grammars
 
 (use-package clojure-mode :ensure t)
 (use-package cider :ensure t
@@ -44,10 +49,11 @@
          (clojurec-ts-mode . lsp)
          (clojurescript-ts-mode . lsp))
   :config
-  (dolist (m '(clojure-mode
-               clojure-ts-mode
+  (dolist (m '(clojure-ts-mode
+               clojure-mode
+               clojure-ts-clojurec-mode
                clojurec-mode
-               clojurescript-mode
                clojure-ts-clojurescript-mode
+               clojurescript-mode
                clojurex-mode))
     (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))
