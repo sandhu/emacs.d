@@ -31,10 +31,7 @@
   (define-key ibuffer-mode-map (vector 'remap 'end-of-buffer) 'ibuffer-jump-to-bottom)
   (define-key ibuffer-mode-map (vector 'remap 'beginning-of-buffer) 'ibuffer-back-to-top)
 
-  (add-hook 'ibuffer-mode-hook
-            (lambda ()
-              (ibuffer-auto-mode 1)
-              (diminish-major-mode 'ibuffer "≣"))))
+  (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-auto-mode 1))))
 
 (use-package ibuffer-vc :ensure t
   :config

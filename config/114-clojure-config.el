@@ -24,7 +24,6 @@
         nrepl-log-messages t
         cider-repl-history-file (expand-file-name "cider-history" user-emacs-directory))
   :config
-  (diminish-major-mode 'cider-repl-mode "Ç»")
   (add-to-list 'same-window-buffer-names "*cider*")
   (add-hook 'cider-repl-mode-hook
             (lambda ()

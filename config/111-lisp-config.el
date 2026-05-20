@@ -23,14 +23,7 @@
 (add-hook 'lisp-mode-hook 'lisp-mode-setup)
 (add-hook 'emacs-lisp-mode-hook 'lisp-mode-setup)
 
-(add-hook 'lisp-interaction-mode-hook
-          (lambda ()
-            (paredit-mode +1)
-            (diminish-major-mode 'lisp-interaction-mode "λ»")))
-
-(diminish-major-mode 'lisp-mode "λ")
-(diminish-major-mode 'emacs-lisp-mode "ξλ")
-(diminish-major-mode 'slime-repl-mode "π»")
+(add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
 
 (use-package elisp-slime-nav :ensure t
   :config (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))

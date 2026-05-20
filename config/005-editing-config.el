@@ -42,7 +42,6 @@
   :config
   (setq undo-tree-auto-save-history nil)
   (global-undo-tree-mode)
-  (diminish-major-mode 'undo-tree-visualizer-mode "⅄")
   :diminish
   ((undo-tree-mode . "")))
 
