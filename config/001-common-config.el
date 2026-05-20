@@ -51,9 +51,9 @@
               (setq kill-ring
                     (mapcar #'substring-no-properties
                             (cl-remove-if-not #'stringp kill-ring)))))
-  (savehist-mode))
+  (savehist-mode 1))
 
-
+(desktop-save-mode 1)
 
 (setq-default cursor-in-non-selected-windows nil)
 (setq highlight-nonselected-windows nil)

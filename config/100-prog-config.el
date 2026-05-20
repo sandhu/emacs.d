@@ -2,7 +2,7 @@
 
 (defun add-watchwords ()
   (font-lock-add-keywords
-   nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
+   nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\|NOCOMMIT\\|PENDING\\)"
           1 font-lock-warning-face t))))
 
 (use-package prog-mode
@@ -32,12 +32,14 @@
   (lsp-idle-delay 0.6)
   (lsp-inlay-hint-enable t)
   (lsp-diagnostics-provider :flycheck)
+  (lsp-tailwindcss-server-path "/opt/homebrew/bin/tailwindcss-language-server")
   :config
   (setq lsp-headerline-breadcrumb-enable nil)
   (setq lsp-enable-indentation nil)
   (setq lsp-keymap-prefix "C-c l")
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
+(use-package yasnippet :ensure t)
 
 ;; (use-package lsp-treemacs :ensure t)
 

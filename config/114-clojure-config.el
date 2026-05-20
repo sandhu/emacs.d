@@ -1,27 +1,20 @@
-(use-package clojure-mode :ensure t
+(use-package clojure-ts-mode :ensure t
   :init
   (setq buffer-save-without-query t)
-  (add-hook 'clojure-mode-hook
-            (lambda ()
-              (lisp-mode-setup)
-              (put-clojure-indent 'async 1)
-              (put-clojure-indent 'checking 1)
-              (put-clojure-indent 'then :defn)
-              (put-clojure-indent 'catch :defn)
-              (put-clojure-indent '>fn :defn)
-              (put-clojure-indent '>λ :defn)
-              (put-clojure-indent 'deftask :defn)
-              (put-clojure-indent '>defn :defn)
-              (put-clojure-indent '>defn- :defn)
-              (push '(">fn" . (?> (Br . Bl) ?λ)) prettify-symbols-alist)
-              (push '("partial" . ?Ƥ) prettify-symbols-alist)
-              (push '("comp" . ?ο) prettify-symbols-alist)))
-  :config
-  (diminish-major-mode 'clojure-mode "Cλ")
-  (bind-key "C-c C-z" nil clojure-mode-map)) ; Remove the binding for inferior-lisp-mode
+  (setopt clojure-ts-completion-enabled nil)
+  (setopt clojure-ts-indent-style 'fixed)
+  (setopt clojure-ts-extra-def-forms '("defnc"))
+  (setopt clojure-ts-toplevel-inside-comment-form t)
+  (push '(">fn" . (?> (Br . Bl) ?λ)) prettify-symbols-alist)
+  (push '("partial" . ?Ƥ) prettify-symbols-alist)
+  (push '("comp" . ?ο) prettify-symbols-alist)
+  :hook
+  (clojure-ts-mode . lisp-mode-setup)
+  (clojure-ts-mode . cider-mode)
+  (before-save . lsp-clojure-clean-ns)
+  :diminish "Cλ")
 
-(use-package clojure-mode-extra-font-locking :ensure t)
-
+(use-package clojure-mode :ensure t)
 (use-package cider :ensure t
   :init
   (setq nrepl-hide-special-buffers nil
@@ -40,18 +33,22 @@
   (cider-enable-cider-completion-style)
   :diminish " ç")
 
+(use-package clj-refactor :ensure t)
+
 (use-package eval-sexp-fu :ensure t
   :init (custom-set-faces '(eval-sexp-fu-flash ((t (:foreground "green4" :weight bold))))))
 
 (use-package cider-eval-sexp-fu :ensure t)
 
 (use-package lsp-mode :ensure t
-  :hook ((clojure-mode . lsp)
-         (clojurec-mode . lsp)
-         (clojurescript-mode . lsp))
+  :hook ((clojure-ts-mode . lsp)
+         (clojurec-ts-mode . lsp)
+         (clojurescript-ts-mode . lsp))
   :config
   (dolist (m '(clojure-mode
+               clojure-ts-mode
                clojurec-mode
                clojurescript-mode
+               clojure-ts-clojurescript-mode
                clojurex-mode))
     (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))

@@ -21,6 +21,9 @@
   :init (setq prettier-js-use-modules-bin t)
   :hook ((tsx-ts-mode typescript-ts-mode js-ts-mode) . prettier-js-mode))
 
+(add-hook 'typescript-ts-mode-hook #'enable-paredit-mode)
+(add-hook 'tsx-ts-mode-hook #'enable-paredit-mode)
+
 (defconst combobulate-path (file-name-concat user-emacs-directory "combobulate"))
 
 (use-package combobulate
