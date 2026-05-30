@@ -1,7 +1,11 @@
+(setq-default indent-tabs-mode nil)
+(setq-default css-indent-offset 2)
+
 (use-package whitespace :ensure t
   :init
   (setq whitespace-style '(face tabs empty trailing lines-tail))
-  (add-hook 'before-save-hook 'whitespace-cleanup)
+  :hook
+  ((before-save . 'whitespace-cleanup))
   :diminish whitespace-mode)
 
 (defun indent-buffer-on-save ()

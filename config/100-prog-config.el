@@ -24,20 +24,20 @@
   :diminish "")
 
 (use-package lsp-mode :ensure t
-  :init
-  ;;(setq lsp-use-plists t)
   :commands lsp
   :custom
+  (lsp-headerline-breadcrumb-enable nil)
+  (lsp-enable-indentation nil)
+  (lsp-keymap-prefix "C-c l")
+  (lsp-format-buffer-on-save t)
   (lsp-eldoc-render-all nil)
   (lsp-idle-delay 0.6)
   (lsp-inlay-hint-enable t)
   (lsp-diagnostics-provider :flycheck)
+  (lsp-tailwindcss-add-on-mode t)
   (lsp-tailwindcss-server-path "/opt/homebrew/bin/tailwindcss-language-server")
-  :config
-  (setq lsp-headerline-breadcrumb-enable nil)
-  (setq lsp-enable-indentation nil)
-  (setq lsp-keymap-prefix "C-c l")
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  :hook
+  ((lsp-mode . lsp-ui-mode)))
 
 (use-package yasnippet :ensure t)
 
@@ -48,9 +48,8 @@
   :custom
   (lsp-ui-peek-always-show t)
   (lsp-ui-doc-enable nil)
-  :config
-  (setq lsp-ui-sideline-enable nil)
-  (setq lsp-ui-doc-show-with-cursor nil))
+  (lsp-ui-sideline-enable nil)
+  (lsp-ui-doc-show-with-cursor nil))
 
 (add-hook 'after-save-hook
           #'executable-make-buffer-file-executable-if-script-p)

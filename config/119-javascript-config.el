@@ -1,3 +1,5 @@
+(setq js-indent-level 2)
+
 ;; brew install eslint
 (use-package lsp-eslint :demand t
   :after lsp-mode)
@@ -21,8 +23,11 @@
   :init (setq prettier-js-use-modules-bin t)
   :hook ((tsx-ts-mode typescript-ts-mode js-ts-mode) . prettier-js-mode))
 
-(add-hook 'typescript-ts-mode-hook #'enable-paredit-mode)
-(add-hook 'tsx-ts-mode-hook #'enable-paredit-mode)
+(defun typescript-setup ()
+  (enable-paredit-mode))
+
+(add-hook 'typescript-ts-mode-hook #'typescript-setup)
+(add-hook 'tsx-ts-mode-hook #'typescript-setup)
 
 (defconst combobulate-path (file-name-concat user-emacs-directory "combobulate"))
 
