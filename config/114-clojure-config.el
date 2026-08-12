@@ -15,12 +15,10 @@
                       ("comp" . ?ο)
                       (">fn" . (?> (Br . Bl) ?λ))))
         (lisp-mode-setup)
-        (cider-mode)))
-   (before-save
-    . (lambda ()
-        (whitespace-cleanup)
-        (lsp-clojure-clean-ns)
-        (lsp-format-buffer))))
+        (cider-mode)
+        (add-hook 'before-save-hook #'whitespace-cleanup nil t)
+        (add-hook 'before-save-hook #'lsp-clojure-clean-ns nil t)
+        (add-hook 'before-save-hook #'lsp-format-buffer nil t))))
   :diminish "Cλ")
 ;; If (lsp-clojure-clean-ns) is hanging, make sure semgrep-lsp is not running
 ;; clojure-ts-reinstall-grammars

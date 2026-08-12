@@ -9,9 +9,10 @@ ido.last
 recentf
 transient
 workspace
-
+projects
 tree-sitter
 elpa/
+eln-cache/
 
 .lsp-session*
 .mc-lists.el
@@ -30,3 +31,4 @@ projectile-bookmarks.eld
 /tramp
 combobulate
 places
+

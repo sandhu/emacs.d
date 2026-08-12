@@ -23,6 +23,10 @@
   :init (add-hook 'prog-mode-hook 'subword-mode)
   :diminish "")
 
+(use-package apheleia :ensure t
+  :config
+  (apheleia-global-mode +1))
+
 (use-package lsp-mode :ensure t
   :commands lsp
   :custom
@@ -30,8 +34,10 @@
   (lsp-enable-indentation nil)
   (lsp-keymap-prefix "C-c l")
   (lsp-format-buffer-on-save t)
+  (lsp-organize-imports-on-save t)
   (lsp-eldoc-render-all nil)
   (lsp-idle-delay 0.6)
+  (lsp-file-watch-threshold 6144)
   (lsp-inlay-hint-enable t)
   (lsp-diagnostics-provider :flycheck)
   (lsp-tailwindcss-add-on-mode t)

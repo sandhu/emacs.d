@@ -1,9 +1,13 @@
-(use-package ag :ensure t
-  :config (setq ag-highlight-search t
-                ag-reuse-buffers t
-                ag-reuse-windows t))
+;; brew install ripgrep
+(use-package rg :ensure t
+  :config
+  (rg-enable-default-bindings)
+  (grep-apply-setting
+   'grep-find-command
+   '("rg -n -H --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 27))
+  (global-set-key (kbd "C-x C-g") 'grep-find))
 
-(use-package wgrep-ag :ensure t)
+(use-package wgrep :ensure t)
 
 (use-package projectile :ensure t
   :bind (("C-x p" . projectile-find-file)
