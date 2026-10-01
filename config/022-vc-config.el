@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (use-package diff-mode
   :config
   (setq diff-switches "-u")

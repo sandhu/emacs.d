@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (use-package go-mode :ensure t
   :config
   (paredit-mode t)

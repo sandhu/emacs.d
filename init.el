@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (setq ns-use-srgb-colorspace nil)
 
 ;; Remove the UI

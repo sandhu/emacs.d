@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; Global defaults
 (setq-default indent-tabs-mode nil) ; Always use spaces for indent
 (setq tab-width 2

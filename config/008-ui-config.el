@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (when window-system
   (setq frame-title-format "%f")
   (tooltip-mode -1)

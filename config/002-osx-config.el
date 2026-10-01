@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (when (equal system-type 'darwin)
   ;; Use the command key as 'meta'
   (setq mac-command-modifier 'meta)

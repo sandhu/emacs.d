@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (use-package dired
   :init (add-hook 'dired-mode-hook 'dired-hide-details-mode)
   :bind ("C-x C-d" . dired)

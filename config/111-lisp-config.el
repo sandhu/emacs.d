@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (global-prettify-symbols-mode +1)
 (global-eldoc-mode 1)
 (eldoc-mode 1)
@@ -13,7 +15,9 @@
   (unbind-key (kbd "RET") paredit-mode-map)
   :bind
   (("C-M-<backspace>" . backward-kill-sexp)
-   ("M-[" . paredit-wrap-square))
+   ("M-[" . paredit-wrap-square)
+   ("{" . paredit-open-curly)
+   ("}" . paredit-close-curly))
   :diminish "()")
 
 (defun lisp-mode-setup ()

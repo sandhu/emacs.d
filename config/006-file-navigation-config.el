@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; brew install ripgrep
 (use-package rg :ensure t
   :config

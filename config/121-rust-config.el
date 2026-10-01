@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (use-package rust-mode :ensure t
   :bind (:map rust-mode-map
               ("{" . paredit-open-curly)

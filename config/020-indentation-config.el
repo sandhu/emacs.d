@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (setq-default indent-tabs-mode nil)
 (setq-default css-indent-offset 2)
 
@@ -8,14 +10,11 @@
   ((before-save . 'whitespace-cleanup))
   :diminish whitespace-mode)
 
-(defun indent-buffer-on-save ()
+(defun indent-buffer ()
   (interactive)
-  (unless (derived-mode-p 'yaml-mode)
-    (indent-region (point-min) (point-max))))
+  (indent-region (point-min) (point-max)))
 
 (use-package aggressive-indent :ensure t
-  :init
-  (add-hook 'before-save-hook 'indent-buffer-on-save)
   :config
   (add-to-list 'aggressive-indent-excluded-modes 'makefile-mode 'yaml-mode)
   (global-aggressive-indent-mode 1)

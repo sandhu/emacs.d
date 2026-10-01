@@ -1,10 +1,13 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; don't need right-to-left text
 (setq-default bidi-display-reordering 'left-to-right
               bidi-paragraph-direction 'left-to-right)
 (setq bidi-inhibit-bpa t)
 
 (require 'uniquify)
-(setq make-backup-files nil
+(setq create-lockfiles nil
+      make-backup-files nil
       auto-save-default nil
       visible-bell t
       uniquify-buffer-name-style 'forward)
@@ -26,6 +29,10 @@
 (setq read-process-output-max (* 5 1024 1024))
 
 (setopt isearch-lazy-count t)
+
+(use-package envrc
+  :ensure t
+  :hook (after-init . envrc-global-mode))
 
 (use-package diminish :ensure t)
 

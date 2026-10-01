@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (defun tree-sitter-install-langs ()
   (let ((tree-sitter-dir (file-name-concat user-emacs-directory "tree-sitter")))
     (unless (file-directory-p tree-sitter-dir)

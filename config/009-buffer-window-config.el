@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (setq scroll-preserve-screen-position 'always)
 
 (use-package ibuffer

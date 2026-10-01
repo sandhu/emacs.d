@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (defun move-file (new-location)
   "Write this file to NEW-LOCATION, and delete the old one."
   (interactive (list (if buffer-file-name

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (defun kill-region-or-backward-word ()
   (interactive)
   (if (region-active-p)
@@ -70,6 +72,7 @@ point reaches the beginning or end of the buffer, stop there."
     (save-excursion
       (forward-line)
       (transpose-lines -1))
+    (forward-line -1)
     (move-to-column col)))
 
 (provide 'teppoudo-editing)

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; Make it hard to quit Emacs - C-x Really Quit
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
 (defun kill-buffer-and-frame ()

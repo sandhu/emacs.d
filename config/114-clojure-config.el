@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (use-package clojure-ts-mode :ensure t
   :init
   (setq buffer-save-without-query t)
@@ -8,17 +10,19 @@
   :hook
   ((clojure-ts-mode
     . (lambda ()
-        (setq-local prettify-symbols-alist
-                    '(("fn" . ?λ)
-                      ("#"  . ?λ)
-                      ("partial" . ?Ƥ)
-                      ("comp" . ?ο)
-                      (">fn" . (?> (Br . Bl) ?λ))))
+        (setq-local
+         lsp-format-buffer-on-save nil ; use the clojure-ts-mode indentation
+         prettify-symbols-alist
+         '(("fn" . ?λ)
+           ("#"  . ?λ)
+           ("partial" . ?Ƥ)
+           ("comp" . ?ο)
+           (">fn" . (?> (Br . Bl) ?λ))))
         (lisp-mode-setup)
         (cider-mode)
         (add-hook 'before-save-hook #'whitespace-cleanup nil t)
         (add-hook 'before-save-hook #'lsp-clojure-clean-ns nil t)
-        (add-hook 'before-save-hook #'lsp-format-buffer nil t))))
+        (add-hook 'before-save-hook #'indent-buffer nil t))))
   :diminish "Cλ")
 ;; If (lsp-clojure-clean-ns) is hanging, make sure semgrep-lsp is not running
 ;; clojure-ts-reinstall-grammars
@@ -26,12 +30,13 @@
 (use-package clojure-mode :ensure t)
 (use-package cider :ensure t
   :init
-  (setq nrepl-hide-special-buffers nil
-        cider-repl-pop-to-buffer-on-connect nil
-        cider-prompt-for-symbol nil
-        cider-overlays-use-font-lock t
-        nrepl-log-messages t
-        cider-repl-history-file (expand-file-name "cider-history" user-emacs-directory))
+  (setq
+   nrepl-hide-special-buffers nil
+   cider-repl-pop-to-buffer-on-connect nil
+   cider-prompt-for-symbol nil
+   cider-overlays-use-font-lock t
+   nrepl-log-messages t
+   cider-repl-history-file (expand-file-name "cider-history" user-emacs-directory))
   :config
   (add-to-list 'same-window-buffer-names "*cider*")
   (cider-enable-cider-completion-style)

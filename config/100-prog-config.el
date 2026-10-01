@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (setq redisplay-skip-fontification-on-input t)
 
 (defun add-watchwords ()
@@ -24,8 +26,11 @@
   :diminish "")
 
 (use-package apheleia :ensure t
-  :config
-  (apheleia-global-mode +1))
+  :init
+  (apheleia-global-mode +1)
+  :hook
+  ((clojure-mode clojure-ts-mode org-mode markdown-mode text-mode)
+   . (lambda () (apheleia-mode -1))))
 
 (use-package lsp-mode :ensure t
   :commands lsp
@@ -39,15 +44,12 @@
   (lsp-idle-delay 0.6)
   (lsp-file-watch-threshold 6144)
   (lsp-inlay-hint-enable t)
+  (lsp-enable-snippet nil)
   (lsp-diagnostics-provider :flycheck)
   (lsp-tailwindcss-add-on-mode t)
   (lsp-tailwindcss-server-path "/opt/homebrew/bin/tailwindcss-language-server")
   :hook
   ((lsp-mode . lsp-ui-mode)))
-
-(use-package yasnippet :ensure t)
-
-;; (use-package lsp-treemacs :ensure t)
 
 (use-package lsp-ui :ensure t
   :commands lsp-ui-mode
@@ -56,6 +58,13 @@
   (lsp-ui-doc-enable nil)
   (lsp-ui-sideline-enable nil)
   (lsp-ui-doc-show-with-cursor nil))
+
+(use-package consult :ensure t)
+
+(use-package consult-lsp :ensure t
+  :after (lsp-mode consult)
+  :bind (:map lsp-mode-map
+              ("C-c l p" . consult-lsp-symbols)))
 
 (add-hook 'after-save-hook
           #'executable-make-buffer-file-executable-if-script-p)

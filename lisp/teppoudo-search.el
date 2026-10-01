@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (defun isearch-remove-unmatched-part ()
   "Remove the failed part of the search string if any, otherwise just delete char"
   (interactive)

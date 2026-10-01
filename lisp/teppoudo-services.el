@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (defun google ()
   "Google the selected region if any, display a query prompt otherwise."
   (interactive)
